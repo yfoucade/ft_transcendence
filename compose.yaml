@@ -1,0 +1,23 @@
+services:
+  postgresql:
+    container_name: postgresql
+    build:  ./postgresql
+    env_file: .env
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - network
+
+  app:
+    container_name: app
+    build: ./app
+    depends_on:
+      - postgresql
+    env_file: .env
+    networks:
+      - network
+
+networks:
+  network:
+    name: ${NETWORK_NAME}
+    driver: bridge
