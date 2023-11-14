@@ -5,6 +5,8 @@ export PATH=$PATH:/usr/lib/postgresql/15/bin
 sed -i "s/<postgres_user>/${POSTGRES_USER}/g" /etc/postgresql/15/main/pg_hba.conf
 sed -i "s/<network_name>/${NETWORK_NAME}/g" /etc/postgresql/15/main/pg_hba.conf
 
+chown -R postgres:postgres /var/lib/postgresql/15/main/
+
 service postgresql start
 
 psql -U postgres -c "CREATE ROLE $POSTGRES_USER WITH LOGIN PASSWORD '$POSTGRES_USER_PASSWORD' CREATEDB;"
