@@ -4,7 +4,7 @@ services:
     build:  ./postgresql
     env_file: .env
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/15/main
     networks:
       - network
 
@@ -21,3 +21,11 @@ networks:
   network:
     name: ${NETWORK_NAME}
     driver: bridge
+
+volumes:
+  db-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data
