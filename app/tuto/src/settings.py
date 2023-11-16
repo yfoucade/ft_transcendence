@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+# TODO: enable (force ?) HTTPS connections: https://docs.djangoproject.com/fr/4.2/topics/security/
+
 import os
 from pathlib import Path
 
@@ -74,24 +76,11 @@ WSGI_APPLICATION = 'src.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-#  Old
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-# https://stackoverflow.com/questions/73633619/trouble-hooking-up-postgres-to-django
 DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.postgresql',
-		'NAME': os.environ.get("POSTGRES_DATABASE"), # database name
-		'USER': os.environ.get("POSTGRES_USER"),
-		'PASSWORD': os.environ.get("POSTGRES_PASSWORD"),
-		'HOST': os.environ.get("POSTGRES_HOST"),
-		'PORT': os.environ.get("POSTGRES_PORT"),
-	}
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
