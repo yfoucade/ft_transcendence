@@ -9,7 +9,7 @@ chown -R postgres:postgres /var/lib/postgresql/15/main/
 
 service postgresql start
 
-psql -U postgres -c "CREATE ROLE $POSTGRES_USER WITH LOGIN PASSWORD '$POSTGRES_USER_PASSWORD' CREATEDB;"
+psql -U postgres -c "CREATE ROLE $POSTGRES_USER WITH LOGIN PASSWORD '$POSTGRES_PASSWORD' CREATEDB;"
 psql -U postgres -c "CREATE DATABASE $POSTGRES_USER OWNER $POSTGRES_USER;"
 psql -U postgres -d $POSTGRES_USER -c	"CREATE TABLE IF NOT EXISTS account (\
 											id SERIAL PRIMARY KEY NOT NULL, \
