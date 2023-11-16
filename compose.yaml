@@ -16,6 +16,8 @@ services:
     env_file: .env
     networks:
       - network
+    ports:
+      - "8000:8000"
 
 networks:
   network:

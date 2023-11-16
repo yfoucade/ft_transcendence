@@ -6,7 +6,9 @@ RUN apt-get install -y python3 python3-venv
 RUN python3 -m venv env
 
 COPY init_app.sh .
+COPY ./src/ ./src/
 
-EXPOSE 5432
+EXPOSE 8000
+
 ENTRYPOINT ["bash", "./init_app.sh"]
 CMD ["tail", "-f", "/dev/null"]
