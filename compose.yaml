@@ -21,7 +21,6 @@ services:
       - type: volume
         source: src-data
         target: /src
-        read_only: true
     networks:
       - network
     ports:
