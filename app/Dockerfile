@@ -12,4 +12,4 @@ EXPOSE 8080
 
 ENTRYPOINT ["bash", "./init_app.sh"]
 # CMD ["tail", "-f", "/dev/null"]
-CMD ["python", "tuto/manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "src/manage.py", "runserver", "0.0.0.0:8000"]
