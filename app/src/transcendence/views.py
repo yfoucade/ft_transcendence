@@ -10,5 +10,5 @@ def index(request):
     if request.user.is_authenticated:
         context["username"] = request.user.name
     else:
-        context["username"] = "log in"
+        context["username"] = "Sign in"
     return render(request, "transcendence/base.html", context)
