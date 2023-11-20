@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Transcendence</title>
+    <link rel="stylesheet" href="{% static 'transcendence/style.css' %}?{% now 'U' %}">
+    <script src="{% static 'transcendence/script.js' %}" defer></script>
+</head>
+
+<body>
+    <nav id="main-navbar" class="navbar">
+        <ul id="main-menu">
+            <!-- TODO: replace 'Home' text with an logo -->
+            <li id="nav-home" class="link" target-main-id="main-home">Home</li>
+            <li id="nav-play" class="link" target-main-id="main-play">Play</li>
+        </ul>
+        <ul>
+            <li id="username" class="link">{{ username }}</li>
+        </ul>
+    </nav>
+    <header id="top">
+        <div class="site-title-nav">
+            <h1 class="site-title">Transcendence</h1>
+        </div>
+    </header>
+        {% include "transcendence/main_home.html" %}
+        {% include "transcendence/main_play.html" %}
+    </footer>
+</body>
+
+</html>

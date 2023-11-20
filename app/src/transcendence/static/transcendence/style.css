@@ -1,0 +1,58 @@
+body {
+    background-color: aliceblue;
+}
+
+.hidden {
+    display: none;
+}
+
+#main-navbar {
+    background-color:aquamarine;
+    /* Set the navbar to fixed position */
+    position: fixed;
+    /* Position the navbar at the top of the page */
+    top: 0;
+    left: 0;
+    /* Full width */
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#main-navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+/* #main-menu {
+    left: 0;
+    display: flex;
+    flex-direction: row;
+} */
+
+#main-navbar li {
+    margin-left: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 1em;
+    vertical-align: middle;
+    padding-top: auto;
+    text-align: center;
+}
+
+#main-navbar li:hover {
+    cursor: pointer;
+}
+
+header {
+    margin-top: 8%;
+}
+
+main {
+    margin-top: 8%;
+}
