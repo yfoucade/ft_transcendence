@@ -1,5 +1,6 @@
 body {
     background-color: aliceblue;
+    margin: 0;
 }
 
 .hidden {
@@ -50,9 +51,44 @@ body {
 }
 
 header {
-    margin-top: 8%;
+    /* margin-top: 8%; */
 }
 
 main {
-    margin-top: 8%;
+    margin-top: 60px;
+}
+
+#pong-game-selection {
+    width: 60%;
+    margin: auto;
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 100px);
+    /* height: 60%; */
+    min-width: 256px;
+    max-width: 512px;
+    gap: 6px;
+}
+
+.box {
+    position: relative;
+    /* top: 50%; */
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    min-width: 70px;
+}
+
+.box-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.link:hover {
+    cursor: pointer;
+    background-color: aquamarine;
+    /* font-size: 1.2em; */
 }
