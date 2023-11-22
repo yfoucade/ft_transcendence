@@ -88,3 +88,39 @@ main {
     background-color: aquamarine;
     /* font-size: 1.2em; */
 }
+
+#main-local-1v1.shown {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+#game-canvas {
+    z-index: 0;
+    margin-top: 30px;
+    grid-column: 2/3;
+    aspect-ratio: 16/9;
+    background: black;
+    position: relative;
+}
+
+#left-paddle {
+    z-index: 1;
+    position: absolute;
+    height: 40px;
+    width: 10px;
+    background-color: white;
+    left: 1px;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+#right-paddle {
+    z-index: 1;
+    position: absolute;
+    height: 40px;
+    width: 10px;
+    background-color: white;
+    left: 210px;
+    top: 50%;
+    transform: translate(0, -50%);
+}

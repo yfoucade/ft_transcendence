@@ -6,6 +6,9 @@
     <meta charset="utf-8">
     <title>Transcendence</title>
     <link rel="stylesheet" href="{% static 'transcendence/style.css' %}?{% now 'U' %}">
+    <script src="{% static 'transcendence/View.js' %}" defer></script>
+    <script src="{% static 'transcendence/Model.js' %}" defer></script>
+    <script src="{% static 'transcendence/Controller.js' %}" defer></script>
     <script src="{% static 'transcendence/script.js' %}" defer></script>
 </head>
 
@@ -13,8 +16,8 @@
     <nav id="main-navbar" class="navbar">
         <ul id="main-menu">
             <!-- TODO: replace 'Home' text with an logo -->
-            <li id="nav-home" class="link" target-main-id="main-home">Home</li>
-            <li id="nav-play" class="link" target-main-id="main-play">Play</li>
+            <li id="nav-home" class="link" data-target-main-id="main-home">Home</li>
+            <li id="nav-play" class="link" data-target-main-id="main-play">Play</li>
         </ul>
         <ul>
             <li id="username" class="link">{{ username }}</li>
@@ -27,6 +30,7 @@
     </header> -->
         {% include "transcendence/main_home.html" %}
         {% include "transcendence/main_play.html" %}
+        {% include "transcendence/main_local_1v1.html" %}
     </footer>
 </body>
 
