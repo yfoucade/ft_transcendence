@@ -154,7 +154,7 @@ function new_point()
      */
     print_current_score();
     reset_paddles_and_ball();
-    if ( local_1v1_game.left_score == 10 || local_1v1_game.right_score == 10 )
+    if ( local_1v1_game.left_score == 3 || local_1v1_game.right_score == 3 )
         return true;
 }
 
@@ -195,8 +195,8 @@ function check_score()
     {
         if ( ball_rect.bottom < left_paddle_rect.top || ball_rect.top > left_paddle_rect.bottom )
         {
-            local_1v1_game.left_score += 1;
-            local_1v1_game.last_scorer = "left";
+            local_1v1_game.right_score += 1;
+            local_1v1_game.last_scorer = "right";
             return true;
         }
     }
@@ -204,8 +204,8 @@ function check_score()
     {
         if (ball_rect.bottom < right_paddle_rect.top || ball_rect.top > right_paddle_rect.bottom )
         {
-            local_1v1_game.right_score += 1;
-            local_1v1_game.last_scorer = "right";
+            local_1v1_game.left_score += 1;
+            local_1v1_game.last_scorer = "left";
             return true;
         }
     }
