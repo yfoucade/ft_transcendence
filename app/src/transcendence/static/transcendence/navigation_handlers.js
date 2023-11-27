@@ -93,6 +93,8 @@ function remove_main_local_1v1_listeners( main )
     /**
      * Remove paddle controls listeners
      */
+    window.removeEventListener( "keydown", handle_keydown );
+    window.removeEventListener( "keyup", handle_keyup);
 }
 
 function update_main_local_1v1( main )
@@ -111,6 +113,7 @@ function clean_main_local_1v1( main )
     /**
      * center paddles and ball
      */
+    local_1v1_game.game_in_progress = false;
 }
 
 function start_local_1v1_game( event )
@@ -144,7 +147,8 @@ function animate( time, last_time )
         check_wall_collision();
         check_paddle_collision();
     }
-    requestAnimationFrame( new_time => animate(new_time, time) );
+    if ( local_1v1_game.game_in_progress )
+        requestAnimationFrame( new_time => animate(new_time, time) );
 }
 
 function new_point()
@@ -219,6 +223,7 @@ function check_wall_collision()
 
     if ( ball_rect.top < canvas_rect.top || ball_rect.bottom > canvas_rect.bottom )
     {
+        local_1v1_game.ball_top_percent = clamp( local_1v1_game.ball_top_percent, 0, local_1v1_game.ball_top_max_value_percentage );
         local_1v1_game.ball_theta = -local_1v1_game.ball_theta;
         local_1v1_game.ball_dx = local_1v1_game.ball_r * Math.cos( local_1v1_game.ball_theta );
         local_1v1_game.ball_dy = local_1v1_game.ball_r * Math.sin( local_1v1_game.ball_theta );
