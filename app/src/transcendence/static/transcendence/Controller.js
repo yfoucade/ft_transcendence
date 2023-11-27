@@ -1,7 +1,6 @@
 class Controller {
-    constructor( model, view ) {
+    constructor( model ) {
         this._model = model;
-        this._view = view;
     }
 
     init_navigation_listeners()
@@ -19,12 +18,12 @@ class Controller {
         for ( let id of nav_element_ids ) {
             console.log(`Adding listener for ${id}`);
             let element = document.getElementById(id);
-            element.addEventListener( "click", (event) => {this.update_main(event)} );
+            element.addEventListener( "click", (event) => {this.handle_nav_event(event)} );
         }
         window.addEventListener( 'beforeunload', (event) => {this.before_unload(event)} );
     }
 
-    update_main(event)
+    handle_nav_event(event)
     {
         if ( this._model.ask_confirmation_before_view_change() )
         {
@@ -36,8 +35,9 @@ class Controller {
         }
         let current_main = document.querySelector(".shown");
         let target_main = document.getElementById( event.currentTarget.getAttribute("data-target-main-id") );
-        current_main.classList.replace( "shown", "hidden" );
-        target_main.classList.replace( "hidden", "shown" );
+        this._model.switch_view( current_main, target_main );
+        // current_main.classList.replace( "shown", "hidden" );
+        // target_main.classList.replace( "hidden", "shown" );
     }
 
     before_unload( event )

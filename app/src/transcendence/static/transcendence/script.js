@@ -20,11 +20,7 @@
 
 function main()
 {
-    view = new View();
-    model = new Model();
-    controller = new Controller( model, view );
-    
-    controller.init_navigation_listeners();
+    init_navigation_listeners();
 }
 
 main();

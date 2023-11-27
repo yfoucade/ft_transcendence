@@ -92,35 +92,75 @@ main {
 #main-local-1v1.shown {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: .25fr 1fr;
 }
 
 #game-canvas {
-    z-index: 0;
+    z-index: 10;
     margin-top: 30px;
     grid-column: 2/3;
-    aspect-ratio: 16/9;
+    grid-row: 2;
+    aspect-ratio: 8/5;
     background: black;
     position: relative;
+    border: 3px solid black;
+    box-sizing: content-box;
 }
 
-#left-paddle {
+.left-paddle {
     z-index: 1;
     position: absolute;
-    height: 40px;
-    width: 10px;
+    height: 25%;
+    width: 3%;
     background-color: white;
-    left: 1px;
+    left: 0%;
     top: 50%;
     transform: translate(0, -50%);
 }
 
-#right-paddle {
+.right-paddle {
+    z-index: -1;
+    position: absolute;
+    height: 25%;
+    width: 3%;
+    background-color: white;
+    left: 100%;
+    top: 50%;
+    transform: translate(-100%, -50%);
+}
+
+.ball {
     z-index: 1;
     position: absolute;
-    height: 40px;
-    width: 10px;
+    width: 3%;
+    aspect-ratio: 1/1;
     background-color: white;
-    left: 210px;
     top: 50%;
-    transform: translate(0, -50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#local-1v1-start-button {
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 10%;
+    width: 20%;
+    min-width: 100px;
+}
+
+#local-1v1-score
+{
+    z-index: 1;
+    position: absolute;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 50%;
+    height: 10%;
+    left: 50%;
+    transform: translate(-50%, 0%);
 }
