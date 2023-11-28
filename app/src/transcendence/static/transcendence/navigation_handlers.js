@@ -19,14 +19,13 @@ let local_1v1_game = {
     ball: document.getElementById("local-1v1-ball"),
     left_score: document.getElementById("local-1v1-left-score"),
     right_score: document.getElementById("local-1v1-right-score"),
-    // Display settings
-    // game_canvas_border_width_px: 3,
     // Sizes and positions
     left_paddle_height: null,
     right_paddle_height: null,
     ball_height: null, // ball_width == ball_height
     paddle_top_max_value_percentage: null,
     ball_top_max_value_percentage: null,
+    ball_left_min_value_percentage: null,
     ball_left_max_value_percentage: null,
     left_paddle_percent: null,
     right_paddle_percent: null,
@@ -186,6 +185,7 @@ function reset_paddles_and_ball()
 
 function end_game()
 {
+    local_1v1_game.game_in_progress = false;
     update_main_local_1v1();
 }
 
@@ -240,22 +240,27 @@ function check_paddle_collision()
         return ;
 
     if ( ball_rect.left < left_paddle_rect.right && local_1v1_game.last_bounce != "left" )
-        bounce( (ball_rect.top + ball_rect.bottom) / 2, left_paddle_rect.top, left_paddle_rect.bottom, false );
+        bounce_on_paddle( (ball_rect.top + ball_rect.bottom) / 2, left_paddle_rect.top, left_paddle_rect.bottom, "left" );
     if ( ball_rect.right > right_paddle_rect.left && local_1v1_game.last_bounce != "right" )
-        bounce( (ball_rect.top + ball_rect.bottom) / 2, right_paddle_rect.top, right_paddle_rect.bottom, true );
+        bounce_on_paddle( (ball_rect.top + ball_rect.bottom) / 2, right_paddle_rect.top, right_paddle_rect.bottom, "right" );
 }
 
-function bounce( mean_ball_height, top, bottom, go_left )
+function bounce_on_paddle( mean_ball_height, top, bottom, paddle )
 {
     mean_ball_height = clamp( mean_ball_height, top, bottom );
     let new_theta = local_1v1_game.max_bounce_angle - 2 * local_1v1_game.max_bounce_angle * (bottom - mean_ball_height) / (bottom - top);
-    if ( go_left )
+    if ( paddle == "right" )
+    {
         new_theta = Math.PI - new_theta;
+        local_1v1_game.ball_left_percent = local_1v1_game.ball_left_max_value_percentage;
+    }
+    if ( paddle == "left" )
+        local_1v1_game.ball_left_percent = local_1v1_game.ball_left_min_value_percentage;
     local_1v1_game.ball_theta = new_theta;
     local_1v1_game.ball_dx = local_1v1_game.ball_r * Math.cos( local_1v1_game.ball_theta );
     local_1v1_game.ball_dy = local_1v1_game.ball_r * Math.sin( local_1v1_game.ball_theta );
     local_1v1_game.ball_r *= local_1v1_game.ball_acceleration;
-    local_1v1_game.last_bounce = go_left ? "right" : "left";
+    local_1v1_game.last_bounce = paddle;
 }
 
 function clamp( num, min, max )
@@ -283,25 +288,17 @@ function update_ball_position( time_delta_ms )
 
 function init_game_state()
 {
-    // TODO: use height and width directly
-    console.log("Initialising game state");
-    let left_paddle_bounding_rect = local_1v1_game.left_paddle.getBoundingClientRect();
-    console.log("left_paddle bottom and top:", left_paddle_bounding_rect.bottom, left_paddle_bounding_rect.top);
-    local_1v1_game.left_paddle_height = left_paddle_bounding_rect.bottom - left_paddle_bounding_rect.top;
-    console.log("left_paddle_height:", local_1v1_game.left_paddle_height);
-    let right_paddle_bounding_rect = local_1v1_game.right_paddle.getBoundingClientRect();
-    local_1v1_game.right_paddle_height = right_paddle_bounding_rect.bottom - right_paddle_bounding_rect.top;
-    let ball_bounding_rect = local_1v1_game.ball.getBoundingClientRect();
-    console.log("ball_bounding_rect:", ball_bounding_rect.bottom, ball_bounding_rect.top);
-    local_1v1_game.ball_height = ball_bounding_rect.bottom - ball_bounding_rect.top;
+    local_1v1_game.left_paddle_height = local_1v1_game.left_paddle.getBoundingClientRect().height;
+    local_1v1_game.right_paddle_height = local_1v1_game.right_paddle.getBoundingClientRect().height;
+    local_1v1_game.ball_height = local_1v1_game.ball.getBoundingClientRect().height;
     let game_canvas_bounding_rect = local_1v1_game.game_canvas.getBoundingClientRect();
     game_canvas_height = game_canvas_bounding_rect.height;
     game_canvas_width  = game_canvas_bounding_rect.width;
-    console.log("canvas border width:", local_1v1_game.game_canvas.style.borderWidth);
 
     local_1v1_game.paddle_top_max_value_percentage = 100 * ( game_canvas_height - local_1v1_game.left_paddle_height ) / game_canvas_height;
     local_1v1_game.ball_top_max_value_percentage = 100 * ( game_canvas_height - local_1v1_game.ball_height ) / game_canvas_height;
-    local_1v1_game.ball_left_max_value_percentage = 100 * ( game_canvas_width - local_1v1_game.ball_height ) / game_canvas_width;
+    local_1v1_game.ball_left_min_value_percentage = 100 * local_1v1_game.left_paddle.getBoundingClientRect().width / game_canvas_width;
+    local_1v1_game.ball_left_max_value_percentage = 100 * ( game_canvas_width - local_1v1_game.right_paddle.getBoundingClientRect().width - local_1v1_game.ball_height ) / game_canvas_width;
 
     local_1v1_game.left_paddle_percent = local_1v1_game.paddle_top_max_value_percentage / 2;
     local_1v1_game.right_paddle_percent = local_1v1_game.paddle_top_max_value_percentage / 2;
@@ -337,7 +334,6 @@ function init_game_state()
 
 function handle_keydown( event )
 {
-    console.log( "keydown:", event.key );
     if ( event.key == "e")
         local_1v1_game.left_paddle_up = true;
     else if ( event.key == "d" )
