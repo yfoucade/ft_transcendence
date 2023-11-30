@@ -89,7 +89,7 @@ main {
     /* font-size: 1.2em; */
 }
 
-#main-local-1v1.shown {
+#main-local-pvp.shown {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: .25fr 1fr;
@@ -140,7 +140,7 @@ main {
     transform: translate(-50%, -50%);
 }
 
-#local-1v1-start-button {
+#local-pvp-start-button {
     z-index: 1;
     position: absolute;
     left: 50%;
@@ -151,7 +151,7 @@ main {
     min-width: 100px;
 }
 
-#local-1v1-score
+#local-pvp-score
 {
     z-index: 1;
     position: absolute;

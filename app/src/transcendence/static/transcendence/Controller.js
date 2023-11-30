@@ -13,7 +13,7 @@ class Controller {
         Also ask for confirmation ( window.confirm(message) ) if an online
         game or a local tournament is in progress.
         */
-        let nav_element_ids = ["nav-home", "nav-play", "nav-local-1v1"];
+        let nav_element_ids = ["nav-home", "nav-play", "nav-local-pvp"];
         console.log(`Installing listeners`);
         for ( let id of nav_element_ids ) {
             console.log(`Adding listener for ${id}`);
