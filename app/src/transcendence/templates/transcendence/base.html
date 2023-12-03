@@ -7,6 +7,8 @@
     <title>Transcendence</title>
     <link rel="stylesheet" href="{% static 'transcendence/style.css' %}?{% now 'U' %}">
     <script src="{% static 'transcendence/pong_utils.js' %}?{% now 'U' %}" defer></script>
+    <script src="{% static 'transcendence/local_1v1.js' %}?{% now 'U' %}" defer></script>
+    <script src="{% static 'transcendence/local_tournament_form.js' %}?{% now 'U' %}" defer></script>
     <script src="{% static 'transcendence/navigation_handlers.js' %}?{% now 'U' %}" defer></script>
     <script src="{% static 'transcendence/script.js' %}?{% now 'U' %}" defer></script>
 </head>
@@ -30,6 +32,7 @@
         {% include "transcendence/main_home.html" %}
         {% include "transcendence/main_play.html" %}
         {% include "transcendence/main_local_pvp.html" %}
+        {% include "transcendence/main_local_tournament_form.html" %}
     </footer>
 </body>
 

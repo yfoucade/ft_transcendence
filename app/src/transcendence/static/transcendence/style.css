@@ -164,3 +164,60 @@ main {
     left: 50%;
     transform: translate(-50%, 0%);
 }
+
+#main-local-tournament-form
+{
+    padding-top: 20px;
+}
+
+#form-and-player-list
+{
+    display: grid;
+    max-width: 400px;
+    width: 60%;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin: auto;
+}
+
+#div-player-list
+{
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    height: 200px;
+    padding: 10px;
+}
+
+#div-start-tournament
+{
+    margin: auto;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.registered-player
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.remove-player
+{
+    color: red;
+    font-weight: bolder;
+    transform: scale(3) rotate(-45deg);
+    /* transform: rotate(-45deg); */
+}
+
+.remove-player:hover
+{
+    cursor: pointer;
+}
+
+.error
+{
+    color: red;
+}
