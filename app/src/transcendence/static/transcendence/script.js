@@ -1,6 +1,6 @@
 function main()
 {
-    init_navigation_listeners();
+    init_listeners();
 }
 
 main();
