@@ -1,37 +1,40 @@
 
 let tournament_form = {
     // HTMLElements
-    error_message_form: document.getElementById("error-message-form"),
-    text_input: document.getElementById("form-player-name"),
-    player_list: document.getElementById("div-player-list"),
-    error_message_start: document.getElementById("error-message-start"),
+    html_element_error_message_form: document.getElementById("error-message-form"),
+    html_element_text_input: document.getElementById("form-player-name"),
+    html_element_player_list: document.getElementById("div-player-list"),
+    html_element_error_message_start: document.getElementById("error-message-start"),
 
     // Config
     max_players: 8,
+
+    // State
+    player_list: null,
 };
 
 function add_player_to_local_tournament( event )
 {
     event.preventDefault();
-    let name = tournament_form.text_input.value;
+    let name = tournament_form.html_element_text_input.value;
     if ( !name )
         return;
     if ( !valid_player_name( name ) )
     {
-        tournament_form.error_message_form.innerHTML = "Allowed characters: alphanumeric and underscore.";
+        tournament_form.html_element_error_message_form.innerHTML = "Allowed characters: alphanumeric and underscore.";
         return;
     }
     if ( check_number_of_players() )
     {
-        tournament_form.error_message_form.innerHTML = "Max number of players reached.";
+        tournament_form.html_element_error_message_form.innerHTML = "Max number of players reached.";
         return;
     }
-    tournament_form.error_message_form.innerHTML = '';
+    tournament_form.html_element_error_message_form.innerHTML = '';
     let new_player_element = build_registration_element( name );
-    tournament_form.player_list.appendChild( new_player_element );
-    tournament_form.text_input.value = "";
+    tournament_form.html_element_player_list.appendChild( new_player_element );
+    tournament_form.html_element_text_input.value = "";
     if ( get_number_of_players() == 2 )
-        tournament_form.error_message_start.innerHTML = "";
+        tournament_form.html_element_error_message_start.innerHTML = "";
 }
 
 function get_number_of_players()
@@ -78,8 +81,22 @@ function start_tournament( event )
 {
     if ( get_number_of_players() < 2 )
     {
-        tournament_form.error_message_start.innerHTML = "Need at list two players";
+        tournament_form.html_element_error_message_start.innerHTML = "Need at list two players";
         return;
     }
+    init_players_list();
+    // show_tournament_page();
+    // clean_form();
     console.log("Starting tournament");
+}
+
+function init_players_list()
+{
+    let res = [];
+    players_elements = tournament_form.html_element_player_list.querySelectorAll(".player-name");
+    for ( element of players_elements )
+    {
+        res.push(element.innerHTML);
+    }
+    console.log(`List of players: ${res}`);
 }
