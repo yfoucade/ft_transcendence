@@ -3,15 +3,17 @@ let tournament_form = {
     // HTMLElements
     html_element_error_message_form: document.getElementById("error-message-form"),
     html_element_text_input: document.getElementById("form-player-name"),
-    html_element_player_list: document.getElementById("div-player-list"),
+    html_element_registered_players: document.getElementById("div-player-list"),
     html_element_error_message_start: document.getElementById("error-message-start"),
 
     // Config
     max_players: 8,
-
-    // State
-    player_list: null,
 };
+
+function update_main_local_tournament_form( element ){
+    console.log("update_main_local_tournament_form");
+    tournament_form.html_element_text_input.focus();
+}
 
 function add_player_to_local_tournament( event )
 {
@@ -31,7 +33,7 @@ function add_player_to_local_tournament( event )
     }
     tournament_form.html_element_error_message_form.innerHTML = '';
     let new_player_element = build_registration_element( name );
-    tournament_form.html_element_player_list.appendChild( new_player_element );
+    tournament_form.html_element_registered_players.appendChild( new_player_element );
     tournament_form.html_element_text_input.value = "";
     if ( get_number_of_players() == 2 )
         tournament_form.html_element_error_message_start.innerHTML = "";
@@ -84,19 +86,22 @@ function start_tournament( event )
         tournament_form.html_element_error_message_start.innerHTML = "Need at list two players";
         return;
     }
-    init_players_list();
+    init_local_tournament_obj();
+    init_pong_game_htmlelements( "local-tournament" );
+    let current_main = document.getElementById("main-local-tournament-form");
+    let target_main = document.getElementById("main-local-tournament-lobby");
+    switch_view( current_main, target_main );
     // show_tournament_page();
-    // clean_form();
+    clean_form();
     console.log("Starting tournament");
 }
 
-function init_players_list()
+
+function clean_form()
 {
-    let res = [];
-    players_elements = tournament_form.html_element_player_list.querySelectorAll(".player-name");
-    for ( element of players_elements )
+    with (tournament_form)
     {
-        res.push(element.innerHTML);
+        html_element_text_input.innerHTML = "";
+        html_element_registered_players.innerHTML = "";
     }
-    console.log(`List of players: ${res}`);
 }

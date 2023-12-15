@@ -89,13 +89,25 @@ main {
     /* font-size: 1.2em; */
 }
 
-#main-local-pvp.shown {
+/* #main-local-1v1.shown {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: .25fr 1fr;
+} */
+.pong-page.shown {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: .25fr 1fr;
 }
 
-#game-canvas {
+#players-names {
+    margin-top: 30px;
+    text-align: center;
+    grid-column: 2/3;
+    font-size: 2em;
+}
+
+div[id$="game-canvas"] {
     z-index: 10;
     margin-top: 30px;
     grid-column: 2/3;
@@ -140,7 +152,7 @@ main {
     transform: translate(-50%, -50%);
 }
 
-#local-pvp-start-button {
+.start-button {
     z-index: 1;
     position: absolute;
     left: 50%;
@@ -151,8 +163,7 @@ main {
     min-width: 100px;
 }
 
-#local-pvp-score
-{
+.score-div {
     z-index: 1;
     position: absolute;
     color: white;
@@ -220,4 +231,87 @@ main {
 .error
 {
     color: red;
+}
+
+h1,h2,h3 {
+    text-align: center;
+}
+
+#local-tournament-lobby-tables {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 50%;
+    max-width: 500px;
+    gap: 6px;
+    margin: auto;
+}
+
+.lobby-table-header {
+    text-align: center;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+
+.lobby-table {
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    height: 200px;
+    padding-top: 5px;
+}
+
+#div-local-tournament-lobby-next-round {
+    text-align: center;
+}
+
+.left-player {
+    text-align: right;
+}
+
+.separator {
+    text-align: center;
+}
+
+.right-player {
+    text-align: left;
+}
+
+#local-tournament-lobby-button {
+    margin: auto;
+}
+
+.player-out {
+    text-align: center;
+}
+
+.lobby-table-header {
+    top: 50%;
+}
+
+.container {
+    margin: 10px;
+}
+
+.center {
+    text-align: center;
+}
+
+.match-winner {
+    font-weight: bold;
+}
+
+.bye {
+    font-family:'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: 100;
+}
+
+#div-local-tournament-lobby-players-out div {
+    text-align: center;
+}
+
+#players-names {
+    text-align: center;
 }

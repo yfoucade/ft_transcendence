@@ -1,13 +1,13 @@
 
 let pong_game = {
     // HTMLElements
-    game_canvas: document.getElementById("game-canvas"),
-    start_button: document.getElementById("local-pvp-start-button"),
-    left_paddle: document.getElementById("local-pvp-left-paddle"),
-    right_paddle: document.getElementById("local-pvp-right-paddle"),
-    ball: document.getElementById("local-pvp-ball"),
-    left_score: document.getElementById("local-pvp-left-score"),
-    right_score: document.getElementById("local-pvp-right-score"),
+    html_element_game_canvas: null,
+    html_element_start_button: null,
+    html_element_left_paddle: null,
+    html_element_right_paddle: null,
+    html_element_ball: null,
+    html_element_left_score: null,
+    html_element_right_score: null,
     // Sizes and positions
     left_paddle_height: null,
     right_paddle_height: null,
@@ -39,6 +39,23 @@ let pong_game = {
     right_score: 0,
     last_scorer: null, // 'null' until first point, then 'left' or 'right'
     last_bounce: null,
+    // Callback
+    end_of_game_callback: null,
+}
+
+function init_pong_game_htmlelements( prefix )
+{
+
+    with ( pong_game )
+    {
+        html_element_game_canvas = document.getElementById(`${prefix}-game-canvas`);
+        html_element_start_button = document.getElementById(`${prefix}-start-button`);
+        html_element_left_paddle = document.getElementById(`${prefix}-left-paddle`);
+        html_element_right_paddle = document.getElementById(`${prefix}-right-paddle`);
+        html_element_ball = document.getElementById(`${prefix}-ball`);
+        html_element_left_score = document.getElementById(`${prefix}-left-score`);
+        html_element_right_score = document.getElementById(`${prefix}-right-score`);
+    }
 }
 
 function new_point()
@@ -54,8 +71,11 @@ function new_point()
 
 function print_current_score()
 {
-    document.getElementById("local-pvp-left-score").innerHTML = pong_game.left_score;
-    document.getElementById("local-pvp-right-score").innerHTML = pong_game.right_score;
+    // document.getElementById("local-1v1-left-score").innerHTML = pong_game.left_score;
+    // document.getElementById("local-1v1-right-score").innerHTML = pong_game.right_score;
+
+    pong_game.html_element_left_score.innerHTML = pong_game.left_score;
+    pong_game.html_element_right_score.innerHTML = pong_game.right_score;
 }
 
 function reset_paddles_and_ball()
@@ -76,9 +96,9 @@ function reset_paddles_and_ball()
 
 function check_score()
 {
-    let left_paddle_rect = pong_game.left_paddle.getBoundingClientRect();
-    let right_paddle_rect = pong_game.right_paddle.getBoundingClientRect();
-    let ball_rect = pong_game.ball.getBoundingClientRect();
+    let left_paddle_rect = pong_game.html_element_left_paddle.getBoundingClientRect();
+    let right_paddle_rect = pong_game.html_element_right_paddle.getBoundingClientRect();
+    let ball_rect = pong_game.html_element_ball.getBoundingClientRect();
 
     if ( ball_rect.left < left_paddle_rect.right )
     {
@@ -103,8 +123,8 @@ function check_score()
 
 function check_wall_collision()
 {
-    let canvas_rect = pong_game.game_canvas.getBoundingClientRect();
-    let ball_rect = pong_game.ball.getBoundingClientRect();
+    let canvas_rect = pong_game.html_element_game_canvas.getBoundingClientRect();
+    let ball_rect = pong_game.html_element_ball.getBoundingClientRect();
 
     if ( ball_rect.top < canvas_rect.top || ball_rect.bottom > canvas_rect.bottom )
     {
@@ -117,9 +137,9 @@ function check_wall_collision()
 
 function check_paddle_collision()
 {
-    let left_paddle_rect = pong_game.left_paddle.getBoundingClientRect();
-    let right_paddle_rect = pong_game.right_paddle.getBoundingClientRect();
-    let ball_rect = pong_game.ball.getBoundingClientRect();
+    let left_paddle_rect = pong_game.html_element_left_paddle.getBoundingClientRect();
+    let right_paddle_rect = pong_game.html_element_right_paddle.getBoundingClientRect();
+    let ball_rect = pong_game.html_element_ball.getBoundingClientRect();
 
     if ( ball_rect.left > left_paddle_rect.right && ball_rect.right < right_paddle_rect.left )
         return ;
@@ -154,14 +174,14 @@ function update_paddles_positions( time_delta_ms )
     pong_game.right_paddle_percent += (pong_game.right_paddle_down - pong_game.right_paddle_up) * pong_game.paddle_speed * time_delta_ms;
     pong_game.left_paddle_percent = clamp( pong_game.left_paddle_percent, 0, pong_game.paddle_top_max_value_percentage );
     pong_game.right_paddle_percent = clamp( pong_game.right_paddle_percent, 0, pong_game.paddle_top_max_value_percentage );
-    pong_game.left_paddle.style.top = `${pong_game.left_paddle_percent}%`;
-    pong_game.right_paddle.style.top = `${pong_game.right_paddle_percent}%`;
+    pong_game.html_element_left_paddle.style.top = `${pong_game.left_paddle_percent}%`;
+    pong_game.html_element_right_paddle.style.top = `${pong_game.right_paddle_percent}%`;
 }
 
 function update_ball_position( time_delta_ms )
 {
     pong_game.ball_left_percent += pong_game.ball_dx * ( time_delta_ms );
     pong_game.ball_top_percent += pong_game.ball_dy * ( time_delta_ms );
-    pong_game.ball.style.left = `${pong_game.ball_left_percent}%`;
-    pong_game.ball.style.top = `${pong_game.ball_top_percent}%`;
+    pong_game.html_element_ball.style.left = `${pong_game.ball_left_percent}%`;
+    pong_game.html_element_ball.style.top = `${pong_game.ball_top_percent}%`;
 }
