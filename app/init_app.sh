@@ -10,6 +10,7 @@ pip install psycopg
 pip install daphne
 
 cd src/
+python manage.py migrate
 python manage.py collectstatic
 nginx
 exec "$@"
