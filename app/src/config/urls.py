@@ -19,6 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path( '', include( "transcendence.urls" ) ),
+    path( 'accounts/', include( "django.contrib.auth.urls" ) ),
     path( 'test_ssr/', include( "test_ssr.urls" ) ), #TODO: remove this app
     path('admin/', admin.site.urls),
 ]

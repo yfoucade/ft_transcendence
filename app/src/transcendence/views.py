@@ -6,9 +6,4 @@ from django.template import loader
 
 def index(request):
     # template = loader.get_template("transcendence/base.html")
-    context = {}
-    if request.user.is_authenticated:
-        context["username"] = request.user.name
-    else:
-        context["username"] = "Sign in"
-    return render(request, "transcendence/base.html", context)
+    return render(request, "transcendence/index.html")

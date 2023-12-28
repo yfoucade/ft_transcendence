@@ -83,11 +83,28 @@ main {
     transform: translate(-50%, -50%);
 }
 
-.link:hover {
+.nav-link {
+}
+
+.nav-link:hover {
     cursor: pointer;
     background-color: aquamarine;
     /* font-size: 1.2em; */
 }
+
+.nav-link a {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: inherit;
+    text-decoration: inherit;
+}
+
+/* a:visited {
+    color: inherit;
+    text-decoration: inherit;
+} */
 
 /* #main-local-1v1.shown {
     display: grid;
