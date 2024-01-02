@@ -43,18 +43,18 @@ let pong_game = {
     end_of_game_callback: null,
 }
 
-function init_pong_game_htmlelements( prefix )
+function init_pong_game_htmlelements()
 {
 
     with ( pong_game )
     {
-        html_element_game_canvas = document.getElementById(`${prefix}-game-canvas`);
-        html_element_start_button = document.getElementById(`${prefix}-start-button`);
-        html_element_left_paddle = document.getElementById(`${prefix}-left-paddle`);
-        html_element_right_paddle = document.getElementById(`${prefix}-right-paddle`);
-        html_element_ball = document.getElementById(`${prefix}-ball`);
-        html_element_left_score = document.getElementById(`${prefix}-left-score`);
-        html_element_right_score = document.getElementById(`${prefix}-right-score`);
+        html_element_game_canvas = document.getElementById(`game-canvas`);
+        html_element_start_button = document.getElementById(`start-button`);
+        html_element_left_paddle = document.getElementById(`left-paddle`);
+        html_element_right_paddle = document.getElementById(`right-paddle`);
+        html_element_ball = document.getElementById(`ball`);
+        html_element_left_score = document.getElementById(`left-score`);
+        html_element_right_score = document.getElementById(`right-score`);
     }
 }
 

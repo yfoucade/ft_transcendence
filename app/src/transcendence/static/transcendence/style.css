@@ -89,6 +89,21 @@ main {
     /* font-size: 1.2em; */
 }
 
+.box.link:hover {
+    cursor: pointer;
+    background-color: aquamarine;
+}
+
+.box-content {
+    color: inherit;
+    text-decoration: inherit;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .nav-link a {
     height: 100%;
     display: flex;
@@ -108,7 +123,7 @@ main {
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: .25fr 1fr;
 } */
-.pong-page.shown {
+.pong-page {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: .25fr 1fr;

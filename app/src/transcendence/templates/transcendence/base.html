@@ -12,10 +12,10 @@
         window.onpopstate = (event) => console.log("hello");
     </script>
     {% block scripts %}
-    <script src="{% static 'transcendence/common/navigation.js' %}?{% now 'U' %}" defer></script>
-    <script src="{% static 'transcendence/common/hydration.js' %}?{% now 'U' %}" defer></script>
-        <!-- <script src="{% static 'transcendence/pong_utils.js' %}?{% now 'U' %}" defer></script> -->
-        <!-- <script src="{% static 'transcendence/local_1v1.js' %}?{% now 'U' %}" defer></script> -->
+        <script src="{% static 'transcendence/common/navigation.js' %}?{% now 'U' %}" defer></script>
+        <script src="{% static 'transcendence/common/hydration.js' %}?{% now 'U' %}" defer></script>
+        <script src="{% static 'transcendence/pong_utils.js' %}?{% now 'U' %}" defer></script>
+        <script src="{% static 'transcendence/local_1v1.js' %}?{% now 'U' %}" defer></script>
         <!-- <script src="{% static 'transcendence/local_tournament.js' %}?{% now 'U' %}" defer></script> -->
         <!-- <script src="{% static 'transcendence/local_tournament_form.js' %}?{% now 'U' %}" defer></script> -->
         <!-- <script src="{% static 'transcendence/navigation_handlers.js' %}?{% now 'U' %}" defer></script> -->
@@ -32,9 +32,9 @@
         </ul>
         <ul>
             {% if user.is_authenticated %}
-                <li id="username" class="nav-link" data-authenticated="true"><a href="/user/{{ user.id }}">{{ user.username }}</a></li>
+                <li id="user-tag" class="nav-link" data-authenticated="true"><a href="/user/{{ user.id }}">{{ user.username }}</a></li>
             {% else %}
-                <li id="username" class="nav-link" data-authenticated="false"><a href="{% url 'login' %}">Log in</a></li>
+                <li id="user-tag" class="nav-link" data-authenticated="false"><a href="{% url 'login' %}">Log in</a></li>
             {% endif %}
         </ul>
     </nav>
