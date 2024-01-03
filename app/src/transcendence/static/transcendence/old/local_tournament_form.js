@@ -79,22 +79,22 @@ function remove_player_handler( event )
     event.currentTarget.parentNode.remove();
 }
 
-function start_tournament( event )
-{
-    if ( get_number_of_players() < 2 )
-    {
-        tournament_form.html_element_error_message_start.innerHTML = "Need at list two players";
-        return;
-    }
-    init_local_tournament_obj();
-    init_pong_game_htmlelements( "local-tournament" );
-    let current_main = document.getElementById("main-local-tournament-form");
-    let target_main = document.getElementById("main-local-tournament-lobby");
-    switch_view( current_main, target_main );
-    // show_tournament_page();
-    clean_form();
-    console.log("Starting tournament");
-}
+// function start_tournament( event )
+// {
+//     if ( get_number_of_players() < 2 )
+//     {
+//         tournament_form.html_element_error_message_start.innerHTML = "Need at list two players";
+//         return;
+//     }
+//     init_local_tournament_obj();
+//     init_pong_game_htmlelements( "local-tournament" );
+//     // let current_main = document.getElementById("main-local-tournament-form");
+//     // let target_main = document.getElementById("main-local-tournament-lobby");
+//     // switch_view( current_main, target_main );
+//     // show_tournament_page();
+//     clean_form();
+//     console.log("Starting tournament");
+// }
 
 
 function clean_form()

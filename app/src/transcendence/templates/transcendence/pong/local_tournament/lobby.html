@@ -1,0 +1,43 @@
+{% extends "../../base.html" %}
+
+{% block content %}
+<main id="main-local-tournament-lobby" class="">
+    <h1>Local Tournament</h1>
+    <h2 id="local-tournament-lobby-current-round-name">{{ round_name }}</h2><!-- Final, Semifinals, Quarterfinals -->
+    <h3 id="local-tournament-lobby-next-match">Next match: {{ next_match.left_player }} vs {{ next_match.right_player }}</h3>
+    <h3 id="local-tournament-lobby-winner"></h3>
+
+    <div id="local-tournament-lobby-tables">
+        <section id="local-tournament-lobby-next-round" class="lobby-table">
+            <header class="lobby-table-header">Current round</header>
+            <div id="div-local-tournament-lobby-next-round">
+                <!-- <div class="match">
+                    <span class="left-player">player1</span>
+                    <span class="separator">-</span>
+                    <span class="right-player">player2</span>
+                </div> -->
+                {% for match in matches %}
+                    <div class="match">
+                            <span class="left-player {% if match.winner == 'left' %}match-winner{% endif %}">{{ match.left_player }}</span>
+                            <span class="separator">-</span>
+                            <span class="right-player {% if match.winner == 'right' %}match-winner{% elif match.is_bye %}bye{% endif %}">{{ match.right_player|default:"bye" }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+        <section id="local-tournament-lobby-out" class="lobby-table">
+            <header class="lobby-table-header">Eliminated</header>
+            <div id="div-local-tournament-lobby-players-out">
+                {% for player in eliminated_players %}
+                    <div>{{ player }}</div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+    <div class="container">
+        <div class="center">
+            <button id="local-tournament-lobby-button">Start next match</button>
+        </div>
+    </div>
+</main>
+{% endblock content %}

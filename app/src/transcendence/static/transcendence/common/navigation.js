@@ -10,6 +10,7 @@ let hydration_recipes = {
     "main-index": home_page,
     "main-play": play_hydration_recipe,
     "main-local-match": local_match_hydration_recipe,
+    "main-local-tournament-form": local_tournament_form_hydration_recipe,
 }
 
 let dehydration_recipes = {
@@ -20,6 +21,26 @@ let dehydration_recipes = {
 function home_page()
 {
     console.log("welcome to transcendence");
+}
+
+function local_tournament_form_hydration_recipe()
+{
+    console.log("hydrating form");
+    with ( tournament_form )
+    {
+        html_element_form = document.getElementById("local-tournament-form");
+        html_element_error_message_form = document.getElementById("error-message-form");
+        html_element_text_input = document.getElementById("form-player-name");
+        html_element_registered_players = document.getElementById("div-player-list");
+        html_element_error_message_start = document.getElementById("error-message-start");
+        
+        csrftoken = tournament_form.html_element_form.querySelector("input[name=csrfmiddlewaretoken]").value;
+        html_element_form.addEventListener( "submit", add_player_to_local_tournament );
+
+        html_element_text_input.focus();
+    }
+
+    document.getElementById("start-tournament").addEventListener( "click", start_tournament );
 }
 
 function local_match_dehydration_recipe()
@@ -46,8 +67,8 @@ function local_match_hydration_recipe()
 
 function can_leave_view()
 {
-    return (    (state.main_id in dehydration_recipes)
-             && (dehydration_recipes[state.main_id]()) );
+    return (    !(state.main_id in dehydration_recipes)
+             || (dehydration_recipes[state.main_id]()) );
 }
 
 function pop_state_event_handler( event ) {
@@ -94,10 +115,7 @@ function update_state( pathname = null, new_document = null ) {
 
 async function route( event ) {
     event.preventDefault();
-
-    if ( !can_leave_view() )
-        return;
-
+    
     let href = event.currentTarget.getAttribute("href");
     console.log(`redirecting to ${href}`);
     let response = await fetch( href, {"referrer":state.pathname} );
@@ -109,6 +127,9 @@ async function route( event ) {
         console.log(document_text);
         return;
     }
+
+    if ( !can_leave_view() )
+        return;
 
     if ( href == state.pathname )
     {

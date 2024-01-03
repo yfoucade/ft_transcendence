@@ -51,13 +51,21 @@ class Match {
 
 let local_tournament_obj = {
     // Lobby HTMLElements
-    html_element_main: document.getElementById("main-local-tournament-lobby"),
-    html_element_current_round_name: document.getElementById("local-tournament-lobby-current-round-name"),
-    html_element_next_match: document.getElementById("local-tournament-lobby-next-match"),
-    html_element_winner: document.getElementById("local-tournament-lobby-winner"),
-    html_element_next_round: document.getElementById("div-local-tournament-lobby-next-round"),
-    html_element_players_eliminated: document.getElementById("div-local-tournament-lobby-players-out"),
-    html_element_button: document.getElementById("local-tournament-lobby-button"),
+    // html_element_main: document.getElementById("main-local-tournament-lobby"),
+    // html_element_current_round_name: document.getElementById("local-tournament-lobby-current-round-name"),
+    // html_element_next_match: document.getElementById("local-tournament-lobby-next-match"),
+    // html_element_winner: document.getElementById("local-tournament-lobby-winner"),
+    // html_element_next_round: document.getElementById("div-local-tournament-lobby-next-round"),
+    // html_element_players_eliminated: document.getElementById("div-local-tournament-lobby-players-out"),
+    // html_element_button: document.getElementById("local-tournament-lobby-button"),
+
+    html_element_main: null,
+    html_element_current_round_name: null,
+    html_element_next_match: null,
+    html_element_winner: null,
+    html_element_next_round: null,
+    html_element_players_eliminated: null,
+    html_element_button: null,
 
     // State
     registered_players: null,

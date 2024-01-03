@@ -1,4 +1,5 @@
 function hydrate_common_elements() {
+    console.log("hydrating common elements");
     let links = document.querySelectorAll("a");
     for ( let link of links )
         link.addEventListener( "click", route );

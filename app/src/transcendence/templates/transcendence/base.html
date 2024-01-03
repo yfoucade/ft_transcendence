@@ -14,10 +14,10 @@
     {% block scripts %}
         <script src="{% static 'transcendence/common/navigation.js' %}?{% now 'U' %}" defer></script>
         <script src="{% static 'transcendence/common/hydration.js' %}?{% now 'U' %}" defer></script>
-        <script src="{% static 'transcendence/pong_utils.js' %}?{% now 'U' %}" defer></script>
-        <script src="{% static 'transcendence/local_1v1.js' %}?{% now 'U' %}" defer></script>
-        <!-- <script src="{% static 'transcendence/local_tournament.js' %}?{% now 'U' %}" defer></script> -->
-        <!-- <script src="{% static 'transcendence/local_tournament_form.js' %}?{% now 'U' %}" defer></script> -->
+        <script src="{% static 'transcendence/pong/pong_utils.js' %}?{% now 'U' %}" defer></script>
+        <script src="{% static 'transcendence/pong/local_match/local_1v1.js' %}?{% now 'U' %}" defer></script>
+        <script src="{% static 'transcendence/pong/local_tournament/form.js' %}?{% now 'U' %}" defer></script>
+        <script src="{% static 'transcendence/pong/local_tournament/lobby.js' %}?{% now 'U' %}" defer></script>
         <!-- <script src="{% static 'transcendence/navigation_handlers.js' %}?{% now 'U' %}" defer></script> -->
         <script src="{% static 'transcendence/script.js' %}?{% now 'U' %}" defer></script>
     {% endblock scripts %}
