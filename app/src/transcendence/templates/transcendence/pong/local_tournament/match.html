@@ -1,0 +1,12 @@
+{% extends "../../base.html" %}
+
+{% block content %}
+<main id="main-local-tournament-match" class="pong-page">
+    <div id="players-names" class="">
+        <span id="player1">{{ left_player }}</span>
+        <span id="versus">vs</span>
+        <span id="player2">{{ right_player }}</span>
+    </div>
+    {% include "transcendence/pong/game_canvas.html" with id_prefix="local-tournament" %}
+</main>
+{% endblock %}

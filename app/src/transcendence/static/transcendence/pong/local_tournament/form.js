@@ -97,24 +97,7 @@ async function start_tournament( event )
     // let target_main = document.getElementById("main-local-tournament-lobby");
     // switch_view( current_main, target_main );
     // show_tournament_page();
-    let tournament_state_string = JSON.stringify( local_tournament_obj );
-    console.log( tournament_state_string );
-    
-    let response = await fetch(
-        "/local-tournament/lobby/",
-        {
-            method: "POST",
-            headers: {
-                "X-CSRFToken": tournament_form.csrftoken,
-                "Content-Type": "application/json",
-            },
-            body: tournament_state_string,
-        },
-    );
-    let document_text = await response.text();
-    update_state( "/local-tournament/lobby/", document_text );
-    history.pushState( state, "", state.pathname );
-    render();
+    get_lobby_view();
     // console.log(document_text);
     // clean_form();
     console.log("Starting tournament");
