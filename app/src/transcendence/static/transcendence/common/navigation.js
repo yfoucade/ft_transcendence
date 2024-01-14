@@ -208,6 +208,7 @@ function render() {
     let old_usertag = document.getElementById("user-tag");
     let new_usertag = new_document.getElementById("user-tag");
     old_usertag.parentElement.replaceChild(new_usertag, old_usertag);
+    new_usertag.querySelector("a").addEventListener( "click", route );
 
     let old_main = document.querySelector("main");
     let new_main = new_document.querySelector("main");
