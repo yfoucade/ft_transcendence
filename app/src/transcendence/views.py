@@ -3,7 +3,10 @@ import json
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
 
+from .forms import CustomUserCreationForm
 from .pong.local_tournament import lobby
 # Create your views here.
 
@@ -51,3 +54,21 @@ def local_tournament_results(request):
         return render(request, "transcendence/pong/local_tournament/results.html", context)
     else:
         return redirect("local-tournament-form")
+    
+def signup(request):
+    if ( request.method == "POST" ):
+        form = CustomUserCreationForm( request.POST )
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect("index")
+    else:
+        form = CustomUserCreationForm()
+    return render( request, "transcendence/accounts/signup.html", {"form":form} )
+
+@login_required
+def profile(request):
+    return render( request, "transcendence/accounts/profile.html" )

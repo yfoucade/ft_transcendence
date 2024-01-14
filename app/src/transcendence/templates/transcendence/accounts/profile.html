@@ -1,0 +1,21 @@
+{% extends "../base.html" %}
+
+{% block content %}
+<main id="main-profile" class="shown">
+    <h1>Profile of {{ user.username }}</h1>
+    <nav id="profile-nav">
+        <ul>
+            <li><a href="">Edit profile</a></li>
+            <li><a href="">Change password</a></li>
+            <li><a href="">My stats</a></li>
+            <li>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{% url 'index' %}">
+                    <button type="submit">logout</button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+</main>
+{% endblock content %}

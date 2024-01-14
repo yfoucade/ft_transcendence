@@ -32,10 +32,9 @@
         </ul>
         <ul>
             {% if user.is_authenticated %}
-                <!-- <li id="user-tag" class="nav-link" data-authenticated="true"><a href="/user/{{ user.id }}">{{ user.username }}</a></li> -->
-                <li id="user-tag" class="nav-link" data-authenticated="true"><a href="/profile/">{{ user.username }}</a></li>
+                <li id="user-tag" class="nav-link" data-authenticated="true"><a href="/user/{{ user.id }}">{{ user.username }}</a></li>
             {% else %}
-                <li id="user-tag" class="nav-link" data-authenticated="false"><a href="{% url 'login' %}?next={{ request.path }}">Log in</a></li>
+                <li id="user-tag" class="nav-link" data-authenticated="false"><a href="{% url 'login' %}">Log in</a></li>
             {% endif %}
         </ul>
     </nav>

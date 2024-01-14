@@ -10,4 +10,6 @@ urlpatterns = [
     path( "local-tournament/lobby/", views.local_tournament_lobby, name="local-tournament-lobby" ),
     path( "local-tournament/match/", views.local_tournament_match, name="local-tournament-match" ),
     path( "local-tournament/results/", views.local_tournament_results, name="local-tournament-results" ),
+    path( "signup/", views.signup, name="signup" ),
+    path( "profile/", views.profile, name="profile" ),
 ]
