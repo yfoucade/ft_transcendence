@@ -19,6 +19,8 @@ let hydration_recipes = {
     "main-local-tournament-form": local_tournament_form_hydration_recipe,
     "main-local-tournament-lobby": local_tournament_lobby_hydration_recipe,
     "main-local-tournament-match": local_tournament_match_hydration_recipe,
+    "main-login": login_hydration_recipe,
+    "main-signup": signup_hydration_recipe,
 }
 
 let dehydration_recipes = {
@@ -112,6 +114,20 @@ function local_match_hydration_recipe()
     init_pong_game_htmlelements();
     pong_game.html_element_start_button.addEventListener( "click", start_local_pvp_game );
     pong_game.html_element_start_button.classList.replace( "hidden", "shown" );
+}
+
+function login_hydration_recipe()
+{
+    document.getElementById("login-form").addEventListener( "submit", submit_login_form );
+    let main = document.querySelector("main");
+    let links = main.querySelectorAll("a");
+    for ( let link of links )
+        link.addEventListener( "click", route );
+}
+
+function signup_hydration_recipe()
+{
+    document.getElementById("signup-form").addEventListener( "submit", submit_signup_form );
 }
 
 function can_leave_view()
