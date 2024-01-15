@@ -9,10 +9,14 @@
             <li><a href="">Change password</a></li>
             <li><a href="">My stats</a></li>
             <li>
-                <form method="post" action="{% url 'logout' %}">
+                <form id="logout-form" method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{% url 'index' %}">
-                    <button type="submit">logout</button>
+                    <a  id="logout-link"
+                        href="{% url 'logout' %}"
+                        data-next="{% url 'index' %}">
+                            Log out
+                    </a>
                 </form>
             </li>
         </ul>

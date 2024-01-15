@@ -20,6 +20,7 @@ let hydration_recipes = {
     "main-local-tournament-lobby": local_tournament_lobby_hydration_recipe,
     "main-local-tournament-match": local_tournament_match_hydration_recipe,
     "main-login": login_hydration_recipe,
+    "main-profile": profile_hydration_recipe,
     "main-signup": signup_hydration_recipe,
 }
 
@@ -128,6 +129,11 @@ function login_hydration_recipe()
 function signup_hydration_recipe()
 {
     document.getElementById("signup-form").addEventListener( "submit", submit_signup_form );
+}
+
+function profile_hydration_recipe()
+{
+    document.getElementById("logout-link").addEventListener( "click", logout );
 }
 
 function can_leave_view()

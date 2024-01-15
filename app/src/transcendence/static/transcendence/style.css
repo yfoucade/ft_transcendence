@@ -344,3 +344,7 @@ h1,h2,h3 {
 #players-names {
     text-align: center;
 }
+
+#logout-link {
+    color: red;
+}
