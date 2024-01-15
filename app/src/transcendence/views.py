@@ -28,9 +28,9 @@ def local_tournament_lobby(request):
         tournament_state = json.loads( request.body )
         context = lobby.build_local_tournament_context( tournament_state )
         # TODO: this is debug
-        with open("/dev/pts/0", "w") as f:
-            print("processing form", file=f)
-            print(f"{tournament_state = }", file=f)
+        # with open("/dev/pts/0", "w") as f:
+        #     print("processing form", file=f)
+        #     print(f"{tournament_state = }", file=f)
         # return render(request, "transcendence/pong/local_tournament/lobby.html")
         # return HttpResponse(request.body)
         return render(request, "transcendence/pong/local_tournament/lobby.html", context)
