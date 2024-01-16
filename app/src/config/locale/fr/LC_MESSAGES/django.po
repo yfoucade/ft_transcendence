@@ -1,0 +1,138 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-16 23:18+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: templates/registration/base.html:9 templates/transcendence/base.html:10
+msgid "Transcendence"
+msgstr "Transcendance"
+
+#: templates/registration/base.html:13 templates/transcendence/base.html:14
+msgid "hello"
+msgstr "Bonjour"
+
+#: templates/registration/base.html:30 templates/transcendence/base.html:34
+msgid "Home"
+msgstr "Accueil"
+
+#: templates/registration/base.html:31 templates/transcendence/base.html:35
+msgid "Play"
+msgstr "Jouer"
+
+#: templates/registration/base.html:37 templates/transcendence/base.html:41
+msgid "Log in"
+msgstr "Se connecter"
+
+#: templates/registration/login.html:7
+msgid "Your username and password didn't match. Please try again."
+msgstr "Votre nom d'utilisateur et votre mot de passe ne correspondent pas. Veuillez réessayer."
+
+#: templates/registration/login.html:12
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+msgstr "Votre compte n'a pas accès à cette page. Pour continuer, veuillez vous connecter avec un compte qui a accès."
+
+#: templates/registration/login.html:14
+msgid "Please login to see this page."
+msgstr "Veuillez vous connecter pour visiter cette page"
+
+#: templates/registration/login.html:30
+msgid "Login"
+msgstr "Se connecter"
+
+#: templates/registration/login.html:35
+msgid "Forgotten password?"
+msgstr "Mot de passe oublié?"
+
+#: templates/transcendence/accounts/profile.html:6
+msgid "Profile of"
+msgstr "Profil de"
+
+#: templates/transcendence/accounts/profile.html:9
+msgid "Edit profile"
+msgstr "Modifier le profil"
+
+#: templates/transcendence/accounts/profile.html:10
+msgid "Change password"
+msgstr "Changer de mot de passe"
+
+#: templates/transcendence/accounts/profile.html:11
+msgid "My stats"
+msgstr "Mes statistiques"
+
+#: templates/transcendence/accounts/signup.html:9
+msgid "Sign up"
+msgstr "S'inscrire"
+
+#: templates/transcendence/index.html:6
+msgid "Welcome to transcendence"
+msgstr "Bienvenue à Transcendance"
+
+#: templates/transcendence/pong/game_canvas.html:5
+msgid "Start"
+msgstr "Commencer"
+
+#: templates/transcendence/pong/local_tournament/form.html:13
+msgid "Add a player"
+msgstr "Ajouter un joueur"
+
+#: templates/transcendence/pong/local_tournament/form.html:17
+msgid "Add player"
+msgstr "Ajouter un joueur"
+
+#: templates/transcendence/pong/local_tournament/form.html:22
+#: templates/transcendence/pong/local_tournament/form.html:27
+msgid "Start tournament"
+msgstr "Commencer le tournoi"
+
+#: templates/transcendence/pong/local_tournament/lobby.html:8
+msgid "Next match"
+msgstr "Prochain match"
+
+#: templates/transcendence/pong/local_tournament/lobby.html:13
+msgid "Current round"
+msgstr "Tour en cours"
+
+#: templates/transcendence/pong/local_tournament/lobby.html:30
+msgid "Eliminated"
+msgstr "Eliminé"
+
+#: templates/transcendence/pong/local_tournament/lobby.html:40
+msgid "Start next match"
+msgstr "Commencer le prochain"
+
+#: templates/transcendence/pong/local_tournament/results.html:6
+msgid "Local Tournament"
+msgstr "Tournoi Local"
+
+#: templates/transcendence/pong/local_tournament/results.html:7
+msgid "Winner"
+msgstr "Gagnant"
+
+#: templates/transcendence/pong/play.html:8
+msgid "match"
+msgstr "match"
+
+#: templates/transcendence/pong/play.html:11
+msgid "Local"
+msgstr "Local"
+
+#: templates/transcendence/pong/play.html:17
+msgid "Online"
+msgstr "En ligne"

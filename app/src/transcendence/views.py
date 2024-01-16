@@ -48,13 +48,13 @@ def local_tournament_results(request):
     if ( request.method == "POST" ):
         context = json.loads( request.body )
         # with open("/dev/pts/0", "w") as f:
-        #     print("results", file=f) 
-        #     print(f"{context['remaining_players'] = }", file=f) 
+        #     print("results", file=f)
+        #     print(f"{context['remaining_players'] = }", file=f)
         context["winner"] = list(context["remaining_players"].keys())[0]
         return render(request, "transcendence/pong/local_tournament/results.html", context)
     else:
         return redirect("local-tournament-form")
-    
+
 def signup(request):
     if ( request.method == "POST" ):
         form = CustomUserCreationForm( request.POST )

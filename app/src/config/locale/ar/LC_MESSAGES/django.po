@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-16 23:18+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: templates/registration/base.html:9 templates/transcendence/base.html:10
+msgid "Transcendence"
+msgstr "ترانسندنس"
+
+#: templates/registration/base.html:13 templates/transcendence/base.html:14
+msgid "hello"
+msgstr "مرحبًا"
+
+#: templates/registration/base.html:30 templates/transcendence/base.html:34
+msgid "Home"
+msgstr "الرئيسية"
+
+#: templates/registration/base.html:31 templates/transcendence/base.html:35
+msgid "Play"
+msgstr "لعب"
+
+#: templates/registration/base.html:37 templates/transcendence/base.html:41
+msgid "Log in"
+msgstr "تسجيل الدخول"
+
+#: templates/registration/login.html:7
+msgid "Your username and password didn't match. Please try again."
+msgstr "اسم المستخدم أو كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى."
+
+#: templates/registration/login.html:12
+msgid "Your account doesn't have access to this page. To proceed, please login with an account that has access."
+msgstr "ليس لديك حق الوصول إلى هذه الصفحة. للمتابعة، يرجى تسجيل الدخول بحساب لديه الصلاحيات."
+
+#: templates/registration/login.html:14
+msgid "Please login to see this page."
+msgstr "يرجى تسجيل الدخول لرؤية هذه الصفحة."
+
+#: templates/registration/login.html:30
+msgid "Login"
+msgstr "تسجيل الدخول"
+
+#: templates/registration/login.html:35
+msgid "Forgotten password?"
+msgstr "نسيت كلمة المرور؟"
+
+#: templates/transcendence/accounts/profile.html:6
+msgid "Profile of"
+msgstr "الملف الشخصي ل"
+
+#: templates/transcendence/accounts/profile.html:9
+msgid "Edit profile"
+msgstr "تعديل الملف الشخصي"
+
+#: templates/transcendence/accounts/profile.html:10
+msgid "Change password"
+msgstr "تغيير كلمة المرور"
+
+#: templates/transcendence/accounts/profile.html:11
+msgid "My stats"
+msgstr "إحصائياتي"
+
+#: templates/transcendence/accounts/signup.html:9
+msgid "Sign up"
+msgstr "التسجيل"
+
+#: templates/transcendence/index.html:6
+msgid "Welcome to transcendence"
+msgstr "مرحبًا بك في ترانسندنس"
+
+#: templates/transcendence/pong/game_canvas.html:5
+msgid "Start"
+msgstr "بداية"
+
+#: templates/transcendence/pong/local_tournament/form.html:13
+msgid "Add a player"
+msgstr "إضافة لاعب"
+
+#: templates/transcendence/pong/local_tournament/form.html:17
+msgid "Add player"
+msgstr "إضافة لاعب"
+
+#: templates/transcendence/pong/local_tournament/form.html:22
+#: templates/transcendence/pong/local_tournament/form.html:27
+msgid "Start tournament"
+msgstr "بدء البطولة"
+
+#: templates/transcendence/pong/local_tournament/lobby.html:8
+msgid "Next match"
+msgstr "المباراة التالية"
+
+#: templates/transcendence/pong/local_tournament/lobby.html:13
+msgid "Current round"
+msgstr "الجولة الحالية"
+
+#: templates/transcendence/pong/local_tournament/lobby.html:30
+msgid "Eliminated"
+msgstr "تم الإقصاء"
+
+#: templates/transcendence/pong/local_tournament/lobby.html:40
+msgid "Start next match"
+msgstr "بدء المباراة التالية"
+
+#: templates/transcendence/pong/local_tournament/results.html:6
+msgid "Local Tournament"
+msgstr "بطولة محلية"
+
+#: templates/transcendence/pong/local_tournament/results.html:7
+msgid "Winner"
+msgstr "الفائز"
+
+#: templates/transcendence/pong/play.html:8
+msgid "match"
+msgstr "مباراة"
+
+#: templates/transcendence/pong/play.html:11
+msgid "Local"
+msgstr "محلي"
+
+#: templates/transcendence/pong/play.html:17
+msgid "Online"
+msgstr "عبر الإنترنت"
