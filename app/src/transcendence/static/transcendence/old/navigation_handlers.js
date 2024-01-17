@@ -40,7 +40,7 @@ let after_loading = {
 
 function init_listeners( event )
 {
-    let nav_elements_ids = ["nav-home", "nav-play", "nav-local-pvp", "nav-local-tournament"];
+    let nav_elements_ids = ["nav-home", "nav-play", "nav-local-pvp", "nav-local-tournament", "nav-chat"];
 
     for ( let id of nav_elements_ids ) {
         console.log(`Adding listener for ${id}`);
