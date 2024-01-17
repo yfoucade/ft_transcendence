@@ -137,3 +137,7 @@ STATIC_ROOT = "/var/www/transcendence/static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# For avatars: https://docs.djangoproject.com/en/5.0/ref/models/fields/#imagefield
+MEDIA_URL = "media/"
+MEDIA_ROOT = "/var/www/transcendence/media/"
