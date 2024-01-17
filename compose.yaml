@@ -16,9 +16,6 @@ services:
     env_file: .env
     volumes:
       - type: volume
-        source: tuto-data
-        target: /tuto
-      - type: volume
         source: src-data
         target: /src
     networks:
@@ -35,20 +32,14 @@ networks:
 
 volumes:
   db-data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./data
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ./data
   src-data:
     driver: local
     driver_opts:
       type: none
       o: bind
       device: ./app/src/
-  tuto-data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./app/tuto/
