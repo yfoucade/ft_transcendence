@@ -7,6 +7,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 
 from .forms import CustomUserCreationForm
+from .models import Profile
 from .pong.local_tournament import lobby
 # Create your views here.
 
@@ -64,6 +65,8 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
+            profile = Profile(user = user, display_name=user.username)
+            profile.save()
             return redirect( request.POST.get( "next", "index" ))
     else:
         form = CustomUserCreationForm()
