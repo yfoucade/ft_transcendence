@@ -30,20 +30,19 @@
             <li id="nav-home" class="nav-link"><a href="/">{% trans 'Home' %}</a></li>
             <li id="nav-play" class="nav-link"><a href="/play">{% trans 'Play' %}</a></li>
             <li id="language-selector">
-                <form action="{% url 'set_language' %}" method="post" id="language-form">
-                    {% csrf_token %}
-                    <input name="next" type="hidden" value="{{ request.get_full_path }}" />
-                    <select name="language" id="language-select" onchange="document.getElementById('language-form').submit()">
-                        {% for lang_code, lang_name in LANGUAGES %}
-                            <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
-                                {{ lang_name }}
+                <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                    <input name="next" type="hidden" value="{{ redirect_to }}">
+                    <select name="language">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                {{ language.name_local }} ({{ language.code }})
                             </option>
                         {% endfor %}
                     </select>
-
-                    <noscript>
-                        <input type="submit" value='Go'>
-                    </noscript>
+                    <input type="submit" value="Go">
                 </form>
             </li>
         </ul>
