@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-16 23:16+0100\n"
+"POT-Creation-Date: 2024-01-17 04:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Hania KHATER <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -18,121 +18,102 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: templates/registration/base.html:9 templates/transcendence/base.html:10
-msgid "Transcendence"
-msgstr "Transcendence"
+#: settings.py:125
+msgid "English"
+msgstr "English"
 
-#: templates/registration/base.html:13 templates/transcendence/base.html:14
-msgid "hello"
-msgstr "hello"
+#: settings.py:126
+msgid "French"
+msgstr "French"
 
-#: templates/registration/base.html:30 templates/transcendence/base.html:34
-msgid "Home"
-msgstr "Home"
+#: settings.py:127
+msgid "Greek"
+msgstr "Greek"
 
-#: templates/registration/base.html:31 templates/transcendence/base.html:35
-msgid "Play"
-msgstr "Play"
+#: settings.py:128
+msgid "Arabic"
+msgstr "Arabic"
 
-#: templates/registration/base.html:37 templates/transcendence/base.html:41
-msgid "Log in"
-msgstr "Log in"
+#~ msgid "Transcendence"
+#~ msgstr "Transcendence"
 
-#: templates/registration/login.html:7
-msgid "Your username and password didn't match. Please try again."
-msgstr "Your username and password didn't match. Please try again."
+#~ msgid "hello"
+#~ msgstr "hello"
 
-#: templates/registration/login.html:12
-msgid ""
-"Your account doesn't have access to this page. To proceed, please login with "
-"an account that has access."
-msgstr ""
+#~ msgid "Home"
+#~ msgstr "Home"
 
-#: templates/registration/login.html:14
-msgid "Please login to see this page."
-msgstr "Please login to see this page."
+#~ msgid "Play"
+#~ msgstr "Play"
 
-#: templates/registration/login.html:30
-msgid "Login"
-msgstr "Login"
+#~ msgid "Log in"
+#~ msgstr "Log in"
 
-#: templates/registration/login.html:35
-msgid "Forgotten password?"
-msgstr "Forgotten password?"
+#~ msgid "Your username and password didn't match. Please try again."
+#~ msgstr "Your username and password didn't match. Please try again."
 
-#: templates/transcendence/accounts/profile.html:6
-msgid "Profile of"
-msgstr "Profile of"
+#~ msgid "Please login to see this page."
+#~ msgstr "Please login to see this page."
 
-#: templates/transcendence/accounts/profile.html:9
-msgid "Edit profile"
-msgstr "Edit profile"
+#~ msgid "Login"
+#~ msgstr "Login"
 
-#: templates/transcendence/accounts/profile.html:10
-msgid "Change password"
-msgstr "Change password"
+#~ msgid "Forgotten password?"
+#~ msgstr "Forgotten password?"
 
-#: templates/transcendence/accounts/profile.html:11
-msgid "My stats"
-msgstr "My stats"
+#~ msgid "Profile of"
+#~ msgstr "Profile of"
 
-#: templates/transcendence/accounts/signup.html:9
-msgid "Sign up"
-msgstr "Sign up"
+#~ msgid "Edit profile"
+#~ msgstr "Edit profile"
 
-#: templates/transcendence/index.html:6
-msgid "Welcome to transcendence"
-msgstr "Welcome to transcendence"
+#~ msgid "Change password"
+#~ msgstr "Change password"
 
-#: templates/transcendence/pong/game_canvas.html:5
-msgid "Start"
-msgstr "Start"
+#~ msgid "My stats"
+#~ msgstr "My stats"
 
-#: templates/transcendence/pong/local_tournament/form.html:13
-msgid "Add a player"
-msgstr "Add a player"
+#~ msgid "Sign up"
+#~ msgstr "Sign up"
 
-#: templates/transcendence/pong/local_tournament/form.html:17
-msgid "Add player"
-msgstr "Add a player"
+#~ msgid "Welcome to transcendence"
+#~ msgstr "Welcome to transcendence"
 
-#: templates/transcendence/pong/local_tournament/form.html:22
-#: templates/transcendence/pong/local_tournament/form.html:27
-msgid "Start tournament"
-msgstr "Start tournament"
+#~ msgid "Start"
+#~ msgstr "Start"
 
-#: templates/transcendence/pong/local_tournament/lobby.html:8
-msgid "Next match"
-msgstr "Next match"
+#~ msgid "Add a player"
+#~ msgstr "Add a player"
 
-#: templates/transcendence/pong/local_tournament/lobby.html:13
-msgid "Current round"
-msgstr "Current round"
+#~ msgid "Add player"
+#~ msgstr "Add a player"
 
-#: templates/transcendence/pong/local_tournament/lobby.html:30
-msgid "Eliminated"
-msgstr "Eliminated"
+#~ msgid "Start tournament"
+#~ msgstr "Start tournament"
 
-#: templates/transcendence/pong/local_tournament/lobby.html:40
-msgid "Start next match"
-msgstr "Start next match"
+#~ msgid "Next match"
+#~ msgstr "Next match"
 
-#: templates/transcendence/pong/local_tournament/results.html:6
-msgid "Local Tournament"
-msgstr "Local Tournament"
+#~ msgid "Current round"
+#~ msgstr "Current round"
 
-#: templates/transcendence/pong/local_tournament/results.html:7
-msgid "Winner"
-msgstr "Winner"
+#~ msgid "Eliminated"
+#~ msgstr "Eliminated"
 
-#: templates/transcendence/pong/play.html:8
-msgid "match"
-msgstr "match"
+#~ msgid "Start next match"
+#~ msgstr "Start next match"
 
-#: templates/transcendence/pong/play.html:11
-msgid "Local"
-msgstr "Local"
+#~ msgid "Local Tournament"
+#~ msgstr "Local Tournament"
 
-#: templates/transcendence/pong/play.html:17
-msgid "Online"
-msgstr "Online"
+#~ msgid "Winner"
+#~ msgstr "Winner"
+
+#~ msgid "match"
+#~ msgstr "match"
+
+#~ msgid "Local"
+#~ msgstr "Local"
+
+#~ msgid "Online"
+#~ msgstr "Online"

@@ -1,3 +1,4 @@
+from django.conf.urls.i18n import i18n_patterns
 from django.urls import path
 
 from . import views
@@ -13,3 +14,7 @@ urlpatterns = [
     path( "signup/", views.signup, name="signup" ),
     path( "profile/", views.profile, name="profile" ),
 ]
+
+urlpatterns += i18n_patterns(
+    path('set_language/', views.set_language, name='set_language'),
+)

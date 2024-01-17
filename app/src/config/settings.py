@@ -124,7 +124,7 @@ LANGUAGE_CODE = 'en-us'
 LANGUAGES = [
 	('en', _('English')),
 	('fr', _('French')),
-	('gr', _('Greek')),
+	('el', _('Greek')),
 	('ar', _('Arabic')),
 ]
 

@@ -69,6 +69,9 @@ def signup(request):
         form = CustomUserCreationForm()
     return render( request, "transcendence/accounts/signup.html", {"form":form} )
 
+def set_language(request):
+    
+
 @login_required
 def profile(request):
     return render( request, "transcendence/accounts/profile.html" )

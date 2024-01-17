@@ -29,31 +29,46 @@
         <ul id="main-menu">
             <li id="nav-home" class="nav-link"><a href="/">{% trans 'Home' %}</a></li>
             <li id="nav-play" class="nav-link"><a href="/play">{% trans 'Play' %}</a></li>
+            <li id="language-selector">
+                <form action="{% url 'set_language' %}" method="post" id="language-form">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ request.get_full_path }}" />
+                    <select name="language" id="language-select" onchange="document.getElementById('language-form').submit()">
+                        {% for lang_code, lang_name in LANGUAGES %}
+                            <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
+                                {{ lang_name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+
+                    <noscript>
+                        <input type="submit" value='Go'>
+                    </noscript>
+                </form>
+            </li>
         </ul>
         <ul>
             {% if user.is_authenticated %}
+                <!-- <li id="user-tag" class="nav-link" data-authenticated="true"><a href="/user/{{ user.id }}">{{ user.username }}</a></li> -->
                 <li id="user-tag" class="nav-link" data-authenticated="true"><a href="/user/{{ user.id }}">{{ user.username }}</a></li>
             {% else %}
                 <li id="user-tag" class="nav-link" data-authenticated="false"><a href="{% url 'login' %}">{% trans 'Log in' %}</a></li>
             {% endif %}
         </ul>
     </nav>
-    <div id="language-selector">
-        <form action="{% url 'set_language' %}" method="post">
-            {% csrf_token %}
-            <input name="next" type="hidden" value="{{ request.get_full_path }}" />
-            <select name="language">
-                {% for lang_code, lang_name in LANGUAGES %}
-                    <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
-                        {{ lang_name }}
-                    </option>
-                {% endfor %}
-            </select>
-            <input type="submit" value="{% trans 'Go' %}">
-        </form>
-    </div>
+
     {% block content %}
     {% endblock %}
+
+    {% comment old_spa %}
+        {% include "transcendence/main_home.html" %}
+        {% include "transcendence/main_play.html" %}
+        {% include "transcendence/main_local_1v1.html" %}
+        {% include "transcendence/main_local_tournament_form.html" %}
+        {% include "transcendence/main_local_tournament_lobby.html" %}
+        {% include "transcendence/main_local_tournament_match.html" %}
+    {% endcomment %}
+
 </body>
 
 </html>

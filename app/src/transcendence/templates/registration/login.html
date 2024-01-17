@@ -27,12 +27,12 @@
                 <td>{{ form.password }}</td>
             </tr>
         </table>
-        <input type="submit" value="{% trans 'Login' %}">
+        <input type="submit" value="'Login'">
         <input type="hidden" name="next" value="{{ next }}">
     </form>
 
     {# Assumes you set up the password_reset view in your URLconf #}
     <p><a href="{% url 'password_reset' %}">{% trans 'Forgotten password?' %}</a></p>
-    <p><a href="{% url 'signup' %}?next={{ next }}">{{ 'Create account' | trans }}</a></p>
+    <p><a href="{% url 'signup' %}?next={{ next }}">{% trans 'Create account' %}</a></p>
 </main>
 {% endblock content %}

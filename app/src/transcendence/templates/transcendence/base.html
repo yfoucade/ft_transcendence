@@ -11,7 +11,7 @@
     {% endblock title %}
     <link rel="stylesheet" href="{% static 'transcendence/style.css' %}?{% now 'U' %}">
     <script>
-        window.onpopstate = (event) => console.log("{% trans 'hello' %}");
+        window.onpopstate = (event) => console.log("hello");
     </script>
     {% block scripts %}
         <script src="{% static 'transcendence/common/navigation.js' %}?{% now 'U' %}" defer></script>
