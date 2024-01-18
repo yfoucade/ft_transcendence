@@ -8,140 +8,135 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-18 15:27+0100\n"
+"POT-Creation-Date: 2024-01-18 16:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Hania KHATER <EMAIL@ADDRESS>\n"
-"Language-Team: GREEK <LL@li.org>\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: transcendence/templates/registration/base.html:9
 #: transcendence/templates/transcendence/base.html:10
 msgid "Transcendence"
-msgstr "Υπέρβαση"
+msgstr "Transendenss"
 
 #: transcendence/templates/registration/base.html:13
 msgid "hello"
-msgstr "γεια"
+msgstr "Ahlan"
 
 #: transcendence/templates/registration/base.html:30
 #: transcendence/templates/transcendence/base.html:34
 msgid "Home"
-msgstr "Αρχική"
+msgstr "Ra2esseya"
 
 #: transcendence/templates/registration/base.html:31
 #: transcendence/templates/transcendence/base.html:35
 msgid "Play"
-msgstr "Παίξε"
+msgstr "el3ab"
 
 #: transcendence/templates/registration/base.html:38
 #: transcendence/templates/transcendence/base.html:57
 msgid "Log in"
-msgstr "Σύνδεση"
+msgstr "Ed5ol 7essabak"
 
 #: transcendence/templates/registration/login.html:7
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
-"Το όνομα χρήστη και ο κωδικός πρόσβασης δεν ταιριάζουν. Παρακαλούμε "
-"προσπαθήστε ξανά."
+msgstr "Fakes... Garab tany"
 
 #: transcendence/templates/registration/login.html:12
 msgid ""
 "Your account doesn't have access to this page. To proceed, please login with "
 "an account that has access."
-msgstr ""
-"Ο λογαριασμός σας δεν έχει πρόσβαση σε αυτή τη σελίδα. Για να συνεχίσετε, "
-"παρακαλούμε συνδεθείτε με ένα λογαριασμό που έχει πρόσβαση."
+msgstr "Fakes... Enta matenfa3sh hena, garab ma3 7essab tany"
 
 #: transcendence/templates/registration/login.html:14
 msgid "Please login to see this page."
-msgstr "Παρακαλούμε συνδεθείτε για να δείτε αυτή τη σελίδα."
+msgstr "Law sama7t sagel nafsak 3ashan teshouf el saf7a di"
 
 #: transcendence/templates/registration/login.html:35
 msgid "Forgotten password?"
-msgstr "Ξεχάσατε τον κωδικό πρόσβασης;"
+msgstr "Nesseit el kelma el serreya beta3tak?"
 
 #: transcendence/templates/registration/login.html:36
 msgid "Create account"
-msgstr "Δημιουργία λογαριασμού"
+msgstr "7essab"
 
 #: transcendence/templates/transcendence/accounts/profile.html:6
 msgid "Profile of"
-msgstr "Προφίλ του"
+msgstr "Profile beta3"
 
 #: transcendence/templates/transcendence/accounts/profile.html:9
 msgid "Edit profile"
-msgstr "Επεξεργασία προφίλ"
+msgstr "Ghayar 7essabak"
 
 #: transcendence/templates/transcendence/accounts/profile.html:10
 msgid "Change password"
-msgstr "Αλλαγή κωδικού πρόσβασης"
+msgstr "Ghayar el kelma el serreya"
 
 #: transcendence/templates/transcendence/accounts/profile.html:11
 msgid "My stats"
-msgstr "Τα στατιστικά μου"
+msgstr "Nataygak"
 
 #: transcendence/templates/transcendence/accounts/signup.html:9
 msgid "Sign up"
-msgstr "Εγγραφή"
+msgstr "Ed5ol 7essabak"
 
 #: transcendence/templates/transcendence/index.html:6
 msgid "Welcome to transcendence"
-msgstr "Καλώς ήρθατε στην υπέρβαση"
+msgstr "Ahlan beek f transendenss"
 
 #: transcendence/templates/transcendence/pong/game_canvas.html:7
 msgid "Start"
-msgstr "Έναρξη"
+msgstr "Ebtedy"
 
 #: transcendence/templates/transcendence/pong/local_tournament/form.html:13
 msgid "Add a player"
-msgstr "Προσθήκη παίκτη"
+msgstr "Zawed la3ib"
 
 #: transcendence/templates/transcendence/pong/local_tournament/form.html:17
 msgid "Add player"
-msgstr "Προσθήκη παίκτη"
+msgstr "Zawed la3ib"
 
 #: transcendence/templates/transcendence/pong/local_tournament/form.html:27
 msgid "Start tournament"
-msgstr "Έναρξη τουρνουά"
+msgstr "Ebtedy botoula"
 
 #: transcendence/templates/transcendence/pong/local_tournament/lobby.html:8
 msgid "Next match"
-msgstr "Επόμενος αγώνας"
+msgstr "El mobarah el gayya"
 
 #: transcendence/templates/transcendence/pong/local_tournament/lobby.html:13
 msgid "Current round"
-msgstr "Τρέχον γύρος"
+msgstr "El gawla el 7aleya"
 
 #: transcendence/templates/transcendence/pong/local_tournament/lobby.html:30
 msgid "Eliminated"
-msgstr "Εξαιρέθηκε"
+msgstr "Khalas"
 
 #: transcendence/templates/transcendence/pong/local_tournament/lobby.html:40
 msgid "Start next match"
-msgstr "Έναρξη επόμενου αγώνα"
+msgstr "Ebtedy el mobarah el gayya"
 
 #: transcendence/templates/transcendence/pong/local_tournament/results.html:6
 msgid "Local Tournament"
-msgstr "Τοπικό τουρνουά"
+msgstr "Botoula ma7aleya"
 
 #: transcendence/templates/transcendence/pong/local_tournament/results.html:7
 msgid "Winner"
-msgstr "Νικητής"
+msgstr "Kasban"
 
 #: transcendence/templates/transcendence/pong/play.html:11
 msgid "Local"
-msgstr "Τοπικός"
+msgstr "ma7aleya"
 
 #: transcendence/templates/transcendence/pong/play.html:11
 #: transcendence/templates/transcendence/pong/play.html:17
 msgid "tournament"
-msgstr "τουρνουά"
+msgstr "botoula"
 
 #: transcendence/templates/transcendence/pong/play.html:14
 #: transcendence/templates/transcendence/pong/play.html:17
 msgid "Online"
-msgstr "Διαδικτυακός"
+msgstr "3ala el internet"

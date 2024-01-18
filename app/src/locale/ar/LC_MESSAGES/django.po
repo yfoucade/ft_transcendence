@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-18 01:44+0100\n"
+"POT-Creation-Date: 2024-01-18 15:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hania KHATER <EMAIL@ADDRESS>\n"
 "Language-Team: ARABIC <LL@li.org>\n"
@@ -38,8 +38,8 @@ msgstr "الرئيسية"
 msgid "Play"
 msgstr "لعب"
 
-#: transcendence/templates/registration/base.html:59
-#: transcendence/templates/transcendence/base.html:41
+#: transcendence/templates/registration/base.html:38
+#: transcendence/templates/transcendence/base.html:57
 msgid "Log in"
 msgstr "تسجيل الدخول"
 
@@ -65,7 +65,7 @@ msgstr "نسيت كلمة المرور؟"
 
 #: transcendence/templates/registration/login.html:36
 msgid "Create account"
-msgstr ""
+msgstr "إنشاء حساب"
 
 #: transcendence/templates/transcendence/accounts/profile.html:6
 msgid "Profile of"
@@ -137,18 +137,10 @@ msgstr "محلي"
 
 #: transcendence/templates/transcendence/pong/play.html:11
 #: transcendence/templates/transcendence/pong/play.html:17
-#, fuzzy
-#| msgid "Start tournament"
 msgid "tournament"
-msgstr "بدء البطولة"
+msgstr "البطولة"
 
 #: transcendence/templates/transcendence/pong/play.html:14
 #: transcendence/templates/transcendence/pong/play.html:17
 msgid "Online"
 msgstr "عبر الإنترنت"
-
-#~ msgid "Login"
-#~ msgstr "تسجيل الدخول"
-
-#~ msgid "match"
-#~ msgstr "مباراة"

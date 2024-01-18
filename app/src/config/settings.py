@@ -122,10 +122,12 @@ from django.utils.translation import gettext_lazy as _
 LANGUAGE_CODE = 'en-us'
 
 LANGUAGES = [
-	('en', _('English')),
-	('fr', _('French')),
-	('el', _('Greek')),
-	('ar', _('Arabic')),
+    ('en', _('English')),
+    ('fr', _('French')),
+    ('el', _('Greek')),
+    ('ar', _('Arabic')),
+    ('arz', _('Egyptian')),
+    ('pl', _('Polish')),
 ]
 
 LOCALE_PATHS = [
