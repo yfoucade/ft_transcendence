@@ -18,7 +18,7 @@ def play(request):
     return render(request, "transcendence/pong/play.html")
 
 def chat(request):
-    return render(request, "transcendence/chat.html")
+    return render(request, "transcendence/chat/chatpage.html")
 
 def local_match(request):
     return render(request, "transcendence/pong/local_match/local_match.html")

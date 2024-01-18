@@ -1,0 +1,11 @@
+{
+	"name": "chat",
+	"version": "1.0.0",
+	"scripts": {
+		"start": "node chatpage.js"
+	},
+	"dependencies": {
+		"express": "^4.18.2",
+		"ws": "^8.16.0"
+	}
+}
