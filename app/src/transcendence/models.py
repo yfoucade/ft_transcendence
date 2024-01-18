@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-def get_thumbnail_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/user_<id>/thumbnail
-    return "user_{0}/thumbnail".format(instance.user.id)
+def get_picture_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/picture
+    return "user_{0}/picture".format(instance.user.id)
 
 class Profile(models.Model):
     user = models.OneToOneField(
@@ -13,6 +13,6 @@ class Profile(models.Model):
         on_delete = models.CASCADE,
     )
     display_name = models.CharField(max_length=10, blank=False, unique=True)
-    # thumbnail = models.ImageField(upload_to=get_thumbnail_path, default="default.jpg")
+    picture = models.ImageField(upload_to=get_picture_path, default="default_pp.png")
     following = models.ManyToManyField(User, related_name="followers")
     rating = models.FloatField(default=1500)
