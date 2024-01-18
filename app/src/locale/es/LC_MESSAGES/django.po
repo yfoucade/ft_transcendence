@@ -8,135 +8,143 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-18 16:03+0100\n"
+"POT-Creation-Date: 2024-01-18 18:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Hania KHATER <EMAIL@ADDRESS>\n"
+"Language-Team: SPANISH <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: transcendence/templates/registration/base.html:9
 #: transcendence/templates/transcendence/base.html:10
 msgid "Transcendence"
-msgstr "Transendenss"
+msgstr "Trascendencia"
 
 #: transcendence/templates/registration/base.html:13
 msgid "hello"
-msgstr "Ahlan"
+msgstr "hola"
 
 #: transcendence/templates/registration/base.html:30
 #: transcendence/templates/transcendence/base.html:34
 msgid "Home"
-msgstr "Ra2esseya"
+msgstr "Inicio"
 
 #: transcendence/templates/registration/base.html:31
 #: transcendence/templates/transcendence/base.html:35
 msgid "Play"
-msgstr "el3ab"
+msgstr "Jugar"
 
 #: transcendence/templates/registration/base.html:38
 #: transcendence/templates/transcendence/base.html:57
 msgid "Log in"
-msgstr "Ed5ol 7essabak"
+msgstr "Iniciar sesión"
 
 #: transcendence/templates/registration/login.html:7
 msgid "Your username and password didn't match. Please try again."
-msgstr "Fakes... Garab tany"
+msgstr "Tu nombre de usuario y contraseña no coinciden. Inténtalo de nuevo."
 
 #: transcendence/templates/registration/login.html:12
 msgid ""
 "Your account doesn't have access to this page. To proceed, please login with "
 "an account that has access."
-msgstr "Fakes... Enta matenfa3sh hena, garab ma3 7essab tany"
+msgstr ""
+"Tu cuenta no tiene acceso a esta página. Para continuar, inicia sesión con "
+"una cuenta que tenga acceso."
 
 #: transcendence/templates/registration/login.html:14
 msgid "Please login to see this page."
-msgstr "Law sama7t sagel nafsak 3ashan teshouf el saf7a di"
+msgstr "Por favor, inicia sesión para ver esta página."
 
 #: transcendence/templates/registration/login.html:35
 msgid "Forgotten password?"
-msgstr "Nesseit el kelma el serreya beta3tak?"
+msgstr "¿Contraseña olvidada?"
 
 #: transcendence/templates/registration/login.html:36
 msgid "Create account"
-msgstr "7essab"
+msgstr "Crear cuenta"
 
 #: transcendence/templates/transcendence/accounts/profile.html:6
 msgid "Profile of"
-msgstr "Profile beta3"
+msgstr "Perfil de"
 
 #: transcendence/templates/transcendence/accounts/profile.html:9
 msgid "Edit profile"
-msgstr "Ghayar 7essabak"
+msgstr "Editar perfil"
 
 #: transcendence/templates/transcendence/accounts/profile.html:10
 msgid "Change password"
-msgstr "Ghayar el kelma el serreya"
+msgstr "Cambiar contraseña"
 
 #: transcendence/templates/transcendence/accounts/profile.html:11
 msgid "My stats"
-msgstr "Nataygak"
+msgstr "Mis estadísticas"
 
 #: transcendence/templates/transcendence/accounts/signup.html:9
 msgid "Sign up"
-msgstr "Ed5ol 7essabak"
+msgstr "Registrarse"
 
 #: transcendence/templates/transcendence/index.html:6
 msgid "Welcome to transcendence"
-msgstr "Ahlan beek f transendenss"
+msgstr "Bienvenido a la trascendencia"
 
 #: transcendence/templates/transcendence/pong/game_canvas.html:7
 msgid "Start"
-msgstr "Ebtedy"
+msgstr "Comenzar"
 
 #: transcendence/templates/transcendence/pong/local_tournament/form.html:13
 msgid "Add a player"
-msgstr "Zawed la3ib"
+msgstr "Agregar un jugador"
 
 #: transcendence/templates/transcendence/pong/local_tournament/form.html:17
 msgid "Add player"
-msgstr "Zawed la3ib"
+msgstr "Agregar jugador"
 
 #: transcendence/templates/transcendence/pong/local_tournament/form.html:27
 msgid "Start tournament"
-msgstr "Ebtedy botoula"
+msgstr "Comenzar torneo"
 
 #: transcendence/templates/transcendence/pong/local_tournament/lobby.html:8
 msgid "Next match"
-msgstr "El mobarah el gayya"
+msgstr "Próximo partido"
 
 #: transcendence/templates/transcendence/pong/local_tournament/lobby.html:13
 msgid "Current round"
-msgstr "El gawla el 7aleya"
+msgstr "Ronda actual"
 
 #: transcendence/templates/transcendence/pong/local_tournament/lobby.html:30
 msgid "Eliminated"
-msgstr "Khalas"
+msgstr "Eliminado"
 
 #: transcendence/templates/transcendence/pong/local_tournament/lobby.html:40
 msgid "Start next match"
-msgstr "Ebtedy el mobarah el gayya"
+msgstr "Comenzar próximo partido"
 
 #: transcendence/templates/transcendence/pong/local_tournament/results.html:6
 msgid "Local Tournament"
-msgstr "Botoula ma7aleya"
+msgstr "Torneo local"
 
 #: transcendence/templates/transcendence/pong/local_tournament/results.html:7
 msgid "Winner"
-msgstr "Kasban"
+msgstr "Ganador"
 
+#: transcendence/templates/transcendence/pong/play.html:8
 #: transcendence/templates/transcendence/pong/play.html:11
 msgid "Local"
-msgstr "ma7aleya"
+msgstr "Local"
+
+#: transcendence/templates/transcendence/pong/play.html:8
+msgid "match"
+msgstr "partido"
 
 #: transcendence/templates/transcendence/pong/play.html:11
 #: transcendence/templates/transcendence/pong/play.html:17
 msgid "tournament"
-msgstr "botoula"
+msgstr "torneo"
 
 #: transcendence/templates/transcendence/pong/play.html:14
 #: transcendence/templates/transcendence/pong/play.html:17
 msgid "Online"
-msgstr "3ala el internet"
+msgstr "En línea"

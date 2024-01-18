@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-18 16:03+0100\n"
+"POT-Creation-Date: 2024-01-18 18:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: Hania KHATER <EMAIL@ADDRESS>\n"
+"Language-Team: POLISH <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,6 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
 "(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
 "n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
 #: transcendence/templates/registration/base.html:9
 #: transcendence/templates/transcendence/base.html:10
 msgid "Transcendence"
@@ -52,7 +53,8 @@ msgid ""
 "Your account doesn't have access to this page. To proceed, please login with "
 "an account that has access."
 msgstr ""
-"Twoje konto nie ma dostępu do tej strony. Aby kontynuować, zaloguj się na konto z dostępem."
+"Twoje konto nie ma dostępu do tej strony. Aby kontynuować, zaloguj się na "
+"konto z dostępem."
 
 #: transcendence/templates/registration/login.html:14
 msgid "Please login to see this page."
@@ -130,9 +132,14 @@ msgstr "Turniej lokalny"
 msgid "Winner"
 msgstr "Zwycięzca"
 
+#: transcendence/templates/transcendence/pong/play.html:8
 #: transcendence/templates/transcendence/pong/play.html:11
 msgid "Local"
 msgstr "Lokalny"
+
+#: transcendence/templates/transcendence/pong/play.html:8
+msgid "match"
+msgstr "mecz"
 
 #: transcendence/templates/transcendence/pong/play.html:11
 #: transcendence/templates/transcendence/pong/play.html:17

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-18 15:27+0100\n"
+"POT-Creation-Date: 2024-01-18 18:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,9 +128,14 @@ msgstr "Local Tournament"
 msgid "Winner"
 msgstr "Winner"
 
+#: transcendence/templates/transcendence/pong/play.html:8
 #: transcendence/templates/transcendence/pong/play.html:11
 msgid "Local"
 msgstr "Local"
+
+#: transcendence/templates/transcendence/pong/play.html:8
+msgid "match"
+msgstr "match"
 
 #: transcendence/templates/transcendence/pong/play.html:11
 #: transcendence/templates/transcendence/pong/play.html:17

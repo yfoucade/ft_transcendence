@@ -126,7 +126,7 @@ LANGUAGES = [
     ('fr', _('French')),
     ('el', _('Greek')),
     ('ar', _('Arabic')),
-    ('arz', _('Egyptian')),
+    ('es', _('Spanish')),
     ('pl', _('Polish')),
 ]
 
