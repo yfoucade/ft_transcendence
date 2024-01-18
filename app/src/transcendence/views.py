@@ -5,6 +5,11 @@ from django.shortcuts import render, redirect
 from django.template import loader
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.utils.translation import gettext as _
+from django.conf import settings
+from django.http import HttpResponse
+from django.utils import translation
+from django.utils.translation import check_for_language
 
 from .forms import CustomUserCreationForm
 from .pong.local_tournament import lobby
@@ -48,13 +53,13 @@ def local_tournament_results(request):
     if ( request.method == "POST" ):
         context = json.loads( request.body )
         # with open("/dev/pts/0", "w") as f:
-        #     print("results", file=f) 
-        #     print(f"{context['remaining_players'] = }", file=f) 
+        #     print("results", file=f)
+        #     print(f"{context['remaining_players'] = }", file=f)
         context["winner"] = list(context["remaining_players"].keys())[0]
         return render(request, "transcendence/pong/local_tournament/results.html", context)
     else:
         return redirect("local-tournament-form")
-    
+
 def signup(request):
     if ( request.method == "POST" ):
         form = CustomUserCreationForm( request.POST )
@@ -68,6 +73,14 @@ def signup(request):
     else:
         form = CustomUserCreationForm()
     return render( request, "transcendence/accounts/signup.html", {"form":form} )
+
+def set_language(language):
+    if check_for_language(language):
+        translation.activate(language)
+        response = HttpResponse()
+        response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
+        return response
+    return redirect('index')
 
 @login_required
 def profile(request):

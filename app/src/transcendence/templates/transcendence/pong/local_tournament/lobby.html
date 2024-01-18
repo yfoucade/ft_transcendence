@@ -1,15 +1,16 @@
 {% extends "../../base.html" %}
+{% load i18n %}
 
 {% block content %}
 <main id="main-local-tournament-lobby" class="">
     <h1>Local Tournament</h1>
     <h2 id="local-tournament-lobby-current-round-name">{{ round_name }}</h2><!-- Final, Semifinals, Quarterfinals -->
-    <h3 id="local-tournament-lobby-next-match">Next match: {{ next_match.left_player }} vs {{ next_match.right_player }}</h3>
+    <h3 id="local-tournament-lobby-next-match">{% trans 'Next match' %}: {{ next_match.left_player }} vs {{ next_match.right_player }}</h3>
     <h3 id="local-tournament-lobby-winner"></h3>
 
     <div id="local-tournament-lobby-tables">
         <section id="local-tournament-lobby-next-round" class="lobby-table">
-            <header class="lobby-table-header">Current round</header>
+            <header class="lobby-table-header">{% trans 'Current round' %}</header>
             <div id="div-local-tournament-lobby-next-round">
                 <!-- <div class="match">
                     <span class="left-player">player1</span>
@@ -26,7 +27,7 @@
             </div>
         </section>
         <section id="local-tournament-lobby-out" class="lobby-table">
-            <header class="lobby-table-header">Eliminated</header>
+            <header class="lobby-table-header">{% trans 'Eliminated' %}</header>
             <div id="div-local-tournament-lobby-players-out">
                 {% for player in eliminated_players %}
                     <div>{{ player }}</div>
@@ -36,7 +37,7 @@
     </div>
     <div class="container">
         <div class="center">
-            <button id="local-tournament-lobby-button">Start next match</button>
+            <button id="local-tournament-lobby-button">{% trans 'Start next match' %}</button>
         </div>
     </div>
 </main>

@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 {% load static %}
+{% load i18n %}
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     {% block title %}
-    <title>Transcendence</title>
+    <title>{% trans 'Transcendence' %}</title>
     {% endblock title %}
     <link rel="stylesheet" href="{% static 'transcendence/style.css' %}?{% now 'U' %}">
     <script>
-        window.onpopstate = (event) => console.log("hello");
+        window.onpopstate = (event) => console.log("{% trans 'hello' %}");
     </script>
     {% block scripts %}
         <script src="{% static 'transcendence/common/navigation.js' %}?{% now 'U' %}" defer></script>
@@ -26,15 +27,15 @@
 <body>
     <nav id="main-navbar" class="navbar">
         <ul id="main-menu">
-            <!-- TODO: replace 'Home' text with a logo ? -->
-            <li id="nav-home" class="nav-link"><a href="/">Home</a></li>
-            <li id="nav-play" class="nav-link"><a href="/play">Play</a></li>
+            <li id="nav-home" class="nav-link"><a href="/">{% trans 'Home' %}</a></li>
+            <li id="nav-play" class="nav-link"><a href="/play">{% trans 'Play' %}</a></li>
         </ul>
         <ul>
             {% if user.is_authenticated %}
+                <!-- <li id="user-tag" class="nav-link" data-authenticated="true"><a href="/user/{{ user.id }}">{{ user.username }}</a></li> -->
                 <li id="user-tag" class="nav-link" data-authenticated="true"><a href="/user/{{ user.id }}">{{ user.username }}</a></li>
             {% else %}
-                <li id="user-tag" class="nav-link" data-authenticated="false"><a href="{% url 'login' %}">Log in</a></li>
+                <li id="user-tag" class="nav-link" data-authenticated="false"><a href="{% url 'login' %}">{% trans 'Log in' %}</a></li>
             {% endif %}
         </ul>
     </nav>
@@ -50,7 +51,7 @@
         {% include "transcendence/main_local_tournament_lobby.html" %}
         {% include "transcendence/main_local_tournament_match.html" %}
     {% endcomment %}
-    
+
 </body>
 
 </html>

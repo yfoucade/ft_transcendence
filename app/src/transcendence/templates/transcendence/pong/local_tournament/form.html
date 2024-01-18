@@ -1,4 +1,5 @@
 {% extends "../../base.html" %}
+{% load i18n %}
 
 {% block content %}
 <main id="main-local-tournament-form" class="">
@@ -9,11 +10,11 @@
                 {% csrf_token %}
                 <div id="error-message-form" class="error"></div>
                 <div>
-                    <label for="form-player-name">Add a player</label>
+                    <label for="form-player-name">{% trans 'Add a player' %}</label>
                     <input type="text" name="player-name" id="form-player-name"
                     maxlength="10" autocomplete="off">
                 </div>
-                <button id="add-player" class="link">Add player</button>
+                <button id="add-player" class="link">{% trans 'Add player' %}</button>
             </form>
         </div>
 
@@ -23,7 +24,7 @@
 
     <div id="div-start-tournament">
         <div id="error-message-start" class="error"></div>
-        <button id="start-tournament" class="link">Start tournament</button>
+        <button id="start-tournament" class="link">{% trans 'Start tournament' %}</button>
     </div>
 </main>
 {% endblock content %}
