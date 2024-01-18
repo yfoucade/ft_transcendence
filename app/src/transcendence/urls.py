@@ -14,7 +14,3 @@ urlpatterns = [
     path( "signup/", views.signup, name="signup" ),
     path( "profile/", views.profile, name="profile" ),
 ]
-
-urlpatterns += i18n_patterns(
-    path('set_language/', views.set_language, name='set_language'),
-)

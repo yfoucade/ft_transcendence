@@ -5,6 +5,11 @@ from django.shortcuts import render, redirect
 from django.template import loader
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.utils.translation import gettext as _
+from django.conf import settings
+from django.http import HttpResponse
+from django.utils import translation
+from django.utils.translation import check_for_language
 
 from .forms import CustomUserCreationForm
 from .pong.local_tournament import lobby
@@ -69,8 +74,13 @@ def signup(request):
         form = CustomUserCreationForm()
     return render( request, "transcendence/accounts/signup.html", {"form":form} )
 
-def set_language(request):
-    
+def set_language(language):
+    if check_for_language(language):
+        translation.activate(language)
+        response = HttpResponse()
+        response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
+        return response
+    return redirect('index')
 
 @login_required
 def profile(request):

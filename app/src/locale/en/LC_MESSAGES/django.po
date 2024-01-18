@@ -1,0 +1,151 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-18 01:44+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: transcendence/templates/registration/base.html:9
+#: transcendence/templates/transcendence/base.html:10
+msgid "Transcendence"
+msgstr "Transcendence"
+
+#: transcendence/templates/registration/base.html:13
+msgid "hello"
+msgstr "hello"
+
+#: transcendence/templates/registration/base.html:30
+#: transcendence/templates/transcendence/base.html:34
+msgid "Home"
+msgstr "Home"
+
+#: transcendence/templates/registration/base.html:31
+#: transcendence/templates/transcendence/base.html:35
+msgid "Play"
+msgstr "Play"
+
+#: transcendence/templates/registration/base.html:59
+#: transcendence/templates/transcendence/base.html:41
+msgid "Log in"
+msgstr "Log in"
+
+#: transcendence/templates/registration/login.html:7
+msgid "Your username and password didn't match. Please try again."
+msgstr "Your username and password didn't match. Please try again."
+
+#: transcendence/templates/registration/login.html:12
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+msgstr ""
+
+#: transcendence/templates/registration/login.html:14
+msgid "Please login to see this page."
+msgstr "Please login to see this page."
+
+#: transcendence/templates/registration/login.html:35
+msgid "Forgotten password?"
+msgstr "Forgotten password?"
+
+#: transcendence/templates/registration/login.html:36
+msgid "Create account"
+msgstr ""
+
+#: transcendence/templates/transcendence/accounts/profile.html:6
+msgid "Profile of"
+msgstr "Profile of"
+
+#: transcendence/templates/transcendence/accounts/profile.html:9
+msgid "Edit profile"
+msgstr "Edit profile"
+
+#: transcendence/templates/transcendence/accounts/profile.html:10
+msgid "Change password"
+msgstr "Change password"
+
+#: transcendence/templates/transcendence/accounts/profile.html:11
+msgid "My stats"
+msgstr "My stats"
+
+#: transcendence/templates/transcendence/accounts/signup.html:9
+msgid "Sign up"
+msgstr "Sign up"
+
+#: transcendence/templates/transcendence/index.html:6
+msgid "Welcome to transcendence"
+msgstr "Welcome to transcendence"
+
+#: transcendence/templates/transcendence/pong/game_canvas.html:7
+msgid "Start"
+msgstr "Start"
+
+#: transcendence/templates/transcendence/pong/local_tournament/form.html:13
+msgid "Add a player"
+msgstr "Add a player"
+
+#: transcendence/templates/transcendence/pong/local_tournament/form.html:17
+msgid "Add player"
+msgstr "Add a player"
+
+#: transcendence/templates/transcendence/pong/local_tournament/form.html:27
+msgid "Start tournament"
+msgstr "Start tournament"
+
+#: transcendence/templates/transcendence/pong/local_tournament/lobby.html:8
+msgid "Next match"
+msgstr "Next match"
+
+#: transcendence/templates/transcendence/pong/local_tournament/lobby.html:13
+msgid "Current round"
+msgstr "Current round"
+
+#: transcendence/templates/transcendence/pong/local_tournament/lobby.html:30
+msgid "Eliminated"
+msgstr "Eliminated"
+
+#: transcendence/templates/transcendence/pong/local_tournament/lobby.html:40
+msgid "Start next match"
+msgstr "Start next match"
+
+#: transcendence/templates/transcendence/pong/local_tournament/results.html:6
+msgid "Local Tournament"
+msgstr "Local Tournament"
+
+#: transcendence/templates/transcendence/pong/local_tournament/results.html:7
+msgid "Winner"
+msgstr "Winner"
+
+#: transcendence/templates/transcendence/pong/play.html:11
+msgid "Local"
+msgstr "Local"
+
+#: transcendence/templates/transcendence/pong/play.html:11
+#: transcendence/templates/transcendence/pong/play.html:17
+#, fuzzy
+#| msgid "Start tournament"
+msgid "tournament"
+msgstr "Start tournament"
+
+#: transcendence/templates/transcendence/pong/play.html:14
+#: transcendence/templates/transcendence/pong/play.html:17
+msgid "Online"
+msgstr "Online"
+
+#~ msgid "Login"
+#~ msgstr "Login"
+
+#~ msgid "match"
+#~ msgstr "match"
