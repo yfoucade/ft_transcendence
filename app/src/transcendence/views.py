@@ -101,8 +101,7 @@ def edit_profile(request):
         if user_change_form.is_valid() and profile_change_form.is_valid():
             user_change_form.save()
             profile_change_form.save()
-            # profile.picture.save(request.FILES['picture'].name, request.FILES['picture'], save=True)
-            # profile.picture.save(profile.picture.name, profile.picture, save=True)
+            return redirect("profile")
     else:
         user_change_form = CustomUserChangeForm(instance=request.user)
         profile_change_form = CustomProfileChangeForm( instance=profile )
