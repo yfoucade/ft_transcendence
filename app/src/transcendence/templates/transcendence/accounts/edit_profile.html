@@ -1,14 +1,13 @@
 {% extends "../base.html" %}
-{% load i18n %}
 
 {% block content %}
-<main id="main-profile" class="shown">
-    <h1>{% trans 'Profile of' %} {{ user.username }}</h1>
+<main id="main-edit-profile" class="shown" >
+    <h1>Profile of {{ user.username }}</h1>
     <nav id="profile-nav">
         <ul>
-            <li><a href="{% url 'edit-profile' %}">{% trans 'Edit profile' %}</a></li>
-            <li><a href="">{% trans 'Change password' %}</a></li>
-            <li><a href="">{% trans 'My stats' %}</a></li>
+            <li><a href="{% url 'edit-profile' %}">Edit profile</a></li>
+            <li><a href="">Change password</a></li>
+            <li><a href="">My stats</a></li>
             <li>
                 <form id="logout-form" method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
@@ -22,5 +21,11 @@
             </li>
         </ul>
     </nav>
+    <form id="edit-profile-form" action="{% url 'edit-profile' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_change_form.as_p }}
+        {{ profile_change_form.as_p }}
+        <input type="submit" value="save">
+    </form>
 </main>
 {% endblock content %}

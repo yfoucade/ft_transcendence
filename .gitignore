@@ -2,4 +2,4 @@
 **/__pycache__
 **/db.sqlite3
 data/
-**/migrations/*
+app/src/transcendence/migrations/

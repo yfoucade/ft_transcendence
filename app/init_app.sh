@@ -8,8 +8,12 @@ pip install --upgrade pip
 pip install Django
 pip install psycopg
 pip install daphne
+pip install Pillow
 
 cd src/
+find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+find . -path "*/migrations/*.pyc"  -delete
+python manage.py makemigrations
 python manage.py migrate
 python manage.py collectstatic --noinput
 python manage.py createsuperuser --noinput

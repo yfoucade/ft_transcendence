@@ -19,13 +19,16 @@ from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
 from transcendence import views
 
+from django.conf import settings # TODO: remove in production
+from django.conf.urls.static import static # TODO: remove in production
+
 urlpatterns = [
     path( '', include( "transcendence.urls" ) ),
     path( 'accounts/', include( "django.contrib.auth.urls" ) ),
     path( 'test_ssr/', include( "test_ssr.urls" ) ), #TODO: remove this app
     path('admin/', admin.site.urls),
 	path("i18n/", include("django.conf.urls.i18n")),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # TODO: remove in production
 
 urlpatterns += i18n_patterns(
     path( "", views.index, name="index" ),

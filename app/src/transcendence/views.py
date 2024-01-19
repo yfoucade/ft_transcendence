@@ -1,5 +1,7 @@
 import json
+import os
 
+from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
@@ -11,7 +13,8 @@ from django.http import HttpResponse
 from django.utils import translation
 from django.utils.translation import check_for_language
 
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm, CustomProfileChangeForm
+from .models import Profile
 from .pong.local_tournament import lobby
 # Create your views here.
 
@@ -60,6 +63,7 @@ def local_tournament_results(request):
     else:
         return redirect("local-tournament-form")
 
+# TODO: redirect to profile page if user is authenticated
 def signup(request):
     if ( request.method == "POST" ):
         form = CustomUserCreationForm( request.POST )
@@ -69,7 +73,9 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect( request.POST.get( "next", "index" ))
+            profile = Profile(user = user, display_name=user.username)
+            profile.save()
+            return redirect( request.POST.get( "next", "" ) or "index" )
     else:
         form = CustomUserCreationForm()
     return render( request, "transcendence/accounts/signup.html", {"form":form} )
@@ -85,3 +91,25 @@ def set_language(language):
 @login_required
 def profile(request):
     return render( request, "transcendence/accounts/profile.html" )
+
+@login_required
+def edit_profile(request):
+    profile = Profile.objects.get(user=request.user.pk)
+    if ( request.method == "POST" ):
+        user_change_form = CustomUserChangeForm( request.POST, instance=request.user )
+        profile_change_form = CustomProfileChangeForm( request.POST, request.FILES, instance=profile )
+        if user_change_form.is_valid() and profile_change_form.is_valid():
+            user_change_form.save()
+            profile_change_form.save()
+            # profile.picture.save(request.FILES['picture'].name, request.FILES['picture'], save=True)
+            # profile.picture.save(profile.picture.name, profile.picture, save=True)
+    else:
+        user_change_form = CustomUserChangeForm(instance=request.user)
+        profile_change_form = CustomProfileChangeForm( instance=profile )
+    return render(
+        request,
+        "transcendence/accounts/edit_profile.html",
+        {
+            "user_change_form": user_change_form,
+            "profile_change_form": profile_change_form,
+        })
