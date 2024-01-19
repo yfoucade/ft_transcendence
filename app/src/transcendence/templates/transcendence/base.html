@@ -38,7 +38,11 @@
                 <!-- <li id="user-tag" class="nav-link" data-authenticated="true"><a href="/user/{{ user.id }}">{{ user.username }}</a></li> -->
                 <li id="user-tag" class="nav-link" data-authenticated="true">
                     <a href="/profile/">
-                        <img src="{{ profile.picture.url }}" width="32" height="32">
+                        {% if profile.picture %}
+                            <img src="{{ profile.picture.url }}" width="32" height="32">
+                        {% else %}
+                            <img src="/media/default_pp.png" width="32" height="32">
+                        {% endif %}
                         <div>{{ user.username }}</div>
                     </a>
                 </li>
