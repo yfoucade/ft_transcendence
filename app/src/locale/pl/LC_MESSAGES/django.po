@@ -1,0 +1,152 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-18 18:22+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Hania KHATER <EMAIL@ADDRESS>\n"
+"Language-Team: POLISH <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
+"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
+"n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: transcendence/templates/registration/base.html:9
+#: transcendence/templates/transcendence/base.html:10
+msgid "Transcendence"
+msgstr "Transcendencja"
+
+#: transcendence/templates/registration/base.html:13
+msgid "hello"
+msgstr "cześć"
+
+#: transcendence/templates/registration/base.html:30
+#: transcendence/templates/transcendence/base.html:34
+msgid "Home"
+msgstr "Strona główna"
+
+#: transcendence/templates/registration/base.html:31
+#: transcendence/templates/transcendence/base.html:35
+msgid "Play"
+msgstr "Graj"
+
+#: transcendence/templates/registration/base.html:38
+#: transcendence/templates/transcendence/base.html:57
+msgid "Log in"
+msgstr "Zaloguj się"
+
+#: transcendence/templates/registration/login.html:7
+msgid "Your username and password didn't match. Please try again."
+msgstr "Nazwa użytkownika i hasło nie pasują. Spróbuj ponownie."
+
+#: transcendence/templates/registration/login.html:12
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+msgstr ""
+"Twoje konto nie ma dostępu do tej strony. Aby kontynuować, zaloguj się na "
+"konto z dostępem."
+
+#: transcendence/templates/registration/login.html:14
+msgid "Please login to see this page."
+msgstr "Zaloguj się, aby zobaczyć tę stronę."
+
+#: transcendence/templates/registration/login.html:35
+msgid "Forgotten password?"
+msgstr "Zapomniane hasło?"
+
+#: transcendence/templates/registration/login.html:36
+msgid "Create account"
+msgstr "Utwórz konto"
+
+#: transcendence/templates/transcendence/accounts/profile.html:6
+msgid "Profile of"
+msgstr "Profil użytkownika"
+
+#: transcendence/templates/transcendence/accounts/profile.html:9
+msgid "Edit profile"
+msgstr "Edytuj profil"
+
+#: transcendence/templates/transcendence/accounts/profile.html:10
+msgid "Change password"
+msgstr "Zmień hasło"
+
+#: transcendence/templates/transcendence/accounts/profile.html:11
+msgid "My stats"
+msgstr "Moje statystyki"
+
+#: transcendence/templates/transcendence/accounts/signup.html:9
+msgid "Sign up"
+msgstr "Zarejestruj się"
+
+#: transcendence/templates/transcendence/index.html:6
+msgid "Welcome to transcendence"
+msgstr "Witaj w transcendencji"
+
+#: transcendence/templates/transcendence/pong/game_canvas.html:7
+msgid "Start"
+msgstr "Rozpocznij"
+
+#: transcendence/templates/transcendence/pong/local_tournament/form.html:13
+msgid "Add a player"
+msgstr "Dodaj gracza"
+
+#: transcendence/templates/transcendence/pong/local_tournament/form.html:17
+msgid "Add player"
+msgstr "Dodaj gracza"
+
+#: transcendence/templates/transcendence/pong/local_tournament/form.html:27
+msgid "Start tournament"
+msgstr "Rozpocznij turniej"
+
+#: transcendence/templates/transcendence/pong/local_tournament/lobby.html:8
+msgid "Next match"
+msgstr "Następny mecz"
+
+#: transcendence/templates/transcendence/pong/local_tournament/lobby.html:13
+msgid "Current round"
+msgstr "Obecna runda"
+
+#: transcendence/templates/transcendence/pong/local_tournament/lobby.html:30
+msgid "Eliminated"
+msgstr "Wyeliminowani"
+
+#: transcendence/templates/transcendence/pong/local_tournament/lobby.html:40
+msgid "Start next match"
+msgstr "Rozpocznij następny mecz"
+
+#: transcendence/templates/transcendence/pong/local_tournament/results.html:6
+msgid "Local Tournament"
+msgstr "Turniej lokalny"
+
+#: transcendence/templates/transcendence/pong/local_tournament/results.html:7
+msgid "Winner"
+msgstr "Zwycięzca"
+
+#: transcendence/templates/transcendence/pong/play.html:8
+#: transcendence/templates/transcendence/pong/play.html:11
+msgid "Local"
+msgstr "Lokalny"
+
+#: transcendence/templates/transcendence/pong/play.html:8
+msgid "match"
+msgstr "mecz"
+
+#: transcendence/templates/transcendence/pong/play.html:11
+#: transcendence/templates/transcendence/pong/play.html:17
+msgid "tournament"
+msgstr "turniej"
+
+#: transcendence/templates/transcendence/pong/play.html:14
+#: transcendence/templates/transcendence/pong/play.html:17
+msgid "Online"
+msgstr "Online"
