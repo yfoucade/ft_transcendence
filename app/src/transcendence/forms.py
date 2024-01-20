@@ -83,7 +83,7 @@ class CustomProfileChangeForm(ModelForm):
         data = self.cleaned_data["display_name"]
         if data == self.instance.display_name:
             return data
-        if len(data) > {CUSTOM_USERNAME_MAXLENGTH}:
+        if len(data) > CUSTOM_USERNAME_MAXLENGTH:
             msg = _("Display name too long")
             validation_errors.append( ValidationError(msg, code="display_name_too_long") )
         if not re.match("^[0-9A-Za-z@.+-_]+$", data):
