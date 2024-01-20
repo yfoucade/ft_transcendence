@@ -23,6 +23,8 @@ let hydration_recipes = {
     "main-profile": profile_hydration_recipe,
     "main-signup": signup_hydration_recipe,
     "main-edit-profile": edit_profile_hydration_recipe,
+    "main-password-change": password_change_hydration_recipe,
+    "main-password-change-done":password_change_done_hydration_recipe,
 }
 
 let dehydration_recipes = {
@@ -135,7 +137,7 @@ function signup_hydration_recipe()
 function profile_hydration_recipe()
 {
     let main = document.querySelector("main");
-    let links = main.querySelectorAll("a");
+    let links = main.querySelectorAll("a:not(form a)");
     for ( let link of links )
         link.addEventListener( "click", route );
     document.getElementById("logout-link").addEventListener( "click", logout );
@@ -143,12 +145,42 @@ function profile_hydration_recipe()
 
 function edit_profile_hydration_recipe()
 {
-    
     let main = document.querySelector("main");
     let links = main.querySelectorAll("a:not(form a)");
     for ( let link of links )
         link.addEventListener( "click", route );
     document.getElementById("logout-link").addEventListener( "click", logout );
+    document.getElementById("edit-profile-form").addEventListener( "submit", submit_edit_profile_form );
+}
+
+function password_change_hydration_recipe()
+{
+    document.getElementById("password-change-form").addEventListener( "submit", submit_form );
+}
+
+function password_change_done_hydration_recipe()
+{
+    let main = document.querySelector("main");
+    let links = main.querySelectorAll("a:not(form a)");
+    for ( let link of links )
+        link.addEventListener( "click", route );
+    document.getElementById("logout-link").addEventListener( "click", logout );
+}
+
+async function submit_form( event )
+{
+    event.preventDefault();
+
+    let form = event.currentTarget;
+    let form_data = new FormData( form );
+
+    let response = await fetch( form.action,
+        {
+            method: form.method,
+            body: form_data,
+        }
+    );
+    update_view( response );
 }
 
 function can_leave_view()
