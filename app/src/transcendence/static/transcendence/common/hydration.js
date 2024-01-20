@@ -1,6 +1,6 @@
 function hydrate_common_elements() {
     console.log("hydrating common elements");
-    let links = document.querySelectorAll("a:not(form a)");
+    let links = document.querySelectorAll("#main-menu a");
     for ( let link of links )
         link.addEventListener( "click", route );
 }
