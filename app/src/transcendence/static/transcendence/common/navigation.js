@@ -149,6 +149,7 @@ function edit_profile_hydration_recipe()
     for ( let link of links )
         link.addEventListener( "click", route );
     document.getElementById("logout-link").addEventListener( "click", logout );
+    document.getElementById("edit-profile-form").addEventListener( "submit", submit_edit_profile_form );
 }
 
 function can_leave_view()
