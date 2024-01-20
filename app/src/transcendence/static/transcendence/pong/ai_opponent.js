@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
-    setInterval(fetchBallYCoordinate, 1000);
+    if (window.location.pathname.includes("/local-match/")) {
+        setInterval(fetchBallYCoordinate, 1000);
+    }
 });
 
 function fetchBallYCoordinate() {
