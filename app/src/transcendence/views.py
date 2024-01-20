@@ -1,7 +1,10 @@
 import json
 import os
+from typing import Any
 
 from django.conf import settings
+from django.core.paginator import Paginator
+from django.db.models.query import QuerySet
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
@@ -12,6 +15,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.utils import translation
 from django.utils.translation import check_for_language
+from django.views.generic.list import ListView
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm, CustomProfileChangeForm
 from .models import Profile
@@ -112,3 +116,18 @@ def edit_profile(request):
             "user_change_form": user_change_form,
             "profile_change_form": profile_change_form,
         })
+
+def leaderboard(request):
+    profile_list = Profile.objects.order_by("-rating")
+    paginator = Paginator(profile_list, 3)  # Show <n> contacts per page.
+
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return render( request,
+                    "transcendence/community/leaderboard.html",
+                    {
+                        "page_obj": page_obj,
+                    })
+
+def user_details(request):
+    pass
