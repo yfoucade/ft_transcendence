@@ -16,5 +16,5 @@ class Profile(models.Model):
     )
     display_name = models.CharField(max_length=150, blank=False, unique=True)
     picture = models.ImageField(upload_to=get_picture_path, default="default_pp.png")
-    following = models.ManyToManyField(User, related_name="followers")
+    following = models.ManyToManyField(User, related_name="followers", blank=True)
     rating = models.FloatField(default=1500)
