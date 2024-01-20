@@ -1,3 +1,7 @@
+document.addEventListener("DOMContentLoaded", function() {
+    setInterval(fetchBallYCoordinate, 1000);
+});
+
 function fetchBallYCoordinate() {
     console.log("Time check");
     const ballElement = pong_game.html_element_ball;
@@ -30,10 +34,3 @@ function simulateKeyboardInput(ballYCoordinate) {
         handle_keyup({ key: "d" });
     }
 }
-
-function launchAiOpponent() {
-    // Use setInterval as an alternative to sleep
-    setInterval(fetchBallYCoordinate, 1000);
-}
-
-launchAiOpponent();
