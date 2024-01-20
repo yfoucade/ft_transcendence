@@ -1,11 +1,16 @@
+let intervalID = 0;
+
 document.addEventListener("DOMContentLoaded", function() {
     if (window.location.pathname.includes("/local-match/")) {
-        setInterval(fetchBallYCoordinate, 1000);
+        intervalID = setInterval(fetchBallYCoordinate, 1000);
     }
 });
 
 function fetchBallYCoordinate() {
     console.log("Time check");
+    if (!window.location.pathname.includes("/local-match/")) {
+        clearInterval(intervalID);
+    }
     const ballElement = pong_game.html_element_ball;
     const ballRect = ballElement.getBoundingClientRect();
     const ballYCoordinate = ballRect.top + ballRect.height / 2;
