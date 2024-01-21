@@ -2,6 +2,7 @@ import json
 import os
 from typing import Any
 
+from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.paginator import Paginator
 from django.db.models.query import QuerySet
@@ -129,5 +130,16 @@ def leaderboard(request):
                         "page_obj": page_obj,
                     })
 
-def user_details(request):
-    pass
+@login_required
+def user_details(request, id):
+    client_profile = Profile.objects.get(user=request.user.pk)
+    target_profile = Profile.objects.get(user=id)
+    if request.method == "POST":
+        if request.POST.get("submit-param") == "unfollow":
+            client_profile.following.remove( User.objects.get(pk=id) )
+        elif request.POST.get("submit-param") == "follow":
+            client_profile.following.add( User.objects.get(pk=id) )
+    own_page = request.user.pk == id
+    following = client_profile.following.filter(id=id).exists()
+    context = {"profile": target_profile, "own_page":own_page, "following": following}
+    return render( request, "transcendence/community/user_details.html", context )

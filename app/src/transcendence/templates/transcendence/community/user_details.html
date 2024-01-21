@@ -1,0 +1,27 @@
+{% extends "../base.html" %}
+{% load i18n %}
+
+{% block content %}
+<main id="main-leaderboard" class="shown">
+    <h1 id="leaderboard-title"><img src="{{ profile.picture.url }}" width="32" height="32"> {{ profile.display_name }}</h1>
+    
+    {% if not own_page %}
+        <form action="" method="POST" class="inline">
+            {% csrf_token %}
+            {% if following %}
+                <button type="submit" name="submit-param" value="unfollow" class="link-button">
+                    Unfollow
+                </button>
+            {% else %}
+                <button type="submit" name="submit-param" value="follow" class="link-button">
+                    follow
+                </button>
+            {% endif %}
+        </form>
+    {% endif %}
+
+    <h2>Stats</h2>
+    <h2>Match History</h2>
+
+</main>
+{% endblock content %}
