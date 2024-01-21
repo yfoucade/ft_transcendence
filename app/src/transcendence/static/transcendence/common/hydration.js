@@ -3,6 +3,9 @@ function hydrate_common_elements() {
     let links = document.querySelectorAll("#main-menu a");
     for ( let link of links )
         link.addEventListener( "click", route );
+
+    let lang_form = document.getElementById("lang-form");
+    lang_form.addEventListener( "submit", submit_form );
 }
 
 function hydrate( recipe )
