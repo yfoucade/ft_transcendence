@@ -5,6 +5,7 @@ from django.utils import timezone
 # Create your models here.
 
 CUSTOM_USERNAME_MAXLENGTH = 10
+SESSION_TIMEOUT_SECONDS = 60
 
 def get_picture_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/picture

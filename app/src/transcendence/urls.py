@@ -16,4 +16,5 @@ urlpatterns = [
     path( "edit-profile/", views.edit_profile, name="edit-profile" ),
     path( "leaderboard/", views.leaderboard, name="leaderboard" ),
     path( "user/<int:id>/", views.user_details, name="user-details" ),
+    path( "following/", views.following, name="following" ),
 ]
