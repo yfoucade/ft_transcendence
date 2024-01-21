@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 
@@ -18,3 +19,5 @@ class Profile(models.Model):
     picture = models.ImageField(upload_to=get_picture_path, default="default_pp.png")
     following = models.ManyToManyField(User, related_name="followers", blank=True)
     rating = models.FloatField(default=1500)
+    last_request_time = models.DateTimeField(default=timezone.now, blank=True)
+
