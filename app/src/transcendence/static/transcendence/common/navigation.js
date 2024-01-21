@@ -26,6 +26,8 @@ let hydration_recipes = {
     "main-password-change": password_change_hydration_recipe,
     "main-password-change-done": password_change_done_hydration_recipe,
     "main-leaderboard": leaderboard_hydration_recipe,
+    "main-user-details": user_details_hydration_recipe,
+    "main-following": following_hydration_recipe,
 }
 
 let dehydration_recipes = {
@@ -169,6 +171,19 @@ function password_change_done_hydration_recipe()
 }
 
 function leaderboard_hydration_recipe()
+{
+    let main = document.querySelector("main");
+    let links = main.querySelectorAll("a");
+    for ( let link of links )
+        link.addEventListener( "click", route );
+}
+
+function user_details_hydration_recipe()
+{
+    document.getElementById("follow-form").addEventListener( "submit", submit_form );
+}
+
+function following_hydration_recipe()
 {
     let main = document.querySelector("main");
     let links = main.querySelectorAll("a");
