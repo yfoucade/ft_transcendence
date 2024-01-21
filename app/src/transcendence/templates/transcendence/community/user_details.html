@@ -2,18 +2,20 @@
 {% load i18n %}
 
 {% block content %}
-<main id="main-leaderboard" class="shown">
-    <h1 id="leaderboard-title"><img src="{{ profile.picture.url }}" width="32" height="32"> {{ profile.display_name }}</h1>
+<main id="main-user-details" class="shown">
+    <h1 id="user-details-title"><img src="{{ profile.picture.url }}" width="32" height="32"> {{ profile.display_name }}</h1>
     
     {% if not own_page %}
-        <form action="" method="POST" class="inline">
+        <form id="follow-form" action="" method="POST" class="inline">
             {% csrf_token %}
             {% if following %}
-                <button type="submit" name="submit-param" value="unfollow" class="link-button">
+                <input type="hidden" name="data-action" value="unfollow">
+                <button type="submit" class="link-button">
                     Unfollow
                 </button>
             {% else %}
-                <button type="submit" name="submit-param" value="follow" class="link-button">
+                <input type="hidden" name="data-action" value="follow">
+                <button type="submit" class="link-button">
                     follow
                 </button>
             {% endif %}
