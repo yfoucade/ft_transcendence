@@ -162,3 +162,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # For avatars: https://docs.djangoproject.com/en/5.0/ref/models/fields/#imagefield
 MEDIA_URL = "media/"
 MEDIA_ROOT = "/var/www/transcendence/media/"
+
+# https://stackoverflow.com/questions/12174040/forbidden-403-csrf-verification-failed-request-aborted
+# https://docs.djangoproject.com/en/4.0/releases/4.0/#csrf-trusted-origins-changes-4-0
+CSRF_TRUSTED_ORIGINS = [
+    "https://localhost:8001",
+]
