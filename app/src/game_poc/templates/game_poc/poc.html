@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+    <head>
+        <script src="{% static 'game_poc/script.js' %}?{% now 'U' %}" defer></script>
+    </head>
+    <body>
+        <div id="div-current-score">
+            <span>Current score: </span>
+            <span id="current-score"></span>
+        </div>
+        
+        <div id="div-target-value">
+            <span>Target value: </span>
+            <span id="target-value"></span>
+        </div>
+        
+        <div id="div-player-value">
+            <span>Player value: </span>
+            <span id="player-value"></span>
+        </div>
+    </body>
+</html>
+
