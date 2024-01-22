@@ -36,7 +36,6 @@ ALLOWED_HOSTS = ["*"] # TODO: set to empty list in production
 
 INSTALLED_APPS = [
     'transcendence',
-    'game_poc', # TODO: remove this app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
