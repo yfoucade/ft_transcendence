@@ -23,9 +23,9 @@ EXPOSE 443
 EXPOSE 8000
 EXPOSE 8080
 
-ENTRYPOINT ["bash", "./init_app.sh"]
+ENTRYPOINT ["bash", "/init_app.sh"]
 # CMD ["tail", "-f", "/dev/null"]
 # CMD ["gunicorn", "--env", "DJANGO_SETTINGS_MODULE=config.settings", "config.wsgi", "--bind=0.0.0.0:8000"]
 # CMD ["daphne", "-b", "0.0.0.0", "-p", "8000", "config.asgi:application"]
-CMD ["python", "src/manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 # CMD ["daphne", "-u", "/tmp/daphne.sock", "config.asgi:application"]
