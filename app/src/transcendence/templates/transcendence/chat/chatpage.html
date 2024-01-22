@@ -3,8 +3,8 @@
 {% block content %}
     <main id="main-chat" class="shown">
         <h1>Chat</h1>
-        <pre id="messages" style="height:400px; overflow: scroll"></pre>
-        <input type="text" id="message" placeholder="Enter your message:" style="display: block; width: 20%; margin-bottom: 10px;" />
-        <button id="send" title="Send Message" style="width: 15%; height: 30px;";>Send Message</button>
-</main>
+        <pre id="message-box" style="height:400px; overflow: scroll"></pre>
+        <input type="text"; id="message-input"; placeholder="Enter your message:">
+        <button onclick="sendMessage()">Send</button>
+    </main>
 {% endblock content %}
