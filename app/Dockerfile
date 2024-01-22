@@ -15,7 +15,7 @@ WORKDIR /
 
 COPY init_app.sh .
 COPY transcendence.conf.template /etc/nginx/sites-enabled/transcendence.conf
-
+COPY img/default_profile_picture_32x32.png /var/www/transcendence/media/default_pp.png
 RUN rm /etc/nginx/sites-enabled/default
 
 EXPOSE 80

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 {% load static %}
+{% load i18n %}
+
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     {% block title %}
-    <title>Transcendence</title>
+    <title>{% trans 'Transcendence' %}</title>
     {% endblock title %}
     <link rel="stylesheet" href="{% static 'transcendence/style.css' %}?{% now 'U' %}">
     <script>
@@ -22,6 +24,7 @@
         <script src="{% static 'transcendence/accounts/login.js' %}?{% now 'U' %}" defer></script>
         <script src="{% static 'transcendence/accounts/profile.js' %}?{% now 'U' %}" defer></script>
         <script src="{% static 'transcendence/accounts/signup.js' %}?{% now 'U' %}" defer></script>
+        <script src="{% static 'transcendence/accounts/edit_profile.js' %}?{% now 'U' %}" defer></script>
         <script src="{% static 'transcendence/script.js' %}?{% now 'U' %}" defer></script>
         <script src="{% static 'transcendence/chat/chatpage.js' %}?{% now 'U' %}" defer></script>
 
@@ -39,9 +42,18 @@
         <ul>
             {% if user.is_authenticated %}
                 <!-- <li id="user-tag" class="nav-link" data-authenticated="true"><a href="/user/{{ user.id }}">{{ user.username }}</a></li> -->
-                <li id="user-tag" class="nav-link" data-authenticated="true"><a href="/profile/">{{ user.username }}</a></li>
+                <li id="user-tag" class="nav-link" data-authenticated="true">
+                    <a href="/profile/">
+                        {% if profile.picture %}
+                            <img src="{{ profile.picture.url }}" width="32" height="32">
+                        {% else %}
+                            <img src="/media/default_pp.png" width="32" height="32">
+                        {% endif %}
+                        <div>{{ user.username }}</div>
+                    </a>
+                </li>
             {% else %}
-                <li id="user-tag" class="nav-link" data-authenticated="false"><a href="{% url 'login' %}?next={{ request.path }}">Log in</a></li>
+                <li id="user-tag" class="nav-link" data-authenticated="false"><a href="{% url 'login' %}?next={{ request.path }}">{% trans 'Log in' %}</a></li>
             {% endif %}
         </ul>
     </nav>
@@ -49,15 +61,6 @@
     {% block content %}
     {% endblock %}
 
-    {% comment old_spa %}
-        {% include "transcendence/main_home.html" %}
-        {% include "transcendence/main_play.html" %}
-        {% include "transcendence/main_local_1v1.html" %}
-        {% include "transcendence/main_local_tournament_form.html" %}
-        {% include "transcendence/main_local_tournament_lobby.html" %}
-        {% include "transcendence/main_local_tournament_match.html" %}
-    {% endcomment %}
-    
 </body>
 
 </html>

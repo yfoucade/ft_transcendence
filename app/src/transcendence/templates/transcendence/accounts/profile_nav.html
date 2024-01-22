@@ -1,0 +1,21 @@
+{% load i18n %}
+
+<nav id="profile-nav">
+    <ul>
+        <li><a href="{% url 'edit-profile' %}">{% trans 'Edit profile' %}</a></li>
+        <li><a href="{% url 'password_change' %}">{% trans 'Change password' %}</a></li>
+        <li><a href="{% url 'user-details' user.pk %}">{% trans 'My stats' %}</a></li>
+        <li><a href="{% url 'following' %}">{% trans 'Following' %}</a></li>
+        <li>
+            <form id="logout-form" method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{% url 'index' %}">
+                <a  id="logout-link"
+                    href="{% url 'logout' %}"
+                    data-next="{% url 'index' %}">
+                        Log out
+                </a>
+            </form>
+        </li>
+    </ul>
+</nav>

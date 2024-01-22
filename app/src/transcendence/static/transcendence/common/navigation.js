@@ -22,6 +22,12 @@ let hydration_recipes = {
     "main-login": login_hydration_recipe,
     "main-profile": profile_hydration_recipe,
     "main-signup": signup_hydration_recipe,
+    "main-edit-profile": edit_profile_hydration_recipe,
+    "main-password-change": password_change_hydration_recipe,
+    "main-password-change-done": password_change_done_hydration_recipe,
+    "main-leaderboard": leaderboard_hydration_recipe,
+    "main-user-details": user_details_hydration_recipe,
+    "main-following": following_hydration_recipe,
 }
 
 let dehydration_recipes = {
@@ -133,7 +139,72 @@ function signup_hydration_recipe()
 
 function profile_hydration_recipe()
 {
+    let main = document.querySelector("main");
+    let links = main.querySelectorAll("a:not(form a)");
+    for ( let link of links )
+        link.addEventListener( "click", route );
     document.getElementById("logout-link").addEventListener( "click", logout );
+}
+
+function edit_profile_hydration_recipe()
+{
+    let main = document.querySelector("main");
+    let links = main.querySelectorAll("a:not(form a)");
+    for ( let link of links )
+        link.addEventListener( "click", route );
+    document.getElementById("logout-link").addEventListener( "click", logout );
+    document.getElementById("edit-profile-form").addEventListener( "submit", submit_edit_profile_form );
+}
+
+function password_change_hydration_recipe()
+{
+    document.getElementById("password-change-form").addEventListener( "submit", submit_form );
+}
+
+function password_change_done_hydration_recipe()
+{
+    let main = document.querySelector("main");
+    let links = main.querySelectorAll("a:not(form a)");
+    for ( let link of links )
+        link.addEventListener( "click", route );
+    document.getElementById("logout-link").addEventListener( "click", logout );
+}
+
+function leaderboard_hydration_recipe()
+{
+    let main = document.querySelector("main");
+    let links = main.querySelectorAll("a");
+    for ( let link of links )
+        link.addEventListener( "click", route );
+}
+
+function user_details_hydration_recipe()
+{
+    document.getElementById("follow-form").addEventListener( "submit", submit_form );
+}
+
+function following_hydration_recipe()
+{
+    let main = document.querySelector("main");
+    let links = main.querySelectorAll("a");
+    for ( let link of links )
+        link.addEventListener( "click", route );
+}
+
+async function submit_form( event )
+{
+    event.preventDefault();
+
+    let form = event.currentTarget;
+    let form_data = new FormData( form );
+
+    let response = await fetch( form.action,
+        {
+            method: form.method,
+            body: form_data,
+        }
+    );
+    update_view( response );
 }
 
 function can_leave_view()
@@ -227,12 +298,17 @@ async function update_view( response )
 function render() {
     let new_document = new DOMParser().parseFromString(state.document, "text/html");
 
-    let old_usertag = document.getElementById("user-tag");
-    let new_usertag = new_document.getElementById("user-tag");
-    old_usertag.parentElement.replaceChild(new_usertag, old_usertag);
-    new_usertag.querySelector("a").addEventListener( "click", route );
+    // let old_usertag = document.getElementById("user-tag");
+    // let new_usertag = new_document.getElementById("user-tag");
+    // old_usertag.parentElement.replaceChild(new_usertag, old_usertag);
+    // new_usertag.querySelector("a").addEventListener( "click", route );
 
-    let old_main = document.querySelector("main");
-    let new_main = new_document.querySelector("main");
-    old_main.parentNode.replaceChild(new_main, old_main);
+    // let old_main = document.querySelector("main");
+    // let new_main = new_document.querySelector("main");
+    // old_main.parentNode.replaceChild(new_main, old_main);
+
+    let old_body = document.querySelector("body");
+    let new_body = new_document.querySelector("body");
+    old_body.parentNode.replaceChild(new_body, old_body);
+    hydrate_common_elements();
 }

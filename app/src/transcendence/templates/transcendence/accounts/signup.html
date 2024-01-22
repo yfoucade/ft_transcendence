@@ -1,11 +1,12 @@
 {% extends "../base.html" %}
+{% load i18n %}
 
 {% block content %}
 <main id="main-signup" class="shown">
     <form id="signup-form" action="{% url 'signup' %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Sign up">
+        <input type="submit" value="{% trans 'Sign up' %}">
         <input type="hidden" name="next" value="{{ request.GET.next }}">
     </form>
 </main>

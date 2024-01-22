@@ -1,25 +1,9 @@
 {% extends "../base.html" %}
+{% load i18n %}
 
 {% block content %}
 <main id="main-profile" class="shown">
-    <h1>Profile of {{ user.username }}</h1>
-    <nav id="profile-nav">
-        <ul>
-            <li><a href="">Edit profile</a></li>
-            <li><a href="">Change password</a></li>
-            <li><a href="">My stats</a></li>
-            <li>
-                <form id="logout-form" method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="next" value="{% url 'index' %}">
-                    <a  id="logout-link"
-                        href="{% url 'logout' %}"
-                        data-next="{% url 'index' %}">
-                            Log out
-                    </a>
-                </form>
-            </li>
-        </ul>
-    </nav>
+    <h1>{% trans 'Profile of' %} {{ user.username }}</h1>
+    {% include 'transcendence/accounts/profile_nav.html' %}
 </main>
 {% endblock content %}

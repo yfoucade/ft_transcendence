@@ -1,8 +1,10 @@
+{% load i18n %}
+
 <div id="game-canvas" class="">
     <div id="left-paddle" class="left-paddle"></div>
     <div id="ball" class="ball"></div>
     <div id="right-paddle" class="right-paddle"></div>
-    <button id="start-button" class="link hidden start-button">Start</button>
+    <button id="start-button" class="link hidden start-button">{% trans 'Start' %}</button>
     <div id="score" class="score-div">
         <span id="left-score" class="score left-score">0</span>
         <span id="score-separator" class="score score-separator">-</span>

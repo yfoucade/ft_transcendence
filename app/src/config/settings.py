@@ -48,11 +48,13 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'transcendence.middleware.UpdateLastRequestTimeMiddleware'
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -68,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'transcendence.context_processors.profile'
             ],
         },
     },
@@ -116,7 +119,25 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
+from django.utils.translation import gettext_lazy as _
+
 LANGUAGE_CODE = 'en-us'
+
+LANGUAGES = [
+    ('en', _('English')),
+    ('fr', _('French')),
+    ('el', _('Greek')),
+    ('ar', _('Arabic')),
+    ('es', _('Spanish')),
+    ('pl', _('Polish')),
+]
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'config', 'locale'),
+    os.path.join(BASE_DIR, 'locale'),
+]
+
+LANGUAGE_COOKIE_NAME = 'user_language'
 
 TIME_ZONE = 'Europe/Paris'
 
@@ -137,3 +158,7 @@ STATIC_ROOT = "/var/www/transcendence/static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# For avatars: https://docs.djangoproject.com/en/5.0/ref/models/fields/#imagefield
+MEDIA_URL = "media/"
+MEDIA_ROOT = "/var/www/transcendence/media/"
