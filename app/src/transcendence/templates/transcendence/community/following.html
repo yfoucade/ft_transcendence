@@ -1,0 +1,51 @@
+{% extends "../base.html" %}
+{% load i18n %}
+
+{% block content %}
+<main id="main-following" class="shown">
+    <h1 id="following-title">{% trans 'Following' %}</h1>
+
+    <table>
+        <thead>
+          <tr>
+            <th>Rank</th><th>Name</th><th>Rating</th><th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for profile, is_online in page_obj %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td><a href="{% url 'user-details' profile.user_id %}"><img src="{{ profile.picture.url }}" width="32" height="32">{{ profile.display_name }}</a></td>
+                    <td>{{ profile.rating}}</td>
+                    <td>
+                        {% if is_online %}
+                            online
+                        {% else %}
+                            offline
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; {% trans 'first' %}</a>
+                <a href="?page={{ page_obj.previous_page_number }}">{% trans 'previous' %}</a>
+            {% endif %}
+
+            <span class="current">
+                {% trans 'Page' %} {{ page_obj.number }} {% trans 'of' %} {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">{% trans 'next' %}</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">{% trans 'last' %} &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+</main>
+{% endblock content %}

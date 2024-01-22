@@ -1,0 +1,15 @@
+{% extends "../base.html" %}
+{% load i18n %}
+
+{% block content %}
+<main id="main-edit-profile" class="shown" >
+    <h1>Profile of {{ user.username }}</h1>
+    {% include 'transcendence/accounts/profile_nav.html' %}
+    <form id="edit-profile-form" action="{% url 'edit-profile' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_change_form.as_p }}
+        {{ profile_change_form.as_p }}
+        <input type="submit" value="save">
+    </form>
+</main>
+{% endblock content %}

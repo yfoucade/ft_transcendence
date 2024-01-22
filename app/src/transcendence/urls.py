@@ -13,4 +13,8 @@ urlpatterns = [
     path( "local-tournament/results/", views.local_tournament_results, name="local-tournament-results" ),
     path( "signup/", views.signup, name="signup" ),
     path( "profile/", views.profile, name="profile" ),
+    path( "edit-profile/", views.edit_profile, name="edit-profile" ),
+    path( "leaderboard/", views.leaderboard, name="leaderboard" ),
+    path( "user/<int:id>/", views.user_details, name="user-details" ),
+    path( "following/", views.following, name="following" ),
 ]

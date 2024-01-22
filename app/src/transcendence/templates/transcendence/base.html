@@ -24,6 +24,7 @@
         <script src="{% static 'transcendence/accounts/login.js' %}?{% now 'U' %}" defer></script>
         <script src="{% static 'transcendence/accounts/profile.js' %}?{% now 'U' %}" defer></script>
         <script src="{% static 'transcendence/accounts/signup.js' %}?{% now 'U' %}" defer></script>
+        <script src="{% static 'transcendence/accounts/edit_profile.js' %}?{% now 'U' %}" defer></script>
         <script src="{% static 'transcendence/script.js' %}?{% now 'U' %}" defer></script>
         <script src="{% static 'transcendence/pong/ai_opponent.js' %}?{% now 'U' %}" defer></script>
     {% endblock scripts %}
@@ -34,8 +35,10 @@
         <ul id="main-menu">
             <li id="nav-home" class="nav-link"><a href="/">{% trans 'Home' %}</a></li>
             <li id="nav-play" class="nav-link"><a href="/play">{% trans 'Play' %}</a></li>
+            <li id="nav-community" class="nav-link"><a href="{% url 'leaderboard' %}">{% trans 'Leaderboard' %}</a></li>
             <li id="language-selector">
-                <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                <form id="lang-form" action="{% url 'set_language' %}" method="post">
+                    {% csrf_token %}
                     <input name="next" type="hidden" value="{{ redirect_to }}">
                     <select name="language">
                         {% get_current_language as LANGUAGE_CODE %}
@@ -53,7 +56,17 @@
         </ul>
         <ul>
             {% if user.is_authenticated %}
-                <li id="user-tag" class="nav-link" data-authenticated="true"><a href="/profile/">{{ user.username }}</a></li>
+                <!-- <li id="user-tag" class="nav-link" data-authenticated="true"><a href="/user/{{ user.id }}">{{ user.username }}</a></li> -->
+                <li id="user-tag" class="nav-link" data-authenticated="true">
+                    <a href="/profile/">
+                        {% if profile.picture %}
+                            <img src="{{ profile.picture.url }}" width="32" height="32">
+                        {% else %}
+                            <img src="/media/default_pp.png" width="32" height="32">
+                        {% endif %}
+                        <div>{{ user.username }}</div>
+                    </a>
+                </li>
             {% else %}
                 <li id="user-tag" class="nav-link" data-authenticated="false"><a href="{% url 'login' %}?next={{ request.path }}">{% trans 'Log in' %}</a></li>
             {% endif %}

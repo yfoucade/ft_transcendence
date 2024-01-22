@@ -1,0 +1,31 @@
+{% extends "../base.html" %}
+{% load i18n %}
+
+{% block content %}
+<main id="main-user-details" class="shown">
+    <h1 id="user-details-title"><img src="{{ profile.picture.url }}" width="32" height="32"> {{ profile.display_name }}</h1>
+    
+    {% if not own_page %}
+        <form id="follow-form" action="" method="POST" class="inline">
+            {% csrf_token %}
+            {% if following %}
+                <input type="hidden" name="data-action" value="unfollow">
+                <button type="submit" class="link-button">
+                    Unfollow
+                </button>
+            {% else %}
+                <input type="hidden" name="data-action" value="follow">
+                <button type="submit" class="link-button">
+                    follow
+                </button>
+            {% endif %}
+        </form>
+    {% endif %}
+
+    <h2>Stats</h2>
+    <h3>Feature required: online games</h3>
+    <h2>Match History</h2>
+    <h3>Feature required: online games</h3>
+
+</main>
+{% endblock content %}
