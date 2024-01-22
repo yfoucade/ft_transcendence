@@ -29,14 +29,14 @@ SECRET_KEY = 'django-insecure-zig57@5d4$kn%i1((e%dzm4xtin#&1%ad^cyjjuf=+bqmnym24
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"] # TODO: set to empty list in production
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'test_ssr',
     'transcendence',
+    'game_poc', # TODO: remove this app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
