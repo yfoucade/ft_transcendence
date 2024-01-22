@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-18 18:22+0100\n"
+"POT-Creation-Date: 2024-01-22 18:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hania KHATER <EMAIL@ADDRESS>\n"
 "Language-Team: FRENCH <LL@li.org>\n"
@@ -17,6 +17,41 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: transcendence/forms.py:19 transcendence/forms.py:49
+#, python-brace-format
+msgid ""
+"Required. {CUSTOM_USERNAME_MAXLENGTH} characters or fewer. Letters, digits "
+"and @/./+/-/_ only."
+msgstr ""
+"Requis. {CUSTOM_USERNAME_MAXLENGTH} caractères ou moins. Lettres, chiffres "
+"et @/./+/-/_ uniquement."
+
+#: transcendence/forms.py:26 transcendence/forms.py:56
+msgid "Username is too long"
+msgstr "Le nom d'utilisateur est trop long"
+
+#: transcendence/forms.py:29 transcendence/forms.py:59
+msgid "Username contains invalid characters"
+msgstr "Le nom d'utilisateur contient des caractères non valides"
+
+#: transcendence/forms.py:39
+msgid "A user with that email already exists."
+msgstr "Un utilisateur avec cet e-mail existe déjà."
+
+#: transcendence/forms.py:87
+msgid "Display name too long"
+msgstr "Le nom d'affichage est trop long"
+
+#: transcendence/forms.py:90
+msgid "Display name contains invalid characters"
+msgstr "Le nom d'affichage contient des caractères non valides"
+
+#: transcendence/forms.py:93
+#, fuzzy
+#| msgid "Display name already in use"
+msgid "Diplay name already in use"
+msgstr "Le nom d'affichage est déjà utilisé"
 
 #: transcendence/templates/registration/base.html:9
 #: transcendence/templates/transcendence/base.html:10
@@ -28,17 +63,17 @@ msgid "hello"
 msgstr "Bonjour"
 
 #: transcendence/templates/registration/base.html:30
-#: transcendence/templates/transcendence/base.html:34
+#: transcendence/templates/transcendence/base.html:35
 msgid "Home"
 msgstr "Accueil"
 
 #: transcendence/templates/registration/base.html:31
-#: transcendence/templates/transcendence/base.html:35
+#: transcendence/templates/transcendence/base.html:36
 msgid "Play"
 msgstr "Jeux"
 
 #: transcendence/templates/registration/base.html:38
-#: transcendence/templates/transcendence/base.html:57
+#: transcendence/templates/transcendence/base.html:70
 msgid "Log in"
 msgstr "Se connecter"
 
@@ -60,10 +95,6 @@ msgstr ""
 msgid "Please login to see this page."
 msgstr "Veuillez vous connecter pour visiter cette page"
 
-#: transcendence/templates/registration/login.html:35
-msgid "Forgotten password?"
-msgstr "Mot de passe oublié?"
-
 #: transcendence/templates/registration/login.html:36
 msgid "Create account"
 msgstr "Créer un compte"
@@ -72,21 +103,73 @@ msgstr "Créer un compte"
 msgid "Profile of"
 msgstr "Profil de"
 
-#: transcendence/templates/transcendence/accounts/profile.html:9
+#: transcendence/templates/transcendence/accounts/profile_nav.html:5
 msgid "Edit profile"
 msgstr "Modifier le profil"
 
-#: transcendence/templates/transcendence/accounts/profile.html:10
+#: transcendence/templates/transcendence/accounts/profile_nav.html:6
 msgid "Change password"
 msgstr "Changer de mot de passe"
 
-#: transcendence/templates/transcendence/accounts/profile.html:11
+#: transcendence/templates/transcendence/accounts/profile_nav.html:7
 msgid "My stats"
 msgstr "Mes statistiques"
+
+#: transcendence/templates/transcendence/accounts/profile_nav.html:8
+#: transcendence/templates/transcendence/community/following.html:6
+msgid "Following"
+msgstr "Suivi"
 
 #: transcendence/templates/transcendence/accounts/signup.html:9
 msgid "Sign up"
 msgstr "S'inscrire"
+
+#: transcendence/templates/transcendence/base.html:37
+#: transcendence/templates/transcendence/community/leaderboard.html:6
+msgid "Leaderboard"
+msgstr "Classement"
+
+#: transcendence/templates/transcendence/community/following.html:35
+#: transcendence/templates/transcendence/community/leaderboard.html:28
+msgid "first"
+msgstr "premier"
+
+#: transcendence/templates/transcendence/community/following.html:36
+#: transcendence/templates/transcendence/community/leaderboard.html:29
+msgid "previous"
+msgstr "précédent"
+
+#: transcendence/templates/transcendence/community/following.html:40
+#: transcendence/templates/transcendence/community/leaderboard.html:33
+msgid "Page"
+msgstr "Page"
+
+#: transcendence/templates/transcendence/community/following.html:40
+#: transcendence/templates/transcendence/community/leaderboard.html:33
+msgid "of"
+msgstr "de"
+
+#: transcendence/templates/transcendence/community/following.html:44
+#: transcendence/templates/transcendence/community/leaderboard.html:37
+msgid "next"
+msgstr "suivant"
+
+#: transcendence/templates/transcendence/community/following.html:45
+#: transcendence/templates/transcendence/community/leaderboard.html:38
+msgid "last"
+msgstr "dernier"
+
+#: transcendence/templates/transcendence/community/leaderboard.html:11
+msgid "Rank"
+msgstr "Classement"
+
+#: transcendence/templates/transcendence/community/leaderboard.html:11
+msgid "Name"
+msgstr "Nom"
+
+#: transcendence/templates/transcendence/community/leaderboard.html:11
+msgid "Rating"
+msgstr "Note"
 
 #: transcendence/templates/transcendence/index.html:6
 msgid "Welcome to transcendence"
@@ -150,3 +233,6 @@ msgstr "tournoi"
 #: transcendence/templates/transcendence/pong/play.html:17
 msgid "Online"
 msgstr "En ligne"
+
+#~ msgid "Forgotten password?"
+#~ msgstr "Mot de passe oublié?"

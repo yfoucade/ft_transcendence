@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-18 18:22+0100\n"
+"POT-Creation-Date: 2024-01-22 18:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hania KHATER <EMAIL@ADDRESS>\n"
 "Language-Team: GREEK <LL@li.org>\n"
@@ -17,6 +17,41 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: transcendence/forms.py:19 transcendence/forms.py:49
+#, python-brace-format
+msgid ""
+"Required. {CUSTOM_USERNAME_MAXLENGTH} characters or fewer. Letters, digits "
+"and @/./+/-/_ only."
+msgstr ""
+"Απαραίτητο. {CUSTOM_USERNAME_MAXLENGTH} χαρακτήρες ή λιγότερο. Μόνο "
+"γράμματα, ψηφία και @/./+/-/_."
+
+#: transcendence/forms.py:26 transcendence/forms.py:56
+msgid "Username is too long"
+msgstr "Το όνομα χρήστη είναι πολύ μεγάλο"
+
+#: transcendence/forms.py:29 transcendence/forms.py:59
+msgid "Username contains invalid characters"
+msgstr "Το όνομα χρήστη περιέχει μη έγκυρους χαρακτήρες"
+
+#: transcendence/forms.py:39
+msgid "A user with that email already exists."
+msgstr "Υπάρχει ήδη χρήστης με αυτό το ηλεκτρονικό ταχυδρομείο."
+
+#: transcendence/forms.py:87
+msgid "Display name too long"
+msgstr "Το όνομα προβολής είναι πολύ μεγάλο"
+
+#: transcendence/forms.py:90
+msgid "Display name contains invalid characters"
+msgstr "Το όνομα προβολής περιέχει μη έγκυρους χαρακτήρες"
+
+#: transcendence/forms.py:93
+#, fuzzy
+#| msgid "Display name already in use"
+msgid "Diplay name already in use"
+msgstr "Το όνομα προβολής είναι ήδη σε χρήση"
 
 #: transcendence/templates/registration/base.html:9
 #: transcendence/templates/transcendence/base.html:10
@@ -28,17 +63,17 @@ msgid "hello"
 msgstr "γεια"
 
 #: transcendence/templates/registration/base.html:30
-#: transcendence/templates/transcendence/base.html:34
+#: transcendence/templates/transcendence/base.html:35
 msgid "Home"
 msgstr "Αρχική"
 
 #: transcendence/templates/registration/base.html:31
-#: transcendence/templates/transcendence/base.html:35
+#: transcendence/templates/transcendence/base.html:36
 msgid "Play"
 msgstr "Παίξε"
 
 #: transcendence/templates/registration/base.html:38
-#: transcendence/templates/transcendence/base.html:57
+#: transcendence/templates/transcendence/base.html:70
 msgid "Log in"
 msgstr "Σύνδεση"
 
@@ -60,10 +95,6 @@ msgstr ""
 msgid "Please login to see this page."
 msgstr "Παρακαλούμε συνδεθείτε για να δείτε αυτή τη σελίδα."
 
-#: transcendence/templates/registration/login.html:35
-msgid "Forgotten password?"
-msgstr "Ξεχάσατε τον κωδικό πρόσβασης;"
-
 #: transcendence/templates/registration/login.html:36
 msgid "Create account"
 msgstr "Δημιουργία λογαριασμού"
@@ -72,21 +103,73 @@ msgstr "Δημιουργία λογαριασμού"
 msgid "Profile of"
 msgstr "Προφίλ του"
 
-#: transcendence/templates/transcendence/accounts/profile.html:9
+#: transcendence/templates/transcendence/accounts/profile_nav.html:5
 msgid "Edit profile"
 msgstr "Επεξεργασία προφίλ"
 
-#: transcendence/templates/transcendence/accounts/profile.html:10
+#: transcendence/templates/transcendence/accounts/profile_nav.html:6
 msgid "Change password"
 msgstr "Αλλαγή κωδικού πρόσβασης"
 
-#: transcendence/templates/transcendence/accounts/profile.html:11
+#: transcendence/templates/transcendence/accounts/profile_nav.html:7
 msgid "My stats"
 msgstr "Τα στατιστικά μου"
+
+#: transcendence/templates/transcendence/accounts/profile_nav.html:8
+#: transcendence/templates/transcendence/community/following.html:6
+msgid "Following"
+msgstr "Ακολουθία"
 
 #: transcendence/templates/transcendence/accounts/signup.html:9
 msgid "Sign up"
 msgstr "Εγγραφή"
+
+#: transcendence/templates/transcendence/base.html:37
+#: transcendence/templates/transcendence/community/leaderboard.html:6
+msgid "Leaderboard"
+msgstr "Πίνακας κατάταξης"
+
+#: transcendence/templates/transcendence/community/following.html:35
+#: transcendence/templates/transcendence/community/leaderboard.html:28
+msgid "first"
+msgstr "πρώτη"
+
+#: transcendence/templates/transcendence/community/following.html:36
+#: transcendence/templates/transcendence/community/leaderboard.html:29
+msgid "previous"
+msgstr "προηγούμενη"
+
+#: transcendence/templates/transcendence/community/following.html:40
+#: transcendence/templates/transcendence/community/leaderboard.html:33
+msgid "Page"
+msgstr "Σελίδα"
+
+#: transcendence/templates/transcendence/community/following.html:40
+#: transcendence/templates/transcendence/community/leaderboard.html:33
+msgid "of"
+msgstr "από"
+
+#: transcendence/templates/transcendence/community/following.html:44
+#: transcendence/templates/transcendence/community/leaderboard.html:37
+msgid "next"
+msgstr "επόμενη"
+
+#: transcendence/templates/transcendence/community/following.html:45
+#: transcendence/templates/transcendence/community/leaderboard.html:38
+msgid "last"
+msgstr "τελευταία"
+
+#: transcendence/templates/transcendence/community/leaderboard.html:11
+msgid "Rank"
+msgstr "Θέση κατάταξης"
+
+#: transcendence/templates/transcendence/community/leaderboard.html:11
+msgid "Name"
+msgstr "Ονομα"
+
+#: transcendence/templates/transcendence/community/leaderboard.html:11
+msgid "Rating"
+msgstr "Βαθμολογία κατάταξης"
 
 #: transcendence/templates/transcendence/index.html:6
 msgid "Welcome to transcendence"
@@ -150,3 +233,6 @@ msgstr "τουρνουά"
 #: transcendence/templates/transcendence/pong/play.html:17
 msgid "Online"
 msgstr "Διαδικτυακός"
+
+#~ msgid "Forgotten password?"
+#~ msgstr "Ξεχάσατε τον κωδικό πρόσβασης;"
