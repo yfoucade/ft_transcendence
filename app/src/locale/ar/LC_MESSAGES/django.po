@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-18 19:22+0100\n"
+"POT-Creation-Date: 2024-01-22 18:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hania KHATER <EMAIL@ADDRESS>\n"
 "Language-Team: ARABIC <LL@li.org>\n"
@@ -19,31 +19,70 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: templates/registration/base.html:9 templates/transcendence/base.html:10
+#: transcendence/forms.py:19 transcendence/forms.py:49
+#, python-brace-format
+msgid ""
+"Required. {CUSTOM_USERNAME_MAXLENGTH} characters or fewer. Letters, digits "
+"and @/./+/-/_ only."
+msgstr ""
+"مطلوب. {CUSTOM_USERNAME_MAXLENGTH} حرفًا أو أقل. الأحرف والأرقام و@/./+/-/_ "
+"فقط."
+
+#: transcendence/forms.py:26 transcendence/forms.py:56
+msgid "Username is too long"
+msgstr "اسم المستخدم طويل جدًا"
+
+#: transcendence/forms.py:29 transcendence/forms.py:59
+msgid "Username contains invalid characters"
+msgstr "اسم المستخدم يحتوي على أحرف غير صالحة"
+
+#: transcendence/forms.py:39
+msgid "A user with that email already exists."
+msgstr "هناك مستخدم بالفعل بهذا البريد الإلكتروني."
+
+#: transcendence/forms.py:87
+msgid "Display name too long"
+msgstr "اسم العرض طويل جدًا"
+
+#: transcendence/forms.py:90
+msgid "Display name contains invalid characters"
+msgstr "اسم العرض يحتوي على أحرف غير صالحة"
+
+#: transcendence/forms.py:93
+#, fuzzy
+#| msgid "Display name already in use"
+msgid "Diplay name already in use"
+msgstr "اسم العرض مستخدم بالفعل"
+
+#: transcendence/templates/registration/base.html:9
+#: transcendence/templates/transcendence/base.html:10
 msgid "Transcendence"
 msgstr "ترانسندنس"
 
-#: templates/registration/base.html:13
+#: transcendence/templates/registration/base.html:13
 msgid "hello"
 msgstr "مرحبًا"
 
-#: templates/registration/base.html:30 templates/transcendence/base.html:34
+#: transcendence/templates/registration/base.html:30
+#: transcendence/templates/transcendence/base.html:35
 msgid "Home"
 msgstr "الرئيسية"
 
-#: templates/registration/base.html:31 templates/transcendence/base.html:35
+#: transcendence/templates/registration/base.html:31
+#: transcendence/templates/transcendence/base.html:36
 msgid "Play"
 msgstr "لعب"
 
-#: templates/registration/base.html:38 templates/transcendence/base.html:57
+#: transcendence/templates/registration/base.html:38
+#: transcendence/templates/transcendence/base.html:70
 msgid "Log in"
 msgstr "تسجيل الدخول"
 
-#: templates/registration/login.html:7
+#: transcendence/templates/registration/login.html:7
 msgid "Your username and password didn't match. Please try again."
 msgstr "اسم المستخدم أو كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى."
 
-#: templates/registration/login.html:12
+#: transcendence/templates/registration/login.html:12
 msgid ""
 "Your account doesn't have access to this page. To proceed, please login with "
 "an account that has access."
@@ -51,97 +90,148 @@ msgstr ""
 "ليس لديك حق الوصول إلى هذه الصفحة. للمتابعة، يرجى تسجيل الدخول بحساب لديه "
 "الصلاحيات."
 
-#: templates/registration/login.html:14
+#: transcendence/templates/registration/login.html:14
 msgid "Please login to see this page."
 msgstr "يرجى تسجيل الدخول لرؤية هذه الصفحة."
 
-#: templates/registration/login.html:35
-msgid "Forgotten password?"
-msgstr "نسيت كلمة المرور؟"
-
-#: templates/registration/login.html:36
+#: transcendence/templates/registration/login.html:36
 msgid "Create account"
 msgstr "إنشاء حساب"
 
-#: templates/transcendence/accounts/profile.html:6
+#: transcendence/templates/transcendence/accounts/profile.html:6
 msgid "Profile of"
 msgstr "الملف الشخصي ل"
 
-#: templates/transcendence/accounts/profile.html:9
+#: transcendence/templates/transcendence/accounts/profile_nav.html:5
 msgid "Edit profile"
 msgstr "تعديل الملف الشخصي"
 
-#: templates/transcendence/accounts/profile.html:10
+#: transcendence/templates/transcendence/accounts/profile_nav.html:6
 msgid "Change password"
 msgstr "تغيير كلمة المرور"
 
-#: templates/transcendence/accounts/profile.html:11
+#: transcendence/templates/transcendence/accounts/profile_nav.html:7
 msgid "My stats"
 msgstr "إحصائياتي"
 
-#: templates/transcendence/accounts/signup.html:9
+#: transcendence/templates/transcendence/accounts/profile_nav.html:8
+#: transcendence/templates/transcendence/community/following.html:6
+msgid "Following"
+msgstr "المتابَعة"
+
+#: transcendence/templates/transcendence/accounts/signup.html:9
 msgid "Sign up"
 msgstr "التسجيل"
 
-#: templates/transcendence/index.html:6
+#: transcendence/templates/transcendence/base.html:37
+#: transcendence/templates/transcendence/community/leaderboard.html:6
+msgid "Leaderboard"
+msgstr "لوحة المتصدرين"
+
+#: transcendence/templates/transcendence/community/following.html:35
+#: transcendence/templates/transcendence/community/leaderboard.html:28
+msgid "first"
+msgstr "الأولى"
+
+#: transcendence/templates/transcendence/community/following.html:36
+#: transcendence/templates/transcendence/community/leaderboard.html:29
+msgid "previous"
+msgstr "السابقة"
+
+#: transcendence/templates/transcendence/community/following.html:40
+#: transcendence/templates/transcendence/community/leaderboard.html:33
+msgid "Page"
+msgstr "صفحة"
+
+#: transcendence/templates/transcendence/community/following.html:40
+#: transcendence/templates/transcendence/community/leaderboard.html:33
+msgid "of"
+msgstr "من"
+
+#: transcendence/templates/transcendence/community/following.html:44
+#: transcendence/templates/transcendence/community/leaderboard.html:37
+msgid "next"
+msgstr "التالية"
+
+#: transcendence/templates/transcendence/community/following.html:45
+#: transcendence/templates/transcendence/community/leaderboard.html:38
+msgid "last"
+msgstr "الأخيرة"
+
+#: transcendence/templates/transcendence/community/leaderboard.html:11
+msgid "Rank"
+msgstr "الترتيب"
+
+#: transcendence/templates/transcendence/community/leaderboard.html:11
+msgid "Name"
+msgstr "الاسم"
+
+#: transcendence/templates/transcendence/community/leaderboard.html:11
+msgid "Rating"
+msgstr "التقييم"
+
+#: transcendence/templates/transcendence/index.html:6
 msgid "Welcome to transcendence"
 msgstr "مرحبًا بك في ترانسندنس"
 
-#: templates/transcendence/pong/game_canvas.html:7
+#: transcendence/templates/transcendence/pong/game_canvas.html:7
 msgid "Start"
 msgstr "بداية"
 
-#: templates/transcendence/pong/local_tournament/form.html:13
+#: transcendence/templates/transcendence/pong/local_tournament/form.html:13
 msgid "Add a player"
 msgstr "إضافة لاعب"
 
-#: templates/transcendence/pong/local_tournament/form.html:17
+#: transcendence/templates/transcendence/pong/local_tournament/form.html:17
 msgid "Add player"
 msgstr "إضافة لاعب"
 
-#: templates/transcendence/pong/local_tournament/form.html:27
+#: transcendence/templates/transcendence/pong/local_tournament/form.html:27
 msgid "Start tournament"
 msgstr "بدء البطولة"
 
-#: templates/transcendence/pong/local_tournament/lobby.html:8
+#: transcendence/templates/transcendence/pong/local_tournament/lobby.html:8
 msgid "Next match"
 msgstr "المباراة التالية"
 
-#: templates/transcendence/pong/local_tournament/lobby.html:13
+#: transcendence/templates/transcendence/pong/local_tournament/lobby.html:13
 msgid "Current round"
 msgstr "الجولة الحالية"
 
-#: templates/transcendence/pong/local_tournament/lobby.html:30
+#: transcendence/templates/transcendence/pong/local_tournament/lobby.html:30
 msgid "Eliminated"
 msgstr "تم الإقصاء"
 
-#: templates/transcendence/pong/local_tournament/lobby.html:40
+#: transcendence/templates/transcendence/pong/local_tournament/lobby.html:40
 msgid "Start next match"
 msgstr "بدء المباراة التالية"
 
-#: templates/transcendence/pong/local_tournament/results.html:6
+#: transcendence/templates/transcendence/pong/local_tournament/results.html:6
 msgid "Local Tournament"
 msgstr "بطولة محلية"
 
-#: templates/transcendence/pong/local_tournament/results.html:7
+#: transcendence/templates/transcendence/pong/local_tournament/results.html:7
 msgid "Winner"
 msgstr "الفائز"
 
-#: templates/transcendence/pong/play.html:8
-#: templates/transcendence/pong/play.html:11
+#: transcendence/templates/transcendence/pong/play.html:8
+#: transcendence/templates/transcendence/pong/play.html:11
 msgid "Local"
 msgstr "محلي"
 
-#: templates/transcendence/pong/play.html:8
+#: transcendence/templates/transcendence/pong/play.html:8
 msgid "match"
 msgstr "مباراة"
 
-#: templates/transcendence/pong/play.html:11
-#: templates/transcendence/pong/play.html:17
+#: transcendence/templates/transcendence/pong/play.html:11
+#: transcendence/templates/transcendence/pong/play.html:17
 msgid "tournament"
 msgstr "بطولة"
 
-#: templates/transcendence/pong/play.html:14
-#: templates/transcendence/pong/play.html:17
+#: transcendence/templates/transcendence/pong/play.html:14
+#: transcendence/templates/transcendence/pong/play.html:17
 msgid "Online"
 msgstr "عبر الإنترنت"
+
+#~ msgid "Forgotten password?"
+#~ msgstr "نسيت كلمة المرور؟"
