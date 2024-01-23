@@ -15,7 +15,8 @@ let state = {
 let hydration_recipes = {
     "main-index": home_page,
     "main-play": play_hydration_recipe,
-    "main-local-match": local_match_hydration_recipe,
+    "main-local-match-pvp": local_match_pvp_hydration_recipe,
+    "main-local-match-pvai": local_match_pvai_hydration_recipe,
     "main-local-tournament-form": local_tournament_form_hydration_recipe,
     "main-local-tournament-lobby": local_tournament_lobby_hydration_recipe,
     "main-local-tournament-match": local_tournament_match_hydration_recipe,
@@ -28,10 +29,12 @@ let hydration_recipes = {
     "main-leaderboard": leaderboard_hydration_recipe,
     "main-user-details": user_details_hydration_recipe,
     "main-following": following_hydration_recipe,
+    "main-select-opponent": select_opponent_hydration_recipe,
 }
 
 let dehydration_recipes = {
-    "main-local-match": local_match_dehydration_recipe,
+    "main-local-match-pvp": local_match_pvp_dehydration_recipe,
+    "main-local-match-pvai": local_match_pvai_dehydration_recipe,
     "main-local-tournament-lobby": local_tournament_lobby_dehydration_recipe,
     "main-local-tournament-match": local_tournament_match_dehydration_recipe,
 }
@@ -101,7 +104,14 @@ function local_tournament_form_hydration_recipe()
     document.getElementById("start-tournament").addEventListener( "click", start_tournament );
 }
 
-function local_match_dehydration_recipe()
+function local_match_pvp_dehydration_recipe()
+{
+    end_local_pvp_game();
+    // TODO: remove event listeners
+    return true;
+}
+
+function local_match_pvai_dehydration_recipe()
 {
     end_local_pvp_game();
     // TODO: remove event listeners
@@ -116,11 +126,19 @@ function play_hydration_recipe()
         element.addEventListener( "click", route );
 }
 
-function local_match_hydration_recipe()
+function local_match_pvp_hydration_recipe()
 {
     init_pong_game_htmlelements();
     pong_game.html_element_start_button.addEventListener( "click", start_local_pvp_game );
     pong_game.html_element_start_button.classList.replace( "hidden", "shown" );
+}
+
+function local_match_pvai_hydration_recipe()
+{
+    init_pong_game_htmlelements();
+    pong_game.html_element_start_button.addEventListener( "click", start_local_pvp_game );
+    pong_game.html_element_start_button.classList.replace( "hidden", "shown" );
+    intervalID = setInterval(fetchBallYCoordinate, 1000);
 }
 
 function login_hydration_recipe()
@@ -184,6 +202,14 @@ function user_details_hydration_recipe()
 }
 
 function following_hydration_recipe()
+{
+    let main = document.querySelector("main");
+    let links = main.querySelectorAll("a");
+    for ( let link of links )
+        link.addEventListener( "click", route );
+}
+
+function select_opponent_hydration_recipe()
 {
     let main = document.querySelector("main");
     let links = main.querySelectorAll("a");
