@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-22 18:57+0100\n"
+"POT-Creation-Date: 2024-01-23 16:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hania KHATER <EMAIL@ADDRESS>\n"
 "Language-Team: SPANISH <LL@li.org>\n"
@@ -63,17 +63,17 @@ msgid "hello"
 msgstr "hola"
 
 #: transcendence/templates/registration/base.html:30
-#: transcendence/templates/transcendence/base.html:35
+#: transcendence/templates/transcendence/base.html:36
 msgid "Home"
 msgstr "Inicio"
 
 #: transcendence/templates/registration/base.html:31
-#: transcendence/templates/transcendence/base.html:36
+#: transcendence/templates/transcendence/base.html:37
 msgid "Play"
 msgstr "Jugar"
 
 #: transcendence/templates/registration/base.html:38
-#: transcendence/templates/transcendence/base.html:70
+#: transcendence/templates/transcendence/base.html:71
 msgid "Log in"
 msgstr "Iniciar sesión"
 
@@ -122,7 +122,7 @@ msgstr "Siguiendo"
 msgid "Sign up"
 msgstr "Registrarse"
 
-#: transcendence/templates/transcendence/base.html:37
+#: transcendence/templates/transcendence/base.html:38
 #: transcendence/templates/transcendence/community/leaderboard.html:6
 msgid "Leaderboard"
 msgstr "Tabla de clasificación"
@@ -177,6 +177,40 @@ msgstr "Bienvenido a la trascendencia"
 msgid "Start"
 msgstr "Comenzar"
 
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:10
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:18
+#: transcendence/templates/transcendence/pong/play.html:8
+msgid "Local Match"
+msgstr "Partida Local"
+
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:10
+msgid "Player vs Player"
+msgstr "Jugador vs Jugador"
+
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:12
+msgid "Play against another player on the same computer."
+msgstr "Juega contra otro jugador en la misma computadora."
+
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:12
+msgid ""
+"Use E & D to move the left paddle and use ↑ & ↓ to move the right paddle."
+msgstr ""
+"Usa E y D para mover la paleta izquierda y usa ↑ y ↓ para mover la paleta derecha."
+
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:18
+msgid "AI vs Player"
+msgstr "IA vs Jugador"
+
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:20
+msgid "Play against an AI opponent."
+msgstr "Juega contra un oponente controlado por la IA."
+
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:20
+msgid ""
+"Use ↑ & ↓ to move the right paddle and the AI will play with the left paddle."
+msgstr ""
+"Usa ↑ y ↓ para mover la paleta derecha y la IA jugará con la paleta izquierda."
+
 #: transcendence/templates/transcendence/pong/local_tournament/form.html:13
 msgid "Add a player"
 msgstr "Agregar un jugador"
@@ -187,7 +221,7 @@ msgstr "Agregar jugador"
 
 #: transcendence/templates/transcendence/pong/local_tournament/form.html:27
 msgid "Start tournament"
-msgstr "Comenzar torneo"
+msgstr "Iniciar torneo"
 
 #: transcendence/templates/transcendence/pong/local_tournament/lobby.html:8
 msgid "Next match"
@@ -203,24 +237,23 @@ msgstr "Eliminado"
 
 #: transcendence/templates/transcendence/pong/local_tournament/lobby.html:40
 msgid "Start next match"
-msgstr "Comenzar próximo partido"
+msgstr "Iniciar próximo partido"
 
 #: transcendence/templates/transcendence/pong/local_tournament/results.html:6
 msgid "Local Tournament"
-msgstr "Torneo local"
+msgstr "Torneo Local"
 
 #: transcendence/templates/transcendence/pong/local_tournament/results.html:7
 msgid "Winner"
 msgstr "Ganador"
 
 #: transcendence/templates/transcendence/pong/play.html:8
+msgid "& AI Opponent"
+msgstr "& Oponente IA"
+
 #: transcendence/templates/transcendence/pong/play.html:11
 msgid "Local"
 msgstr "Local"
-
-#: transcendence/templates/transcendence/pong/play.html:8
-msgid "match"
-msgstr "partido"
 
 #: transcendence/templates/transcendence/pong/play.html:11
 #: transcendence/templates/transcendence/pong/play.html:17
@@ -231,6 +264,9 @@ msgstr "torneo"
 #: transcendence/templates/transcendence/pong/play.html:17
 msgid "Online"
 msgstr "En línea"
+
+#~ msgid "match"
+#~ msgstr "partido"
 
 #~ msgid "Forgotten password?"
 #~ msgstr "¿Contraseña olvidada?"
