@@ -73,7 +73,7 @@ main {
     padding-top: 20px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    /* grid-template-rows: repeat(2, 100px); */
+    grid-template-rows: 100px;
     /* height: 60%; */
     min-width: 256px;
     max-width: 512px;
