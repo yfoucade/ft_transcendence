@@ -35,7 +35,9 @@ ALLOWED_HOSTS = ["*"] # TODO: set to empty list in production
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'transcendence',
+    'game_poc',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,6 +78,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
+ASGI_APPLICATION = 'config.asgi.application'
 
 
 # Database
