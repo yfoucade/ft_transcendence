@@ -18,20 +18,18 @@ function fetchBallYCoordinate() {
     simulateKeyboardInput(ballYCoordinate);
 }
 
-// function fetchPaddleYCoordinate() {
-//     const leftPaddleElement = pong_game.html_element_left_paddle;
-//     const leftPaddleRect = leftPaddleElement.getBoundingClientRect();
-//     const leftPaddleYCoordinate = leftPaddleRect.top + leftPaddleRect.height / 2;
+function fetchPaddleYCoordinate() {
+    const leftPaddleElement = pong_game.html_element_left_paddle;
+    const leftPaddleRect = leftPaddleElement.getBoundingClientRect();
 
-//     return(leftPaddleYCoordinate);
-// }
+    return(leftPaddleYCoordinate);
+}
 
 function simulateKeyboardInput(ballYCoordinate) {
     const leftPaddleElement = pong_game.html_element_left_paddle;
     const leftPaddleRect = leftPaddleElement.getBoundingClientRect();
-    const halfPaddle = leftPaddleRect.height / 2;
     const leftPaddleYCoordinate = leftPaddleRect.top + leftPaddleRect.height / 2;
-    // let leftPaddleYCoordinate = fetchPaddleYCoordinate();
+    const halfPaddle = leftPaddleRect.height / 2;
 
     if (ballYCoordinate < leftPaddleYCoordinate - halfPaddle) {
         handle_keydown({ key: "e" });
@@ -40,8 +38,5 @@ function simulateKeyboardInput(ballYCoordinate) {
     else if (ballYCoordinate > leftPaddleYCoordinate + halfPaddle) {
         handle_keydown({ key: "d" });
         handle_keyup({ key: "e" });
-    // } else {
-    //     handle_keyup({ key: "e" });
-    //     handle_keyup({ key: "d" });
     }
 }
