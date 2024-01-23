@@ -80,6 +80,16 @@ main {
     gap: 6px;
 }
 
+#opponent-selection .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#opponent-selection .description {
+    text-align: center;
+    margin-top: 250px;
+}
 
 .box {
     position: relative;
