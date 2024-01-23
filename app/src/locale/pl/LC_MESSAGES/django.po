@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-22 18:57+0100\n"
+"POT-Creation-Date: 2024-01-23 16:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hania KHATER <EMAIL@ADDRESS>\n"
 "Language-Team: POLISH <LL@li.org>\n"
@@ -65,17 +65,17 @@ msgid "hello"
 msgstr "cześć"
 
 #: transcendence/templates/registration/base.html:30
-#: transcendence/templates/transcendence/base.html:35
+#: transcendence/templates/transcendence/base.html:36
 msgid "Home"
 msgstr "Strona główna"
 
 #: transcendence/templates/registration/base.html:31
-#: transcendence/templates/transcendence/base.html:36
+#: transcendence/templates/transcendence/base.html:37
 msgid "Play"
 msgstr "Graj"
 
 #: transcendence/templates/registration/base.html:38
-#: transcendence/templates/transcendence/base.html:70
+#: transcendence/templates/transcendence/base.html:71
 msgid "Log in"
 msgstr "Zaloguj się"
 
@@ -124,7 +124,7 @@ msgstr "Obserwowani"
 msgid "Sign up"
 msgstr "Zarejestruj się"
 
-#: transcendence/templates/transcendence/base.html:37
+#: transcendence/templates/transcendence/base.html:38
 #: transcendence/templates/transcendence/community/leaderboard.html:6
 msgid "Leaderboard"
 msgstr "Tabela wyników"
@@ -179,6 +179,40 @@ msgstr "Witaj w transcendencji"
 msgid "Start"
 msgstr "Rozpocznij"
 
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:10
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:18
+#: transcendence/templates/transcendence/pong/play.html:8
+msgid "Local Match"
+msgstr "Gra lokalna"
+
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:10
+msgid "Player vs Player"
+msgstr "Gracz vs Gracz"
+
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:12
+msgid "Play against another player on the same computer."
+msgstr "Zagraj przeciwko innemu graczowi na tym samym komputerze."
+
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:12
+msgid ""
+"Use E & D to move the left paddle and use ↑ & ↓ to move the right paddle."
+msgstr ""
+"Użyj klawiszy E i D, aby poruszać lewą paletką, i użyj strzałek ↑ i ↓, aby poruszać się paletką z prawej strony."
+
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:18
+msgid "AI vs Player"
+msgstr "SI vs Gracz"
+
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:20
+msgid "Play against an AI opponent."
+msgstr "Zagraj przeciwko przeciwnikowi sterowanemu przez sztuczną inteligencję."
+
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:20
+msgid ""
+"Use ↑ & ↓ to move the right paddle and the AI will play with the left paddle."
+msgstr ""
+"Użyj strzałek ↑ i ↓, aby poruszać się paletką z prawej strony, a SI będzie grać lewą paletką."
+
 #: transcendence/templates/transcendence/pong/local_tournament/form.html:13
 msgid "Add a player"
 msgstr "Dodaj gracza"
@@ -197,11 +231,11 @@ msgstr "Następny mecz"
 
 #: transcendence/templates/transcendence/pong/local_tournament/lobby.html:13
 msgid "Current round"
-msgstr "Obecna runda"
+msgstr "Aktualna runda"
 
 #: transcendence/templates/transcendence/pong/local_tournament/lobby.html:30
 msgid "Eliminated"
-msgstr "Wyeliminowani"
+msgstr "Wyeliminowany"
 
 #: transcendence/templates/transcendence/pong/local_tournament/lobby.html:40
 msgid "Start next match"
@@ -216,13 +250,12 @@ msgid "Winner"
 msgstr "Zwycięzca"
 
 #: transcendence/templates/transcendence/pong/play.html:8
+msgid "& AI Opponent"
+msgstr "& Przeciwnik SI"
+
 #: transcendence/templates/transcendence/pong/play.html:11
 msgid "Local"
 msgstr "Lokalny"
-
-#: transcendence/templates/transcendence/pong/play.html:8
-msgid "match"
-msgstr "mecz"
 
 #: transcendence/templates/transcendence/pong/play.html:11
 #: transcendence/templates/transcendence/pong/play.html:17
@@ -233,6 +266,9 @@ msgstr "turniej"
 #: transcendence/templates/transcendence/pong/play.html:17
 msgid "Online"
 msgstr "Online"
+
+#~ msgid "match"
+#~ msgstr "mecz"
 
 #~ msgid "Forgotten password?"
 #~ msgstr "Zapomniane hasło?"

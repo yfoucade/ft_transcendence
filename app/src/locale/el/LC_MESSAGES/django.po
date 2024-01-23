@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-22 18:57+0100\n"
+"POT-Creation-Date: 2024-01-23 16:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Hania KHATER <EMAIL@ADDRESS>\n"
 "Language-Team: GREEK <LL@li.org>\n"
@@ -63,17 +63,17 @@ msgid "hello"
 msgstr "γεια"
 
 #: transcendence/templates/registration/base.html:30
-#: transcendence/templates/transcendence/base.html:35
+#: transcendence/templates/transcendence/base.html:36
 msgid "Home"
 msgstr "Αρχική"
 
 #: transcendence/templates/registration/base.html:31
-#: transcendence/templates/transcendence/base.html:36
+#: transcendence/templates/transcendence/base.html:37
 msgid "Play"
 msgstr "Παίξε"
 
 #: transcendence/templates/registration/base.html:38
-#: transcendence/templates/transcendence/base.html:70
+#: transcendence/templates/transcendence/base.html:71
 msgid "Log in"
 msgstr "Σύνδεση"
 
@@ -124,7 +124,7 @@ msgstr "Ακολουθία"
 msgid "Sign up"
 msgstr "Εγγραφή"
 
-#: transcendence/templates/transcendence/base.html:37
+#: transcendence/templates/transcendence/base.html:38
 #: transcendence/templates/transcendence/community/leaderboard.html:6
 msgid "Leaderboard"
 msgstr "Πίνακας κατάταξης"
@@ -179,6 +179,40 @@ msgstr "Καλώς ήρθατε στην υπέρβαση"
 msgid "Start"
 msgstr "Έναρξη"
 
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:10
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:18
+#: transcendence/templates/transcendence/pong/play.html:8
+msgid "Local Match"
+msgstr "Τοπικός Αγώνας"
+
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:10
+msgid "Player vs Player"
+msgstr "Παίκτης εναντίον Παίκτη"
+
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:12
+msgid "Play against another player on the same computer."
+msgstr "Παίξτε εναντίον άλλου παίκτη στον ίδιο υπολογιστή."
+
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:12
+msgid ""
+"Use E & D to move the left paddle and use ↑ & ↓ to move the right paddle."
+msgstr ""
+"Χρησιμοποιήστε τα E & D για να κινηθείτε το αριστερό ρακέτα και τα ↑ & ↓ για να κινηθείτε το δεξί ρακέτα."
+
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:18
+msgid "AI vs Player"
+msgstr "ΤΕΒΑ εναντίον Παίκτη"
+
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:20
+msgid "Play against an AI opponent."
+msgstr "Παίξτε εναντίον ενός αντιπάλου ΤΕΒΑ."
+
+#: transcendence/templates/transcendence/pong/local_match/select_opponent.html:20
+msgid ""
+"Use ↑ & ↓ to move the right paddle and the AI will play with the left paddle."
+msgstr ""
+"Χρησιμοποιήστε τα ↑ & ↓ για να κινηθείτε το δεξί ρακέτα και το ΤΕΒΑ θα παίξει με το αριστερό ρακέτα."
+
 #: transcendence/templates/transcendence/pong/local_tournament/form.html:13
 msgid "Add a player"
 msgstr "Προσθήκη παίκτη"
@@ -197,7 +231,7 @@ msgstr "Επόμενος αγώνας"
 
 #: transcendence/templates/transcendence/pong/local_tournament/lobby.html:13
 msgid "Current round"
-msgstr "Τρέχον γύρος"
+msgstr "Τρέχουσα φάση"
 
 #: transcendence/templates/transcendence/pong/local_tournament/lobby.html:30
 msgid "Eliminated"
@@ -209,20 +243,19 @@ msgstr "Έναρξη επόμενου αγώνα"
 
 #: transcendence/templates/transcendence/pong/local_tournament/results.html:6
 msgid "Local Tournament"
-msgstr "Τοπικό τουρνουά"
+msgstr "Τοπικό Τουρνουά"
 
 #: transcendence/templates/transcendence/pong/local_tournament/results.html:7
 msgid "Winner"
 msgstr "Νικητής"
 
 #: transcendence/templates/transcendence/pong/play.html:8
+msgid "& AI Opponent"
+msgstr "& ΤΕΒΑ Αντίπαλος"
+
 #: transcendence/templates/transcendence/pong/play.html:11
 msgid "Local"
 msgstr "Τοπικός"
-
-#: transcendence/templates/transcendence/pong/play.html:8
-msgid "match"
-msgstr "αγώνας"
 
 #: transcendence/templates/transcendence/pong/play.html:11
 #: transcendence/templates/transcendence/pong/play.html:17
@@ -233,6 +266,9 @@ msgstr "τουρνουά"
 #: transcendence/templates/transcendence/pong/play.html:17
 msgid "Online"
 msgstr "Διαδικτυακός"
+
+#~ msgid "match"
+#~ msgstr "αγώνας"
 
 #~ msgid "Forgotten password?"
 #~ msgstr "Ξεχάσατε τον κωδικό πρόσβασης;"

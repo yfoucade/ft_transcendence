@@ -1,0 +1,25 @@
+{% extends "../../base.html" %}
+{% load i18n %}
+
+{% block content %}
+<main id="select-opponent" class="shown">
+    <div id="opponent-selection">
+        <div id="nav-local-pvp" class="box link" data-target-main-id="main-local-1v1">
+            <div class="box-content">
+                <a href="{% url 'local-match-pvp' %}" class="box-content">
+                    {% trans 'Local Match' %}<br/>{% trans 'Player vs Player' %}
+                </a>
+                <p class="description">{% trans 'Play against another player on the same computer.' %}<br/>{% trans 'Use E & D to move the left paddle and use ↑ & ↓ to move the right paddle.' %}</p>
+            </div>
+        </div>
+        <div id="nav-local-pvai" class="box link" data-target-main-id="main-local-tournament-form">
+            <div class="box-content">
+                <a href="{% url 'local-match-pvai' %}" class="box-content">
+                    {% trans 'Local Match' %}<br/>{% trans 'AI vs Player' %}
+                </a>
+                <p class="description">{% trans 'Play against an AI opponent.' %}<br/>{% trans 'Use ↑ & ↓ to move the right paddle and the AI will play with the left paddle.' %}</p>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

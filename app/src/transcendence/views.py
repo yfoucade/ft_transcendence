@@ -31,8 +31,14 @@ def index(request):
 def play(request):
     return render(request, "transcendence/pong/play.html")
 
-def local_match(request):
-    return render(request, "transcendence/pong/local_match/local_match.html")
+def select_opponent(request):
+    return render(request, "transcendence/pong/local_match/select_opponent.html")
+
+def local_match_pvp(request):
+    return render(request, "transcendence/pong/local_match/local_match_pvp.html")
+
+def local_match_pvai(request):
+    return render(request, "transcendence/pong/local_match/local_match_pvai.html")
 
 def local_tournament_form(request):
     return render(request, "transcendence/pong/local_tournament/form.html")
