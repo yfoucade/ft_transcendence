@@ -91,7 +91,7 @@ function local_tournament_form_hydration_recipe()
         html_element_text_input = document.getElementById("form-player-name");
         html_element_registered_players = document.getElementById("div-player-list");
         html_element_error_message_start = document.getElementById("error-message-start");
-        
+
         csrftoken = tournament_form.html_element_form.querySelector("input[name=csrfmiddlewaretoken]").value;
         html_element_form.addEventListener( "submit", add_player_to_local_tournament );
 
@@ -257,11 +257,11 @@ function update_state( pathname = null, new_document = null ) {
 
 async function route( event ) {
     event.preventDefault();
-    
+
     let href = event.currentTarget.getAttribute("href");
     console.log(`redirecting to ${href}`);
     let response = await fetch( href, {"referrer":state.pathname} );
-    
+
     update_view( response );
 }
 

@@ -6,7 +6,10 @@ from . import views
 urlpatterns = [
     path( "", views.index, name="index" ),
     path( "play/", views.play, name="play" ),
-    path( "local-match/", views.local_match, name="local-match" ),
+	path( "select-opponent/", views.select_opponent, name="select-opponent"),
+    path( "local-match-pvp/", views.local_match_pvp, name="local-match-pvp"),
+    path( "local-match-pvai/", views.local_match_pvai, name="local-match-pvai"),
+    # path( "local-match/", views.local_match, name="local-match" ),
     path( "local-tournament/form/", views.local_tournament_form, name="local-tournament-form" ),
     path( "local-tournament/lobby/", views.local_tournament_lobby, name="local-tournament-lobby" ),
     path( "local-tournament/match/", views.local_tournament_match, name="local-tournament-match" ),
