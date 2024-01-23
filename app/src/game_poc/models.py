@@ -21,6 +21,7 @@ class Game(models.Model):
 
     init_time = models.DateTimeField(default=timezone.now)
     start_time = models.DateTimeField(null=True)
+    # end_time = models.DateTimeField(null=True)
     last_update_time = models.DateTimeField(null=True)
     last_user_request_time = models.DateTimeField(null=True)
 
@@ -28,20 +29,32 @@ class Game(models.Model):
     def elapsed_time_since_init(self):
         return timezone.now() - self.init_time
 
-    # def update_state(self):
-    #     if self.status != "running":
-    #         return
-    #     now = timezone.now()
-    #     game_time = now - self.start_time
-    #     delta_time = now - self.last_update_time
+    @property
+    def game_time(self):
+        if ( not self.start_time ) or ( not self.last_update_time ):
+            return None
+        return self.last_update_time - self.start_time
 
-    #     # Target value pauses for 1 second every 10 seconds
-    #     if int( game_time.seconds ) % 10:
-    #         self.target_value = 50 + 50 * math.cos(game_time)
-    #     self.player_value += ( self.player_move_up - self.player_move_down ) * self.player_move_speed * delta_time
-    #     self.current_score += 100 - ( abs(self.target_value - self.player_value) )
+    def start_game(self):
+        self.start_time = timezone.now()
+        self.last_update_time = timezone.now()
+        self.last_user_request_time = timezone.now()
+        self.status = "running"
 
-    #     if self.current_score >= self.target_score:
-    #         self.status = "over"
+    def update_state(self):
+        if self.status != "running":
+            return
+        now = timezone.now()
+        game_time = now - self.start_time
+        delta_time = now - self.last_update_time
+
+        # Target value pauses for 1 second every 10 seconds
+        if int( game_time.seconds ) % 10:
+            self.target_value = 50 + 50 * math.cos(game_time.seconds)
+        self.player_value += ( self.player_move_up - self.player_move_down ) * self.player_move_speed * delta_time.seconds
+        self.current_score += (100 - ( abs(self.target_value - self.player_value) )) * 1e-2
+
+        if self.current_score >= self.target_score:
+            self.status = "over"
         
-    #     # self.save()
+        # self.save()
