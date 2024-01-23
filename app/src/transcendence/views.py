@@ -31,8 +31,8 @@ def index(request):
 def play(request):
     return render(request, "transcendence/pong/play.html")
 
-def select_local_opponent(request):
-    return render(request, "transcendence/pong/local_match/select_local_opponent.html")
+def select_opponent(request):
+    return render(request, "transcendence/pong/local_match/select_opponent.html")
 
 def local_match_pvp(request):
     return render(request, "transcendence/pong/local_match/local_match_pvp.html")
