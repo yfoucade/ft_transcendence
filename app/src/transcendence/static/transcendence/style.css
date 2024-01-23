@@ -67,6 +67,20 @@ main {
     gap: 6px;
 }
 
+#local-opponent-selection {
+    width: 60%;
+    margin: auto;
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-rows: repeat(2, 100px); */
+    /* height: 60%; */
+    min-width: 256px;
+    max-width: 512px;
+    gap: 6px;
+}
+
+
 .box {
     position: relative;
     /* top: 50%; */
