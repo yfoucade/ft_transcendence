@@ -180,7 +180,10 @@ function leaderboard_hydration_recipe()
 
 function user_details_hydration_recipe()
 {
-    document.getElementById("follow-form").addEventListener( "submit", submit_form );
+    form = document.getElementById("follow-form")
+    if (!form)
+        return;
+    form.addEventListener( "submit", submit_form );
 }
 
 function following_hydration_recipe()
