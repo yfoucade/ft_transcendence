@@ -34,5 +34,6 @@
     {# Assumes you set up the password_reset view in your URLconf #}
     {# <p><a href="{% url 'password_reset' %}">{% trans 'Forgotten password?' %}</a></p> #}
     <p><a href="{% url 'signup' %}?next={{ next }}">{% trans 'Create account' %}</a></p>
+    <button onClick="handleLogin()">{% trans 'Login with 42 Account' %}</button>
 </main>
 {% endblock content %}
