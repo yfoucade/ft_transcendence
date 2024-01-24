@@ -17,7 +17,7 @@ class Game(models.Model):
     target_score = models.FloatField(default=1_000)
     player_move_up = models.BooleanField(default=False)
     player_move_down = models.BooleanField(default=False)
-    player_move_speed = models.FloatField(default=1)
+    player_move_speed = models.FloatField(default=100/math.pi)
 
     init_time = models.DateTimeField(default=timezone.now)
     start_time = models.DateTimeField(null=True)
@@ -50,11 +50,13 @@ class Game(models.Model):
 
         # Target value pauses for 1 second every 10 seconds
         if int( game_time.seconds ) % 10:
-            self.target_value = 50 + 50 * math.cos(game_time.seconds)
-        self.player_value += ( self.player_move_up - self.player_move_down ) * self.player_move_speed * delta_time.seconds
-        self.current_score += (100 - ( abs(self.target_value - self.player_value) )) * 1e-2
+            self.target_value = 50 + 50 * math.cos( game_time.total_seconds() )
+        self.player_value += ( self.player_move_up - self.player_move_down ) * self.player_move_speed * (delta_time.total_seconds())
+        self.current_score += 2e-1 * (100 - ( abs(self.target_value - self.player_value) )) * (delta_time.total_seconds())
 
         if self.current_score >= self.target_score:
             self.status = "over"
         
-        # self.save()
+        self.last_update_time = now
+
+        return ["target_value", "player_value", "current_score", "status", "last_update_time"]
