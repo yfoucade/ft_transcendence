@@ -14,6 +14,7 @@
         window.onpopstate = (event) => console.log("hello");
     </script>
     {% block scripts %}
+        <script src="{% static 'transcendence/pong/online_game/online_game.js' %}?{% now 'U' %}" defer></script>
         <script src="{% static 'transcendence/common/navigation.js' %}?{% now 'U' %}" defer></script>
         <script src="{% static 'transcendence/common/hydration.js' %}?{% now 'U' %}" defer></script>
         <script src="{% static 'transcendence/pong/pong_utils.js' %}?{% now 'U' %}" defer></script>
