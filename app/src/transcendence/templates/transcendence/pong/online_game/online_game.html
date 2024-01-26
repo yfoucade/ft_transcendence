@@ -1,0 +1,28 @@
+{% extends "../../base.html" %}
+{% load i18n %}
+
+{% block content %}
+<main id="main-online-game" class="pong-page">
+
+    <div id="lobby" class="shown">
+        <div id="div-play" class="shown">
+            <h2 id="play-title">{% trans 'Start a game' %}</h2>
+            <button id="button-play">{% trans 'Play' %}</button>
+        </div>
+        <div id="div-waiting" class="hidden">
+            <h2 id="waiting-title">{% trans 'Waiting for opponent' %}</h2>
+            <button id="button-abort">{% trans 'Abort' %}</button>
+        </div>
+    </div>
+
+    <div id="game-elements" class="shown">
+        <div id="players-names" class="">
+            <span id="player1">{{ left_player }}</span>
+            <span id="versus">vs</span>
+            <span id="player2">{{ right_player }}</span>
+        </div>
+        {% include "transcendence/pong/game_canvas.html" %}
+    </div>
+
+</main>
+{% endblock %}
