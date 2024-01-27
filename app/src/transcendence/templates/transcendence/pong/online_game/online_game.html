@@ -17,9 +17,15 @@
 
     <div id="game-elements" class="shown">
         <div id="players-names" class="">
-            <span id="player1">{{ left_player }}</span>
+            <span id="player1">
+                <img id="player1-img" width="32" height="32" src="">
+                <span id="player1-name"></span>
+            </span>
             <span id="versus">vs</span>
-            <span id="player2">{{ right_player }}</span>
+            <span id="player2">
+                <img id="player2-img" width="32" height="32" src="">
+                <span id="player2-name"></span>
+            </span>
         </div>
         {% include "transcendence/pong/game_canvas.html" %}
     </div>
