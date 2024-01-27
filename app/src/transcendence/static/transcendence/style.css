@@ -129,6 +129,10 @@ main {
     grid-template-rows: .25fr 1fr;
 }
 
+#game-elements {
+    grid-column: 2/3;
+}
+
 #players-names {
     margin-top: 30px;
     text-align: center;
