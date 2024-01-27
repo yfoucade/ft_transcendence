@@ -1,7 +1,8 @@
 import json
 import math
+import sys
 
-from game_settings import *
+from .game_settings import *
 from transcendence.models import PongGame, Profile
 
 class GameEngine:
@@ -43,8 +44,8 @@ class GameEngine:
         ball_left_pct, ball_top_pct
         """
         tmp = {}
-        profile_1 = Profile.objects.aget(user_id=self.instance.user_1_id)
-        profile_2 = Profile.objects.aget(user_id=self.instance.user_2_id)
+        profile_1 = await Profile.objects.aget(user_id=self.instance.user_1_id)
+        profile_2 = await Profile.objects.aget(user_id=self.instance.user_2_id)
         tmp["player_1_display_name"] = profile_1.display_name
         tmp["player_2_display_name"] = profile_2.display_name
         tmp["player_1_avatar_url"] = profile_1.picture.url
@@ -62,4 +63,4 @@ class GameEngine:
 
         res = json.dumps(tmp)
         updated_fields = self.instance.set_init_game_str(res)
-        self.instance.asave(update_fields=updated_fields)
+        await self.instance.asave(update_fields=updated_fields)
