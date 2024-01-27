@@ -7,7 +7,9 @@ import json
 from django.db.models import Q
 from django.contrib.auth.models import User
 
+from .GameEngine import GameEngine
 from transcendence.models import PongGame
+
 
 async def assign_to_game(user:User):
     already_waiting = await PongGame.objects.filter(
@@ -62,7 +64,8 @@ async def game_loop(game:PongGame):
     - wait while timezone.now() < start_time
     - while status == running, compute next state
     """
-    pass
+    engine = GameEngine(game)
+    await engine.set_init_game_str()
 
 async def state_sender(game:PongGame):
     """
@@ -72,7 +75,9 @@ async def state_sender(game:PongGame):
     - while status == running, yield game state
     - send 'done' event
     """
-    pass
+    while not game.init_game_str:
+        await game.arefresh_from_db(fields=["init_game_str"])
+    yield build_message({"event":"init", "data":game.init_game_str})
 
 async def online_game_stream(request):
     game = await assign_to_game(request.user)
@@ -81,16 +86,6 @@ async def online_game_stream(request):
             yield message
         await wait_second_player(game)
         yield build_message({"event":"debug", "data":"found second player"})
-
-        # The following lines are to test concurrent asyncio tasks
-        dummy1 = asyncio.create_task(dummy_fun(1)) if game.user_1_id == request.user.pk else None
-        dummy1
-        async for msg in dummy_gen(2):
-            yield msg
-        # It worked, both threads ran concurrently
-        # The thread in charge of running the game loop will run two tasks:
-        # game_loop + event_sender
-        # The other thread will only yield from the event_sender
 
         loop_task = asyncio.create_task(game_loop(game)) if game.user_1_id == request.user.pk else None
         loop_task
