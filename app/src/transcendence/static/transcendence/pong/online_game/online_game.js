@@ -126,8 +126,8 @@ function set_online_game_elt_values(data)
     online_game_obj.elt_player1_name.innerHTML = data.player_1_display_name;
     online_game_obj.elt_player2_img.src = data.player_2_avatar_url;
     online_game_obj.elt_player2_name.innerHTML = data.player_2_display_name;
-    // online_game_obj.elt_canvas.height = data.canvas_height;
-    // online_game_obj.elt_canvas.aspectRatio = data.canvas_aspect_ratio;
+    online_game_obj.elt_canvas.style.height = data.canvas_height;
+    online_game_obj.elt_canvas.style.aspectRatio = data.canvas_aspect_ratio;
     next_frame(data);
 }
 
@@ -143,6 +143,9 @@ function next_frame(data)
     online_game_obj.elt_right_paddle.style.top = `${data.right_paddle_top_pct}%`;
     online_game_obj.elt_ball.style.top = `${data.ball_top_pct}%`;
     online_game_obj.elt_ball.style.left = `${data.ball_left_pct}%`;
+    online_game_obj.elt_left_paddle.style.transform = "translate(0, 0)";
+    online_game_obj.elt_right_paddle.style.transform = "translate(-100%, 0)";
+    online_game_obj.elt_ball.style.transform = "translate(0, 0)";
 }
 
 function og_init_handler( event )
