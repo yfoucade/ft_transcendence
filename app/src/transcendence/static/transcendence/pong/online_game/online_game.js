@@ -13,8 +13,10 @@ let online_game_lobby_obj = {
 let online_game_obj = {
     // htmlElements
     elt_game_elements: null,
-    elt_player1: null,
-    elt_player2: null,
+    elt_player1_img: null,
+    elt_player1_name: null,
+    elt_player2_img: null,
+    elt_player2_name: null,
     elt_canvas: null,
     elt_left_paddle: null,
     elt_ball: null,
@@ -80,6 +82,7 @@ function og_close_connection(event)
 {
     console.log("closing event source");
     online_game_obj.event_source.close();
+    online_game_obj.ask_confirmation_before_leaving = false;
 }
 
 async function og_wait_handler(event)
@@ -87,8 +90,6 @@ async function og_wait_handler(event)
     data = JSON.parse(event.data);
     online_game_obj.game_id = data.game_id;
     console.log(`game_id: ${data.game_id}`);
-    // online_game_obj.event_source.close();
-    // online_game_obj.event_source = null;
 }
 
 function abort_game( event )
@@ -99,4 +100,57 @@ function abort_game( event )
     if (online_game_obj.event_source == null)
         return;
     online_game_obj.event_source.close();
+}
+
+function init_online_game_elements()
+{
+    with (online_game_obj)
+    {
+        elt_game_elements = document.getElementById("game-elements");
+        elt_player1_img = document.getElementById("player1-img");
+        elt_player1_name = document.getElementById("player1-name");
+        elt_player2_img = document.getElementById("player2-img");
+        elt_player2_name = document.getElementById("player2-name");
+        elt_canvas = document.getElementById("game-canvas");
+        elt_left_paddle = document.getElementById("left-paddle");
+        elt_ball = document.getElementById("ball");
+        elt_right_paddle = document.getElementById("right-paddle");
+        elt_left_score = document.getElementById("left-score");
+        elt_right_score = document.getElementById("right-score");
+    }
+}
+
+function set_online_game_elt_values(data)
+{
+    online_game_obj.elt_player1_img.src = data.player_1_avatar_url;
+    online_game_obj.elt_player1_name.innerHTML = data.player_1_display_name;
+    online_game_obj.elt_player2_img.src = data.player_2_avatar_url;
+    online_game_obj.elt_player2_name.innerHTML = data.player_2_display_name;
+    // online_game_obj.elt_canvas.height = data.canvas_height;
+    // online_game_obj.elt_canvas.aspectRatio = data.canvas_aspect_ratio;
+    next_frame(data);
+}
+
+/**
+ * update scores and position of game elements
+ * @param {Object} data 
+ */
+function next_frame(data)
+{
+    online_game_obj.elt_left_score.innerHTML = data.left_score;
+    online_game_obj.elt_right_score.innerHTML = data.right_score;
+    online_game_obj.elt_left_paddle.style.top = `${data.left_paddle_top_pct}%`;
+    online_game_obj.elt_right_paddle.style.top = `${data.right_paddle_top_pct}%`;
+    online_game_obj.elt_ball.style.top = `${data.ball_top_pct}%`;
+    online_game_obj.elt_ball.style.left = `${data.ball_left_pct}%`;
+}
+
+function og_init_handler( event )
+{
+    init_online_game_elements();
+    data = JSON.parse(event.data);
+    set_online_game_elt_values(data);
+    online_game_lobby_obj.elt_div_lobby.classList.replace( "shown", "hidden" );
+    online_game_obj.elt_game_elements.classList.replace( "hidden", "shown" );
+    console.log(data);
 }
