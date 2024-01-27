@@ -76,6 +76,7 @@ async def state_sender(game:PongGame):
     - send 'done' event
     """
     while not game.init_game_str:
+        await asyncio.sleep(0.01)
         await game.arefresh_from_db(fields=["init_game_str"])
     yield build_message({"event":"init", "data":game.init_game_str})
 
@@ -91,7 +92,8 @@ async def online_game_stream(request):
         loop_task
         async for msg in state_sender(game):
             yield msg
-
+        if loop_task:
+            await loop_task
         yield build_message({"event":"close", "data":""})
     except asyncio.CancelledError:
         if not game:
