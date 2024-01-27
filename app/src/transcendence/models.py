@@ -87,3 +87,7 @@ class PongGame(models.Model):
             return self.user_1
         else:
             return self.user_2
+
+    def set_init_game_str(self, str):
+        self.init_game_str = str
+        return ["init_game_str"]
