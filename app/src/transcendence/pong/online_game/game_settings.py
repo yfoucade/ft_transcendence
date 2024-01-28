@@ -21,7 +21,7 @@ BALL_WIDTH_PCT = 3 # client knows that aspect-ratio = 1/1
 """
 PHYSICS
 """
-BALL_INIT_R = .05
+BALL_INIT_R = 20
 BALL_ACCELERATION = 1.05
 PADDLE_SPEED = .1
 BALL_MAX_ANGLE = 5 * math.pi / 12
