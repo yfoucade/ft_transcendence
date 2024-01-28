@@ -67,7 +67,7 @@ function wait_game( event )
         event_source.addEventListener( "wait", og_wait_handler );
         event_source.addEventListener( "init", og_init_handler );
         // event_source.addEventListener( "countdown", og_countdown_handler );
-        // event_source.addEventListener( "position", og_position_handler );
+        event_source.addEventListener( "position", og_position_handler );
         // event_source.addEventListener( "done", og_done_handler );
         // event_source.onerror = (err) => { og_error_handler(err) };
     }
@@ -81,8 +81,9 @@ function og_print_debug(event)
 function og_close_connection(event)
 {
     console.log("closing event source");
-    online_game_obj.event_source.close();
-    online_game_obj.ask_confirmation_before_leaving = false;
+    if (online_game_obj.event_source)
+        online_game_obj.event_source.close();
+    online_game_lobby_obj.ask_confirmation_before_leaving = false;
 }
 
 async function og_wait_handler(event)
@@ -156,4 +157,11 @@ function og_init_handler( event )
     online_game_lobby_obj.elt_div_lobby.classList.replace( "shown", "hidden" );
     online_game_obj.elt_game_elements.classList.replace( "hidden", "shown" );
     console.log(data);
+}
+
+function og_position_handler(event)
+{
+    console.log(event.data)
+    data = JSON.parse(event.data);
+    next_frame(data);
 }
