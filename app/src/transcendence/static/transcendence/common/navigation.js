@@ -207,6 +207,12 @@ function online_game_dehydration_recipe()
         && !confirm("Data will be lost, leave anyway ?"))
         return false;
     // TODO: close eventSource;
+    if ( online_game_obj.event_source )
+    {
+        if ( online_game_obj.event_source.readyState == 1 )
+            online_game_obj.event_source.close();
+        online_game_obj.event_source = null;
+    }
     return true; // can leave page
 }
 
