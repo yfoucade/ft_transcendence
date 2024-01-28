@@ -66,6 +66,7 @@ async def game_loop(game:PongGame):
     """
     engine = GameEngine(game)
     await engine.set_init_game_str()
+    await engine.main_loop()
 
 async def state_sender(game:PongGame):
     """
@@ -76,9 +77,29 @@ async def state_sender(game:PongGame):
     - send 'done' event
     """
     while not game.init_game_str:
-        await asyncio.sleep(0.01)
+        print("waiting init_game_str")
+        sys.stdout.flush()
+        await asyncio.sleep(0)
         await game.arefresh_from_db(fields=["init_game_str"])
     yield build_message({"event":"init", "data":game.init_game_str})
+    while not game.start_time:
+        await asyncio.sleep(0.01)
+        await game.arefresh_from_db(fields=["start_time"])
+    print(f"start time set to {game.start_time}")
+    sys.stdout.flush()
+    while game.game_status != "running":
+        print(f"{game.game_status = }")
+        sys.stdout.flush()
+        await asyncio.sleep(0.01)
+        await game.arefresh_from_db(fields=["game_status"])
+    print(f"{game.game_status = }")
+    sys.stdout.flush()
+    await game.arefresh_from_db()
+    while game.game_status == "running":
+        data = game.get_position_str()
+        yield build_message({"event":"position", "data":data})
+        await asyncio.sleep(0.1)
+        await game.arefresh_from_db()
 
 async def online_game_stream(request):
     game = await assign_to_game(request.user)
@@ -96,13 +117,15 @@ async def online_game_stream(request):
             await loop_task
         yield build_message({"event":"close", "data":""})
     except asyncio.CancelledError:
+        updated_fields = []
         if not game:
             return
-        elif game.game_status == "init":
+        await game.arefresh_from_db()
+        if game.game_status == "init":
             await game.adelete()
             return
         elif game.game_status == "starting":
-            updated_fields = game.set_status("aborted")
+            updated_fields = await game.set_status("aborted")
         elif game.game_status == "running":
-            updated_fields = game.abort_running_game(request.user)
+            updated_fields = await game.abort_running_game(request.user)
         await game.asave(update_fields=updated_fields)
