@@ -1,9 +1,12 @@
+import asyncio
 import json
 import math
 import sys
+from datetime import datetime, timedelta
 
 from .game_settings import *
 from transcendence.models import PongGame, Profile
+from django.utils import timezone
 
 class GameEngine:
     def __init__(self, instance:PongGame):
@@ -43,6 +46,8 @@ class GameEngine:
         left_paddle_top_pct, right_paddle_top_pct,
         ball_left_pct, ball_top_pct
         """
+        # print("in GameEngine.set_init_game_str")
+        # sys.stdout.flush()
         tmp = {}
         profile_1 = await Profile.objects.aget(user_id=self.instance.user_1_id)
         profile_2 = await Profile.objects.aget(user_id=self.instance.user_2_id)
@@ -63,4 +68,47 @@ class GameEngine:
 
         res = json.dumps(tmp)
         updated_fields = self.instance.set_init_game_str(res)
+        updated_fields += self.instance.set_game_elements(
+            lpt=tmp["left_paddle_top_pct"],
+            rpt=tmp["right_paddle_top_pct"],
+            bl=tmp["ball_left_pct"],
+            bt=tmp["ball_top_pct"],
+        )
+        # print(f"{updated_fields = }")
+        # sys.stdout.flush()
+        await self.instance.asave(update_fields=updated_fields)
+
+    async def main_loop(self, start_delay = timedelta(seconds=3)):
+        updated_fields = self.instance.set_start_time(start_delay=start_delay)
+        await self.instance.asave(update_fields=updated_fields)
+        while self.instance.game_status == "starting" and self.instance.start_time > timezone.now():
+            await asyncio.sleep(0)
+            await self.instance.arefresh_from_db(fields=["game_status"])
+        updated_fields = await self.instance.set_status("running")
+        await self.instance.asave(update_fields=updated_fields)
+        tic = timezone.now()
+        # print("starting ball_movement")
+        # print((tic - self.instance.start_time).total_seconds())
+        # sys.stdout.flush()
+        while (tic - self.instance.start_time).total_seconds() < 10:
+            # print("new position")
+            # sys.stdout.flush()
+            toc = timezone.now()
+            delta = (toc-tic).total_seconds()
+            self.ball_left += self.ball_r * delta
+            await self.save_positions()
+            tic = toc
+            await asyncio.sleep(0)
+        print("setting status to done")
+        sys.stdout.flush()
+        updated_fields = await self.instance.set_status("done")
+        await self.instance.asave(update_fields=updated_fields)
+
+    async def save_positions(self):
+        updated_fields = self.instance.set_game_elements(
+            lpt = 100 * self.left_paddle_top / CANVAS_HEIGHT,
+            rpt = 100 * self.right_paddle_top / CANVAS_HEIGHT,
+            bl = 100 * self.ball_left / CANVAS_WIDTH,
+            bt = 100 * self.ball_top / CANVAS_HEIGHT,
+        )
         await self.instance.asave(update_fields=updated_fields)
