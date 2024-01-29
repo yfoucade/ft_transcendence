@@ -25,6 +25,7 @@ from django.conf.urls.static import static # TODO: remove in production
 urlpatterns = [
     path( '', include( "transcendence.urls" ) ),
     path( 'poc/', include( "game_poc.urls" ) ),
+    path("chat/", include("chat.urls")),
     path( 'accounts/', include( "django.contrib.auth.urls" ) ),
     path('admin/', admin.site.urls),
 	path("i18n/", include("django.conf.urls.i18n")),
