@@ -9,6 +9,14 @@ RUN python3 -m venv env
 RUN apt-get install -y curl gnupg2 ca-certificates lsb-release debian-archive-keyring
 RUN apt-get install -y nginx
 
+# redis
+RUN apt-get install -y lsb-release curl gpg
+RUN curl -fsSL https://packages.redis.io/gpg | gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+RUN echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/redis.list
+RUN apt-get update
+RUN apt-get install -y redis
+
+
 WORKDIR /etc/ssl/certs
 RUN openssl req -x509 -out server.crt -keyout server.key -newkey rsa:2048 -nodes -sha256 -subj '/C=FR/ST=Paris/O=42-Paris/CN=ft_transcendence'
 WORKDIR /
