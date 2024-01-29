@@ -9,6 +9,9 @@ pip install Django
 pip install psycopg
 pip install daphne
 pip install Pillow
+pip install djangorestframework
+pip install djangorestframework-simplejwt
+
 
 cd src/
 find . -path "*/migrations/*.py" -not -name "__init__.py" -delete

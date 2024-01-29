@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_simplejwt',
+
 ]
 
 MIDDLEWARE = [
@@ -162,3 +165,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # For avatars: https://docs.djangoproject.com/en/5.0/ref/models/fields/#imagefield
 MEDIA_URL = "media/"
 MEDIA_ROOT = "/var/www/transcendence/media/"
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication'),
+}

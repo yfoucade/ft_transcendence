@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
 from transcendence import views
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from django.conf import settings # TODO: remove in production
 from django.conf.urls.static import static # TODO: remove in production
@@ -28,6 +29,9 @@ urlpatterns = [
     path( 'test_ssr/', include( "test_ssr.urls" ) ), #TODO: remove this app
     path('admin/', admin.site.urls),
 	path("i18n/", include("django.conf.urls.i18n")),
+	# path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    path('api/token', TokenObtainPairView.as_view(), name='obtain_tokens'),
+    path('api/token/refresh', TokenRefreshView.as_view(), name='refresh_token'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # TODO: remove in production
 
 urlpatterns += i18n_patterns(
