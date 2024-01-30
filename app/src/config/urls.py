@@ -29,9 +29,9 @@ urlpatterns = [
     path( 'test_ssr/', include( "test_ssr.urls" ) ), #TODO: remove this app
     path('admin/', admin.site.urls),
 	path("i18n/", include("django.conf.urls.i18n")),
-	# path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('api/token', TokenObtainPairView.as_view(), name='obtain_tokens'),
     path('api/token/refresh', TokenRefreshView.as_view(), name='refresh_token'),
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # TODO: remove in production
 
 urlpatterns += i18n_patterns(

@@ -11,6 +11,8 @@ pip install daphne
 pip install Pillow
 pip install djangorestframework
 pip install djangorestframework-simplejwt
+pip install django-oauth-toolkit
+
 
 
 cd src/
