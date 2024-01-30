@@ -29,14 +29,16 @@ SECRET_KEY = 'django-insecure-zig57@5d4$kn%i1((e%dzm4xtin#&1%ad^cyjjuf=+bqmnym24
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"] # TODO: set to empty list in production
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'test_ssr',
+    'daphne',
     'transcendence',
+    'game_poc',
+    'chat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -77,6 +79,15 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
+ASGI_APPLICATION = 'config.asgi.application'
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
+    },
+}
 
 
 # Database
@@ -162,3 +173,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # For avatars: https://docs.djangoproject.com/en/5.0/ref/models/fields/#imagefield
 MEDIA_URL = "media/"
 MEDIA_ROOT = "/var/www/transcendence/media/"
+
+# https://stackoverflow.com/questions/12174040/forbidden-403-csrf-verification-failed-request-aborted
+# https://docs.djangoproject.com/en/4.0/releases/4.0/#csrf-trusted-origins-changes-4-0
+CSRF_TRUSTED_ORIGINS = [
+    "https://localhost:8001",
+]

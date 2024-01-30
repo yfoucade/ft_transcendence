@@ -1,3 +1,4 @@
+import asyncio
 import json
 import os
 from typing import Any
@@ -14,14 +15,14 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext as _
 from django.conf import settings
-from django.http import HttpResponse
+from django.http import HttpResponse, StreamingHttpResponse
 from django.utils import translation, timezone
 from django.utils.translation import check_for_language
-from django.views.generic.list import ListView
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm, CustomProfileChangeForm
-from .models import Profile, SESSION_TIMEOUT_SECONDS
+from .models import Profile, PongGame, SESSION_TIMEOUT_SECONDS
 from .pong.local_tournament import lobby
+from .pong.online_game.online_game import online_game_stream
 # Create your views here.
 
 def index(request):
@@ -170,3 +171,17 @@ def following(request):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     return render( request, "transcendence/community/following.html", {"page_obj":page_obj} )
+
+@login_required
+def online_game(request):
+    return render( request, "transcendence/pong/online_game/online_game.html" )
+
+
+async def sse_online_game(request):
+    """
+    The user connects to the game API.
+
+    Response: StreamingHttpResponse
+    """
+
+    return StreamingHttpResponse( online_game_stream(request), content_type='text/event-stream' )

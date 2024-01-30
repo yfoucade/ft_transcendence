@@ -30,6 +30,7 @@ let hydration_recipes = {
     "main-user-details": user_details_hydration_recipe,
     "main-following": following_hydration_recipe,
     "main-select-opponent": select_opponent_hydration_recipe,
+    "main-online-game": online_game_hydration_recipe,
 }
 
 let dehydration_recipes = {
@@ -37,6 +38,7 @@ let dehydration_recipes = {
     "main-local-match-pvai": local_match_pvai_dehydration_recipe,
     "main-local-tournament-lobby": local_tournament_lobby_dehydration_recipe,
     "main-local-tournament-match": local_tournament_match_dehydration_recipe,
+    "main-online-game": online_game_dehydration_recipe,
 }
 
 function home_page()
@@ -198,7 +200,10 @@ function leaderboard_hydration_recipe()
 
 function user_details_hydration_recipe()
 {
-    document.getElementById("follow-form").addEventListener( "submit", submit_form );
+    form = document.getElementById("follow-form")
+    if (!form)
+        return;
+    form.addEventListener( "submit", submit_form );
 }
 
 function following_hydration_recipe()
@@ -215,6 +220,26 @@ function select_opponent_hydration_recipe()
     let links = main.querySelectorAll("a");
     for ( let link of links )
         link.addEventListener( "click", route );
+}
+
+function online_game_hydration_recipe()
+{
+    hydrate_online_game();
+}
+
+function online_game_dehydration_recipe()
+{
+    if ( online_game_lobby_obj.ask_confirmation_before_leaving
+        && !confirm("Data will be lost, leave anyway ?"))
+        return false;
+    // TODO: close eventSource;
+    if ( online_game_obj.event_source )
+    {
+        if ( online_game_obj.event_source.readyState == 1 )
+            online_game_obj.event_source.close();
+        online_game_obj.event_source = null;
+    }
+    return true; // can leave page
 }
 
 async function submit_form( event )

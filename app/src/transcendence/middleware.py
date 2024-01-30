@@ -12,7 +12,11 @@ class UpdateLastRequestTimeMiddleware:
         response = self.get_response(request)
 
         if request.user.is_authenticated:
-            profile = Profile.objects.get(user=request.user.id)
+            try:
+                profile = Profile.objects.get(user=request.user.id)
+            except:
+                profile = Profile(user = request.user, display_name=request.user.username)
+                profile.save()
             profile.last_request_time = timezone.now()
             profile.save()
 
