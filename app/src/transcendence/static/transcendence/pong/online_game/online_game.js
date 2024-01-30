@@ -23,9 +23,9 @@ let online_game_obj = {
     elt_right_paddle: null,
     elt_left_score: null,
     elt_right_score: null,
-    
+
     // API
-    event_source: null,
+    websocket: null,
     game_id: null,
 
     // key_status
@@ -44,12 +44,25 @@ function hydrate_online_game()
         elt_button_play = document.getElementById("button-play");
         elt_button_abort = document.getElementById("button-abort");
 
-        elt_button_play.addEventListener( "click", wait_game );
-        elt_button_abort.addEventListener( "click", abort_game );
+        // elt_button_play.addEventListener( "click", join_game );
+        // elt_button_abort.addEventListener( "click", abort_game );
     }
+    online_game_obj.websocket = new WebSocket(
+        "ws://"
+        + window.location.host
+        + "/ws/online-game/"
+        );
+    online_game_obj.websocket.addEventListener( "open", hydrate_buttons );
+    online_game_obj.websocket.addEventListener( "message", ws_message_dispatcher );
 }
 
-function wait_game( event )
+function hydrate_buttons(event)
+{
+    online_game_lobby_obj.elt_button_play.addEventListener( "click", join_game );
+    online_game_lobby_obj.elt_button_abort.addEventListener( "click", abort_game );
+}
+
+function join_game( event )
 {
     with (online_game_lobby_obj)
     {
@@ -60,17 +73,27 @@ function wait_game( event )
 
     with (online_game_obj)
     {
-        console.log("connecting to event source");
-        event_source = new EventSource("/sse-online-game");
-        event_source.addEventListener( "debug", og_print_debug );
-        event_source.addEventListener( "close", og_close_connection );
-        event_source.addEventListener( "wait", og_wait_handler );
-        event_source.addEventListener( "init", og_init_handler );
-        // event_source.addEventListener( "countdown", og_countdown_handler );
-        event_source.addEventListener( "position", og_position_handler );
-        // event_source.addEventListener( "done", og_done_handler );
-        // event_source.onerror = (err) => { og_error_handler(err) };
+        websocket.send(JSON.stringify({"type":"game.join"}))
+        // event_source = new EventSource("/sse-online-game");
+        // event_source.addEventListener( "debug", og_print_debug );
+        // event_source.addEventListener( "close", og_close_connection );
+        // event_source.addEventListener( "wait", og_wait_handler );
+        // event_source.addEventListener( "init", og_init_handler );
+        // // event_source.addEventListener( "countdown", og_countdown_handler );
+        // event_source.addEventListener( "position", og_position_handler );
+        // // event_source.addEventListener( "done", og_done_handler );
+        // // event_source.onerror = (err) => { og_error_handler(err) };
     }
+}
+
+function ws_message_dispatcher(event)
+{
+    // console.log(event);
+    content = JSON.parse(event.data);
+    if ( content.type == "game.init" )
+        og_init_handler(content.data);
+    if ( content.type == "game.update" )
+        og_update_handler(content.data);
 }
 
 function og_print_debug(event)
@@ -118,7 +141,49 @@ function init_online_game_elements()
         elt_right_paddle = document.getElementById("right-paddle");
         elt_left_score = document.getElementById("left-score");
         elt_right_score = document.getElementById("right-score");
+
+        window.addEventListener( "keydown", og_handle_keydown );
+        window.addEventListener( "keyup", og_handle_keyup );
     }
+}
+
+function og_handle_keydown( event )
+{
+    if (event.key == "ArrowUp" && !online_game_obj.going_up)
+    {
+        online_game_obj.going_up = true;
+        send_paddle_movement();
+    }
+    else if (event.key == "ArrowDown" && !online_game_obj.going_down)
+    {
+        online_game_obj.going_down = true;
+        send_paddle_movement();
+    }
+}
+
+function og_handle_keyup( event )
+{
+    if (event.key == "ArrowUp" && online_game_obj.going_up)
+    {
+        online_game_obj.going_up = false;
+        send_paddle_movement();
+    }
+    else if (event.key == "ArrowDown" && online_game_obj.going_down)
+    {
+        online_game_obj.going_down = false;
+        send_paddle_movement();
+    }
+}
+
+function send_paddle_movement()
+{
+    online_game_obj.websocket.send(JSON.stringify(
+        {
+        "type": "game.paddle",
+        "up": online_game_obj.going_up,
+        "down": online_game_obj.going_down,
+        }
+    ));
 }
 
 function set_online_game_elt_values(data)
@@ -149,19 +214,16 @@ function next_frame(data)
     online_game_obj.elt_ball.style.transform = "translate(0, 0)";
 }
 
-function og_init_handler( event )
+function og_init_handler( data )
 {
     init_online_game_elements();
-    data = JSON.parse(event.data);
     set_online_game_elt_values(data);
     online_game_lobby_obj.elt_div_lobby.classList.replace( "shown", "hidden" );
     online_game_obj.elt_game_elements.classList.replace( "hidden", "shown" );
     console.log(data);
 }
 
-function og_position_handler(event)
+function og_update_handler(data)
 {
-    console.log(event.data)
-    data = JSON.parse(event.data);
     next_frame(data);
 }
