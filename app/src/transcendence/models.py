@@ -38,7 +38,7 @@ class PongGame(models.Model):
     # status
     init_game_str = models.CharField(null=True) # all init info to be sent to the client
     game_status = models.CharField(default="init") # starting, running, aborted, over
-    end_reason = models.CharField(null=True) # points, deconnection
+    end_reason = models.CharField(null=True) # points, disconnected
     winner = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, related_name="games_won")
     left_score = models.SmallIntegerField(default=0)
     right_score = models.SmallIntegerField(default=0)
@@ -70,7 +70,7 @@ class PongGame(models.Model):
         self.start_time = timezone.now() + start_delay
         return ["start_time"]
 
-    async def set_status(self, new_status:str):
+    def set_status(self, new_status:str):
         self.game_status = new_status
         return ["game_status"]
 
@@ -84,13 +84,13 @@ class PongGame(models.Model):
         #               SynchronousOnlyOperation
         return ["winner"]
 
-    async def set_end_reason(self, reason:str):
+    def set_end_reason(self, reason:str):
         self.end_reason = reason
         return ["end_reason"]
 
     async def abort_running_game(self, user:User):
-        updated_fields = await self.set_status("done")
-        updated_fields += await self.set_end_reason("deconnection")
+        updated_fields = self.set_status("done")
+        updated_fields += self.set_end_reason("disconnected")
         updated_fields += await self.set_loser(user)
         return updated_fields
 
@@ -101,33 +101,3 @@ class PongGame(models.Model):
         else:
             return self.user_2
 
-    def set_init_game_str(self, str):
-        self.init_game_str = str
-        return ["init_game_str"]
-
-    def set_game_elements(self, *, lpt=None, rpt=None, bl=None, bt=None):
-        res = []
-        if lpt:
-            self.left_paddle_top_pct = lpt
-            res += ["left_paddle_top_pct"]
-        if rpt:
-            self.right_paddle_top_pct = rpt
-            res += ["right_paddle_top_pct"]
-        if bl:
-            self.ball_left_pct = bl
-            res += ["ball_left_pct"]
-        if bt:
-            self.ball_top_pct = bt
-            res += ["ball_top_pct"]
-        return res
-    
-    def get_position_str(self):
-        res = {
-            "left_score": self.left_score,
-            "right_score": self.right_score,
-            "left_paddle_top_pct": self.left_paddle_top_pct,
-            "right_paddle_top_pct": self.right_paddle_top_pct,
-            "ball_top_pct": self.ball_top_pct,
-            "ball_left_pct": self.ball_left_pct,
-        }
-        return json.dumps(res)
