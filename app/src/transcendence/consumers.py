@@ -126,7 +126,7 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
             if state["winner"]: break
 
     async def game_disconnect(self, event):
-        await self.send(text_data=event)
+        await self.send_json(content=event)
         self.status = ""
         self.game_instance = None
         self.game_instance_lock = None
