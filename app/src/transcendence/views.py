@@ -176,12 +176,6 @@ def following(request):
 def online_game(request):
     return render( request, "transcendence/pong/online_game/online_game.html" )
 
-
-async def sse_online_game(request):
-    """
-    The user connects to the game API.
-
-    Response: StreamingHttpResponse
-    """
-
-    return StreamingHttpResponse( online_game_stream(request), content_type='text/event-stream' )
+@login_required
+def online_tournament(request):
+    return render( request, "transcendence/pong/online_tournament/online_tournament.html" )

@@ -1,0 +1,48 @@
+{% extends "../../base.html" %}
+{% load i18n %}
+
+{% block content %}
+<main id="main-online-tournament" class="pong-page">
+
+    <div id="online-tournament-lobby" class="shown">
+        <h2 id="lobby-title">Registered players</h2>
+        <div id="div-queue" class="shown">
+            <ul id="ul-queue">
+            </ul>
+        </div>
+        <div id="div-start" class="hidden">
+            <button id="button-start">{% trans 'Start tournament' %}</button>
+        </div>
+        <div id="div-leave" class="shown">
+            <button id="button-leave">{% trans 'Leave tournament' %}</button>
+        </div>
+    </div>
+
+    <div id="online-tournament-next-round" class="hidden">
+        <h2>Next round</h2>
+        <h3 id="round-name"></h3>
+        <div id="div-round-pairings">
+            <ul id="ul-round-pairings">
+            </ul>
+        </div>
+    </div>
+
+    <div id="game-elements" class="hidden">
+        <div id="players-names" class="">
+            <span id="player1">
+                <span id="player1-name"></span>
+                <img id="player1-img" width="32" height="32" src="">
+            </span>
+            <span id="versus">vs</span>
+            <span id="player2">
+                <img id="player2-img" width="32" height="32" src="">
+                <span id="player2-name"></span>
+            </span>
+        </div>
+        {% include "transcendence/pong/game_canvas.html" %}
+    </div>
+
+    <div id="online-tournament-results" class="hidden">
+    </div>
+</main>
+{% endblock %}
