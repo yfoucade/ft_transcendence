@@ -8,6 +8,7 @@ from django.utils import timezone
 
 from .models import PongGame, Profile
 from .pong.online_game.GameEngine import GameEngine
+from .pong.online_tournament.TournamentEngine import TournamentEngine
 
 
 MAX_NB_OF_PLAYERS = 4
@@ -154,37 +155,43 @@ class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
     Class attributes:
         queues: list(dict)
             Each dict has keys: "id" (uuid), "queue" (list),
-            "status" (str), and "engine" (TournamentEngine)
+            "status" (str)
             The group name is tournament_<id>.
             The queue will contain the `self.tournament_profile` dict of each user.
+        engines dict:
+            "<id>": TournamentEngine
         queues_lock: asyncio.Lock
             Lock for the queues attribute
 
     Instance attributes:
         self.tournament_profile: dict
-            id (int), display_name (str), avatar_url (str), connected (bool)
+            id (int), display_name (str), avatar_url (str),
+            connected (bool),
         self.tournament: dict
             A reference to the element of cls.queues representing the tournament
         self.tournament_group_name: str
         
     """
     queues = []
-    queues_lock = asyncio.Lock()
+    engines = {}
+    lock = asyncio.Lock()
 
     async def connect(self, *args, **kwargs):
-        profile = await Profile.objects.get(user_id=self.scope["user"].id)
+        profile = await Profile.objects.aget(user_id=self.scope["user"].id)
         self.tournament_profile = {
             "user_id": profile.user_id,
             "display_name": profile.display_name,
-            "avatar_url": profile.avatar.url,
-            "connected": True
+            "avatar_url": profile.picture.url,
+            "connected": True,
             }
-        self.accept()
+        print(f"New player connected: {self.tournament_profile}")
+        sys.stdout.flush()
+        await self.accept()
         await self.send_json(content={"type":"tournament.welcome", "user_id":self.tournament_profile["user_id"]})
-        async with OnlineTournamentConsumer.queues_lock:
+        async with OnlineTournamentConsumer.lock:
             # Create new tournament if necessary
             if (not OnlineTournamentConsumer.queues) or (len(OnlineTournamentConsumer.queues[-1]) == MAX_NB_OF_PLAYERS):
-                OnlineTournamentConsumer.queues.append({"id":uuid.uuid4().hex, "queue":[], "status":"lobby", "engine": TournamentEngine()})
+                OnlineTournamentConsumer.queues.append({"id":uuid.uuid4().hex, "queue":[], "status":"lobby"})
             self.tournament = OnlineTournamentConsumer.queues[-1]
             self.tournament["queue"].append(self.tournament_profile)
             self.tournament_group_name = f"tournament_{self.tournament['id']}"
@@ -192,12 +199,14 @@ class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
             await self.channel_layer.group_send(self.tournament_group_name, {"type":"tournament.queue.update"})
             if len(self.tournament["queue"]) == MAX_NB_OF_PLAYERS:
                 OnlineTournamentConsumer.queues.pop(0)
+                self.engine = [TournamentEngine()]
+                OnlineTournamentConsumer.engines[self.tournament["id"]] = self.engine
                 self.tournament["status"] = "running"
-                self.tournament["engine"].start_tournament(**self.tournament)
+                await self.engine[0].init_tournament(**self.tournament)
 
     async def receive_json(self, content, *args, **kwargs):
         if content["type"] == "tournament.start":
-            self.start_tournament()
+            await self.engine[0].init_tournament(**self.tournament)
 
     async def disconnect(self, code):
         pass
@@ -208,5 +217,6 @@ class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
         Because it is a reference ot the class attribute,
         the new list of profiles is in self.tournament.
         """
-        self.send_json(content=self.tournament)
+        data = {"type":"tournament.queue.update", "data":self.tournament}
+        await self.send_json(content=data)
 
