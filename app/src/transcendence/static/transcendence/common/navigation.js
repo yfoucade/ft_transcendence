@@ -31,6 +31,7 @@ let hydration_recipes = {
     "main-following": following_hydration_recipe,
     "main-select-opponent": select_opponent_hydration_recipe,
     "main-online-game": online_game_hydration_recipe,
+    "main-online-tournament": online_tournament_hydration_recipe,
 }
 
 let dehydration_recipes = {
@@ -225,6 +226,11 @@ function select_opponent_hydration_recipe()
 function online_game_hydration_recipe()
 {
     hydrate_online_game();
+}
+
+function online_tournament_hydration_recipe()
+{
+    hydrate_online_tournament();
 }
 
 function online_game_dehydration_recipe()
