@@ -1,12 +1,17 @@
 # transcendence/consumers.py
 import asyncio
 import sys
+import uuid
 
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
 from django.utils import timezone
 
-from .models import PongGame
+from .models import PongGame, Profile
 from .pong.online_game.GameEngine import GameEngine
+
+
+MAX_NB_OF_PLAYERS = 4
+
 
 class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
     """
@@ -21,13 +26,12 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
         self.game_engine: GameEngine. Shared within group
         self.group_name: str. empty (default) when not in a group, or name of game's group
         self.task: None (default) or asyncio task running game loop
+        self.side: str. empty, "left", or "right"
     """
     games_queue = []
     games_queue_lock = asyncio.Lock()
 
     async def connect(self):
-        print("received connection")
-        sys.stdout.flush()
         self.status = "" # empty, 'waiting', 'playing'
         self.game_instance = None
         self.game_instance_lock = None
@@ -35,8 +39,6 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
         self.group_name = None
         self.task = None
         await self.accept()
-        print("accepted")
-        sys.stdout.flush()
 
     # Receive message from WebSocket
     async def receive_json(self, content):
@@ -81,8 +83,6 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
             await self.start_game()
 
     async def game_paddle(self, content):
-        print(f"{self.side = }, {content['up'] = }, {content['down'] = }")
-        sys.stdout.flush()
         self.game_engine.update_paddle( self.side, content["up"], content["down"])
 
     async def init_game(self):
@@ -147,3 +147,66 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
 
     async def game_update(self, event):
         await self.send_json(content=event)
+
+
+class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
+    """
+    Class attributes:
+        queues: list(dict)
+            Each dict has keys: "id" (uuid), "queue" (list),
+            "status" (str), and "engine" (TournamentEngine)
+            The group name is tournament_<id>.
+            The queue will contain the `self.tournament_profile` dict of each user.
+        queues_lock: asyncio.Lock
+            Lock for the queues attribute
+
+    Instance attributes:
+        self.tournament_profile: dict
+            id (int), display_name (str), avatar_url (str), connected (bool)
+        self.tournament: dict
+            A reference to the element of cls.queues representing the tournament
+        self.tournament_group_name: str
+        
+    """
+    queues = []
+    queues_lock = asyncio.Lock()
+
+    async def connect(self, *args, **kwargs):
+        profile = await Profile.objects.get(user_id=self.scope["user"].id)
+        self.tournament_profile = {
+            "user_id": profile.user_id,
+            "display_name": profile.display_name,
+            "avatar_url": profile.avatar.url,
+            "connected": True
+            }
+        self.accept()
+        await self.send_json(content={"type":"tournament.welcome", "user_id":self.tournament_profile["user_id"]})
+        async with OnlineTournamentConsumer.queues_lock:
+            # Create new tournament if necessary
+            if (not OnlineTournamentConsumer.queues) or (len(OnlineTournamentConsumer.queues[-1]) == MAX_NB_OF_PLAYERS):
+                OnlineTournamentConsumer.queues.append({"id":uuid.uuid4().hex, "queue":[], "status":"lobby", "engine": TournamentEngine()})
+            self.tournament = OnlineTournamentConsumer.queues[-1]
+            self.tournament["queue"].append(self.tournament_profile)
+            self.tournament_group_name = f"tournament_{self.tournament['id']}"
+            await self.channel_layer.group_add(self.tournament_group_name, self.channel_name)
+            await self.channel_layer.group_send(self.tournament_group_name, {"type":"tournament.queue.update"})
+            if len(self.tournament["queue"]) == MAX_NB_OF_PLAYERS:
+                OnlineTournamentConsumer.queues.pop(0)
+                self.tournament["status"] = "running"
+                self.tournament["engine"].start_tournament(**self.tournament)
+
+    async def receive_json(self, content, *args, **kwargs):
+        if content["type"] == "tournament.start":
+            self.start_tournament()
+
+    async def disconnect(self, code):
+        pass
+
+    async def tournament_queue_update(self, content):
+        """
+        The queue's state has been modified (a player joined or left the queue).
+        Because it is a reference ot the class attribute,
+        the new list of profiles is in self.tournament.
+        """
+        self.send_json(content=self.tournament)
+
