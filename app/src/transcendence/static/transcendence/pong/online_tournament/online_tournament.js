@@ -23,6 +23,7 @@ let online_tournament_obj = {
     elt_right_score: null,
 
     elt_div_results: null,
+    elt_a_winner: null,
 
     // page status
     ask_confirmation_before_leaving: false,
@@ -65,6 +66,7 @@ function hydrate_online_tournament()
         elt_right_score = document.getElementById("right-score");
 
         elt_div_results = document.getElementById("online-tournament-results");
+        elt_a_winner = document.getElementById("winner-anchor");
 
         websocket = new WebSocket( "ws://" + window.location.host + "/ws/online-tournament/" );
         websocket.addEventListener( "open", event_handler_open_websocket );
@@ -111,13 +113,170 @@ function msg_handler_tournament_welcome( user_id )
     online_tournament_obj.user_id = user_id;
 }
 
+function build_usertag( user_id, display_name, avatar_url, reverse=false, ...args)
+{
+    res = document.createElement("span");
+
+    img_elt = document.createElement("img");
+    img_elt.width = "32"; img_elt.height = "32";
+    img_elt.src = avatar_url;
+
+    name_elt = document.createElement("span");
+    name_elt.innerHTML = display_name;
+
+    if ( reverse )
+    {
+        res.appendChild( name_elt );
+        res.appendChild( img_elt );
+    }
+    else
+    {
+        res.appendChild( img_elt );
+        res.appendChild( name_elt );
+    }
+    return res;
+}
+
+function build_pairing_ul_elements( pairings )
+{
+    let res = [];
+    let new_li;
+    for ( pairing of pairings )
+    {
+        new_li = document.createElement("li");
+        new_li.appendChild( build_usertag(...Object.values(pairing.left_player)) );
+        new_li.innerHTML += "</br>";
+        new_li.appendChild( build_usertag(...Object.values(pairing.right_player)) );
+        res.push(new_li);
+    }
+    return res;
+}
+
+function msg_handler_tournament_next_round( pairings )
+{
+    online_tournament_obj.elt_ul_queue.innerHTML = "";
+    online_tournament_obj.elt_button_leave.removeEventListener( "click", event_handler_leave );
+    online_tournament_obj.elt_button_start.removeEventListener( "click", event_handler_start );
+    online_tournament_obj.elt_div_lobby.classList.replace( "shown", "hidden" );
+    online_tournament_obj.elt_game_elements.classList.replace( "shown", "hidden" );
+
+    console.log("starting next round:");
+    console.log(pairings);
+    online_tournament_obj.elt_ul_round_pairings.innerHTML = "";
+    for ( let pairing_elt of build_pairing_ul_elements( pairings ) )
+        online_tournament_obj.elt_ul_round_pairings.appendChild( pairing_elt );
+
+    online_tournament_obj.elt_div_next_round.classList.replace( "hidden", "shown" );
+}
+
+function ot_handle_keydown( event )
+{
+    if (event.key == "ArrowUp" && !online_tournament_obj.going_up)
+    {
+        online_tournament_obj.going_up = true;
+        ot_send_paddle_movement();
+    }
+    else if (event.key == "ArrowDown" && !online_tournament_obj.going_down)
+    {
+        online_tournament_obj.going_down = true;
+        ot_send_paddle_movement();
+    }
+}
+
+function ot_handle_keyup( event )
+{
+    if (event.key == "ArrowUp" && online_tournament_obj.going_up)
+    {
+        online_tournament_obj.going_up = false;
+        ot_send_paddle_movement();
+    }
+    else if (event.key == "ArrowDown" && online_tournament_obj.going_down)
+    {
+        online_tournament_obj.going_down = false;
+        ot_send_paddle_movement();
+    }
+}
+
+function ot_send_paddle_movement()
+{
+    online_tournament_obj.websocket.send(JSON.stringify(
+        {
+        "type": "game.paddle",
+        "up": online_tournament_obj.going_up,
+        "down": online_tournament_obj.going_down,
+        }
+    ));
+}
+
+function msg_handler_game_init( data )
+{
+    window.addEventListener( "keydown", ot_handle_keydown );
+    window.addEventListener( "keyup", ot_handle_keyup );
+    set_online_tournament_elt_values(data);
+    online_tournament_obj.elt_div_next_round.classList.replace("shown", "hidden");
+    online_tournament_obj.elt_game_elements.classList.replace("hidden", "shown");
+}
+
+function set_online_tournament_elt_values(data)
+{
+    online_tournament_obj.elt_player1_img.src = data.player_1_avatar_url;
+    online_tournament_obj.elt_player1_name.innerHTML = data.player_1_display_name;
+    online_tournament_obj.elt_player2_img.src = data.player_2_avatar_url;
+    online_tournament_obj.elt_player2_name.innerHTML = data.player_2_display_name;
+    online_tournament_obj.elt_canvas.style.height = data.canvas_height;
+    online_tournament_obj.elt_canvas.style.aspectRatio = data.canvas_aspect_ratio;
+    ot_next_frame(data);
+}
+
+/**
+ * update scores and position of game elements
+ * @param {Object} data 
+ */
+function ot_next_frame(data)
+{
+    online_tournament_obj.elt_left_score.innerHTML = data.left_score;
+    online_tournament_obj.elt_right_score.innerHTML = data.right_score;
+    online_tournament_obj.elt_left_paddle.style.top = `${data.left_paddle_top_pct}%`;
+    online_tournament_obj.elt_right_paddle.style.top = `${data.right_paddle_top_pct}%`;
+    online_tournament_obj.elt_ball.style.top = `${data.ball_top_pct}%`;
+    online_tournament_obj.elt_ball.style.left = `${data.ball_left_pct}%`;
+    online_tournament_obj.elt_left_paddle.style.transform = "translate(0, 0)";
+    online_tournament_obj.elt_right_paddle.style.transform = "translate(-100%, 0)";
+    online_tournament_obj.elt_ball.style.transform = "translate(0, 0)";
+}
+
+function msg_handler_game_update(data)
+{
+    ot_next_frame(data);
+}
+
+function msg_handler_tournament_winner( winner )
+{
+    online_tournament_obj.elt_div_lobby.classList.replace( "shown", "hidden" );
+    online_tournament_obj.elt_game_elements.classList.replace( "shown", "hidden" );
+    online_tournament_obj.elt_div_next_round.classList.replace( "shown", "hidden" );
+    let  winnertag = build_usertag(...Object.values(winner));
+    online_tournament_obj.elt_a_winner.href = `/user/${winner.user_id}`;
+    online_tournament_obj.elt_a_winner.innerHTML = "";
+    online_tournament_obj.elt_a_winner.appendChild(winnertag);
+    online_tournament_obj.elt_div_results.classList.replace( "hidden", "shown" );
+}
+
 function event_handler_online_tournament_message_dispatcher( event )
 {
-    data = JSON.parse(event.data);
+    let data = JSON.parse(event.data);
     console.log("received from server:");
     console.log(data);
     if ( data.type == "tournament.welcome" )
         msg_handler_tournament_welcome( data.user_id );
     if ( data.type == "tournament.queue.update" )
         msg_handler_tournament_queue_update( data.data.queue );
+    if ( data.type == "tournament.next_round" )
+        msg_handler_tournament_next_round( data.pairings );
+    if ( data.type == "game.init" )
+        msg_handler_game_init( data.data );
+    if ( data.type == "game.update" )
+        msg_handler_game_update( data.data );
+    if ( data.type == "tournament.winner" )
+        msg_handler_tournament_winner( data.winner );
 }

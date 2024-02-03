@@ -5,6 +5,7 @@ import uuid
 
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 from .models import PongGame, Profile
 from .pong.online_game.GameEngine import GameEngine
@@ -164,13 +165,19 @@ class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
             Lock for the queues attribute
 
     Instance attributes:
-        self.tournament_profile: dict
+        tournament_profile: dict
             id (int), display_name (str), avatar_url (str),
             connected (bool),
-        self.tournament: dict
+        tournament: dict
             A reference to the element of cls.queues representing the tournament
-        self.tournament_group_name: str
-        
+        tournament_group_name: str
+        in_game: bool
+            default False
+        side: str
+            "left" or "right"
+        game_id: str
+            uuid
+        match_group_name: str
     """
     queues = []
     engines = {}
@@ -184,10 +191,11 @@ class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
             "avatar_url": profile.picture.url,
             "connected": True,
             }
-        print(f"New player connected: {self.tournament_profile}")
-        sys.stdout.flush()
         await self.accept()
         await self.send_json(content={"type":"tournament.welcome", "user_id":self.tournament_profile["user_id"]})
+        self.in_game = False
+        self.engine = None
+        self.game_engine = None
         async with OnlineTournamentConsumer.lock:
             # Create new tournament if necessary
             if (not OnlineTournamentConsumer.queues) or (len(OnlineTournamentConsumer.queues[-1]) == MAX_NB_OF_PLAYERS):
@@ -207,6 +215,11 @@ class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
     async def receive_json(self, content, *args, **kwargs):
         if content["type"] == "tournament.start":
             await self.engine[0].init_tournament(**self.tournament)
+        if content["type"] == "game.paddle":
+            if not self.in_game or not self.side:
+                return
+            content["side"] = self.side
+            await self.channel_layer.group_send( self.match_group_name, content)
 
     async def disconnect(self, code):
         pass
@@ -220,3 +233,99 @@ class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
         data = {"type":"tournament.queue.update", "data":self.tournament}
         await self.send_json(content=data)
 
+    async def tournament_next_round(self, content):
+        """
+        content["type"] str
+            tournament.next_round
+        content["pairings"] list(dict)
+            Contains the parirings for this round.
+            "pairings": list(dict)
+                each dict contains:
+                "game_id": uuid
+                "left_player": profile
+                "right_player": profile or empty string
+        """
+        await self.send_json(content=content)
+        if self.engine is None:
+            self.engine = OnlineTournamentConsumer.engines[self.tournament["id"]]
+        await asyncio.sleep(5)
+        await self.init_game(content["pairings"])
+
+    def get_pairing(self, pairings):
+        """
+        Find the match the current scope's user is in, in a list of matches.
+        """
+        for pairing in pairings:
+            if pairing["left_player"]["user_id"] == self.tournament_profile["user_id"]:
+                return pairing
+            if pairing["right_player"]["user_id"] == self.tournament_profile["user_id"]:
+                return pairing
+        return None
+
+    async def init_game(self, pairings):
+        """
+        "pairings" list(dict)
+            Contains the parirings for this round.
+            "pairings": list(dict)
+                each dict contains:
+                "game_id": uuid
+                "left_player": profile
+                "right_player": profile or empty string
+        """
+        pairing = self.get_pairing(pairings)
+        if ( pairing is None ) or isinstance(pairing["right_player"], str):
+            return
+        self.in_game = True
+        self.side = "left" if pairing["left_player"]["user_id"] == self.tournament_profile["user_id"] else "right"
+        self.game_id = pairing["game_id"]
+        self.match_group_name = f"match_{self.game_id}"
+        await self.channel_layer.group_add( self.match_group_name, self.channel_name )
+        if self.side == "right":
+            return
+        self.game_instance = PongGame( user_1=self.scope["user"],
+                                       user_2=await User.objects.aget(pk=pairing["right_player"]["user_id"]) )
+        await self.game_instance.asave()
+        await self.game_instance.asave(update_fields=self.game_instance.set_start_time())
+        self.game_engine = GameEngine()
+        self.game_engine.set_start_time(self.game_instance.start_time)
+        asyncio.create_task(self.game_loop())
+
+    async def game_loop(self):
+        await self.channel_layer.group_send(self.match_group_name, {"type": "game.init", "data": await self.game_engine.get_init_state(self.game_instance),})
+        while timezone.now() < self.game_instance.start_time:
+            await asyncio.sleep(.01)
+        while self.in_game:
+            self.game_engine.compute_next_frame()
+            state = self.game_engine.get_state()
+            await self.channel_layer.group_send(
+                self.match_group_name,
+                {"type":"game.update", "data":state}
+            )
+            await asyncio.sleep(0.005)
+            if state["winner"]:
+                self.in_game = False
+                updated_fields = self.game_instance.set_winner(self.game_instance.user_1 if state["winner"]=="left" else self.game_instance.user_2)
+                await self.game_instance.asave(update_fields=updated_fields)
+                await self.engine[0].set_winner( game_id=self.game_id, side=state["winner"], reason="points", score=f"{self.game_engine.left_score}-{self.game_engine.right_score}")
+                await self.channel_layer.group_send( self.match_group_name, {"type":"game.over", "game_id":self.game_id} )
+
+    async def game_init(self, message):
+        await self.send_json(content=message)
+
+    async def game_update(self, message):
+        await self.send_json(content=message)
+
+    async def game_paddle(self, content):
+        if not self.game_engine:
+            return
+        self.game_engine.update_paddle( content["side"], content["up"], content["down"] )
+
+    async def tournament_round_results(self, message):
+        await self.send_json(content=message)
+
+    async def game_over(self, message):
+        pass
+
+    async def tournament_winner(self, message):
+        await self.send_json( content=message )
+        # TODO: close connection
