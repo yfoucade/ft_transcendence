@@ -20,9 +20,9 @@ class TournamentEngine:
             Each dict contains:
             "pairings": list(dict)
                 each dict contains:
-                "match_id": uuid
+                "game_id": uuid
                 "left_player": profile
-                "right_player": profile or "bye"
+                "right_player": profile or empty string
             "results": list(dict)
                 A list of same size with the results of the round.
                 Each dict contains:
@@ -55,18 +55,37 @@ class TournamentEngine:
         res = {}
 
         self.players_remaining = [profile for profile in self.players_remaining if profile["connected"]]
+        if len(self.players_remaining) == 1:
+            await self.channel_layer.group_send( self.group_name, {"type":"tournament.winner", "winner":self.players_remaining[0]} )
+            return
         # Avoid multiple byes.
         if len(self.players_remaining) % 2:
             self.players_remaining.append(self.players_remaining.pop(0))
         # Make pairings
-        res["pairings"] = [{"match_id": uuid.uuid4().hex,
+        res["pairings"] = [{"game_id": uuid.uuid4().hex,
                             "left_player": self.players_remaining[i],
                             "right_player": self.players_remaining[i+1]}
-                            for i in range(0, len(self.players_remaining) // 2, 2)]
+                            for i in range(0, len(self.players_remaining)-1, 2)]
         if len(self.players_remaining) % 2:
-            res["pairings"].append({"match_id": uuid.uuid4(), "left_player": self.players_remaining[-1], "right_player":""})
+            res["pairings"].append({"game_id": uuid.uuid4().hex, "left_player": self.players_remaining[-1], "right_player":""})
         # Init results
-        res["results"] = [[None, {"winner":"left", "reasons":"bye", "score":""}][not pairing["right_player"]] for pairing in res["pairings"]]
+        res["results"] = [[{}, {"winner":"left", "reasons":"bye", "score":""}][not pairing["right_player"]] for pairing in res["pairings"]]
         # Send round info
         self.rounds.append(res)
-        await self.channel_layer.group_send(self.group_name, {"type":"tournament.next.round", "pairings":res["pairings"]})
+        await self.channel_layer.group_send(self.group_name, {"type":"tournament.next_round", "pairings":res["pairings"]})
+
+    async def set_winner( self, game_id:str, side:str, reason:str, score:str ):
+        game = None
+        for i, (pairing, result) in enumerate( zip(self.rounds[-1]["pairings"], self.rounds[-1]["results"]) ):
+            if pairing["game_id"] == game_id:
+                result["winner"] = side
+                result["reason"] = reason
+                result["score"] = score
+                if side == "left":
+                    self.players_remaining.remove(pairing["right_player"])
+                else:
+                    self.players_remaining.remove(pairing["left_player"])
+        if not all( result for result in self.rounds[-1]["results"] ):
+            return
+        await self.channel_layer.group_send( self.group_name, {"type":"tournament.round_results", "results":self.rounds[-1]["results"]} )
+        await self.start_round()

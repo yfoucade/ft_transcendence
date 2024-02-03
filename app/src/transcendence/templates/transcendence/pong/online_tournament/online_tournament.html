@@ -43,6 +43,14 @@
     </div>
 
     <div id="online-tournament-results" class="hidden">
+        <h2>{% trans 'Winner' %}</h2>
+        <a id="winner-anchor" href="">
+        </a>
+        <button>
+            <a href="{% url 'play' %}">
+                {% trans 'Return' %}
+            </a>
+        </button>
     </div>
 </main>
 {% endblock %}
