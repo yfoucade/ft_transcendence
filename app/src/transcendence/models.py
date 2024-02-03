@@ -83,6 +83,10 @@ class PongGame(models.Model):
         #               ^^^^^^^^^^^
         #               SynchronousOnlyOperation
         return ["winner"]
+    
+    def set_winner(self, user:User):
+        self.winner = user
+        return ["winner"]
 
     def set_end_reason(self, reason:str):
         self.end_reason = reason
