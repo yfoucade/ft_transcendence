@@ -125,7 +125,10 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
                 {"type":"game.update", "data":state}
             )
             # await asyncio.sleep(0.005)
-            if state["winner"]: break
+            if state["winner"]:
+                updated_fields = self.game_instance.set_winner(self.game_instance.user_1 if state["winner"]=="left" else self.game_instance.user_2)
+                await self.game_instance.asave(update_fields=updated_fields)
+                break
 
     async def game_disconnect(self, event):
         await self.send_json(content=event)
