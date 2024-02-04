@@ -23,9 +23,19 @@
     {% endif %}
 
     <h2>Stats</h2>
-    <h3>Feature required: online games</h3>
+        {% if nb_wins or nb_losses %}
+            Wins: {{ nb_wins }}
+            </br>
+            Losses: {{ nb_losses }}
+        {% else %}
+            No Pong game played yet
+        {% endif %}
     <h2>Match History</h2>
-    <h3>Feature required: online games</h3>
-
+        {% for game in game_history %}
+            {{ game.user_1.profile.display_name }} vs {{ game.user_2.profile.display_name }} - {{ game.start_time }} </br>
+        {% endfor %}
+        {% for profile in left_player_profile %}
+            {{ profile }}
+        {% endfor %}
 </main>
 {% endblock content %}

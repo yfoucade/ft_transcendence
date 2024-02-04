@@ -3,10 +3,12 @@ import json
 import os
 from typing import Any
 from datetime import timezone, timedelta
+import sys
 
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.paginator import Paginator
+from django.db.models import F, Q
 from django.db.models.query import QuerySet
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -149,7 +151,15 @@ def user_details(request, id):
             client_profile.following.add( User.objects.get(pk=id) )
     own_page = request.user.pk == id
     following = client_profile.following.filter(id=id).exists()
-    context = {"profile": target_profile, "own_page":own_page, "following": following}
+
+    # stats and history
+    game_history = PongGame.objects.filter(Q(user_1_id=target_profile.user_id) | Q(user_2_id=target_profile.user_id),
+                                           Q(winner__isnull=False) ).order_by("-start_time")
+    nb_wins = game_history.filter(winner_id=target_profile.user_id).count()
+    nb_losses = game_history.filter(~Q(winner_id=target_profile.user_id)).count()
+
+    context = {"profile": target_profile, "own_page":own_page, "following": following,
+               "nb_wins":nb_wins, "nb_losses":nb_losses, "game_history":game_history, }
     return render( request, "transcendence/community/user_details.html", context )
 
 
