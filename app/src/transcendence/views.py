@@ -1,4 +1,5 @@
 import asyncio
+import html
 import json
 import os
 from typing import Any
@@ -48,7 +49,8 @@ def local_tournament_form(request):
 
 def local_tournament_lobby(request):
     if ( request.method == "POST" ):
-        tournament_state = json.loads( request.body )
+        escaped_body = html.escape( request.body.decode(), quote=False )
+        tournament_state = json.loads( escaped_body )
         context = lobby.build_local_tournament_context( tournament_state )
         # TODO: this is debug
         # with open("/dev/pts/0", "w") as f:
