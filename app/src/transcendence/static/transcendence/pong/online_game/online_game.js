@@ -27,6 +27,7 @@ let online_game_obj = {
     // API
     websocket: null,
     game_id: null,
+	user_id: null,
 
     // key_status
     going_up: false,
@@ -90,10 +91,17 @@ function ws_message_dispatcher(event)
 {
     // console.log(event);
     content = JSON.parse(event.data);
+	if ( content.type == "game.connect" )
+		og_game_connect( content.data );
     if ( content.type == "game.init" )
         og_init_handler(content.data);
     if ( content.type == "game.update" )
         og_update_handler(content.data);
+}
+
+function og_game_connect( data )
+{
+	online_game_obj.user_id = data.user_id;
 }
 
 function og_print_debug(event)
