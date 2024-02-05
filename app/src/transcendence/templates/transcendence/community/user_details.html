@@ -32,10 +32,20 @@
         {% endif %}
     <h2>Match History</h2>
         {% for game in game_history %}
-            {{ game.user_1.profile.display_name }} vs {{ game.user_2.profile.display_name }} - {{ game.start_time }} </br>
-        {% endfor %}
-        {% for profile in left_player_profile %}
-            {{ profile }}
+            <span is_winner="{% if game.winner.profile.display_name == game.user_1.profile.display_name %}true{% else %}false{% endif %}">
+                {{ game.user_1.profile.display_name }}
+                <img src="{{ game.user_1.profile.picture.url }}">
+            </span>
+            vs
+            <span is_winner="{% if game.winner.profile.display_name == game.user_2.profile.display_name %}true{% else %}false{% endif %}">
+                <img src="{{ game.user_2.profile.picture.url }}">
+                {{ game.user_2.profile.display_name }}
+            </span>
+            - 
+            <span title="{{ game.start_time }}">
+                {{ game.start_time|timesince }}
+            </span>
+            </br>
         {% endfor %}
 </main>
 {% endblock content %}
