@@ -12,6 +12,7 @@ from django.utils import timezone
 
 CUSTOM_USERNAME_MAXLENGTH = 10
 SESSION_TIMEOUT_SECONDS = 60
+K = 20
 
 def get_picture_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/picture
@@ -27,6 +28,12 @@ class Profile(models.Model):
     following = models.ManyToManyField(User, related_name="followers", blank=True)
     rating = models.FloatField(default=1500)
     last_request_time = models.DateTimeField(default=timezone.now, blank=True)
+    
+    def update_rating(self, is_winner, opponent_rating):
+        D = self.rating - opponent_rating
+        pD = 1 / ( 1 + 10 ** (-D / 400) )
+        self.rating += K * ( is_winner - pD )
+        return [ "rating" ]
 
 class PongGame(models.Model):
     # context
@@ -76,16 +83,24 @@ class PongGame(models.Model):
 
     async def set_loser(self, user:User):
         if (self.user_1_id == user.pk):
-            self.winner = await User.objects.aget(pk=self.user_2_id)
+            return await self.set_winner(self.user_2)
         else:
-            self.winner = await User.objects.aget(pk=self.user_1_id)
+            return await self.set_winner(self.user_1)
         # self.winner = self.user_2 if (self.user_1_id == user.pk) else self.user_1
         #               ^^^^^^^^^^^
         #               SynchronousOnlyOperation
-        return ["winner"]
+        # return ["winner"]
     
-    def set_winner(self, user:User):
+    async def set_winner(self, user:User):
+        if self.winner:
+            return
         self.winner = user
+        profile_1 = await Profile.objects.aget( user_id = self.user_1.pk )
+        profile_2 = await Profile.objects.aget( user_id = self.user_2.pk )
+        updated_fields = profile_1.update_rating( self.user_1_id == user.pk, profile_2.rating )
+        await profile_1.asave( update_fields = updated_fields )
+        updated_fields = profile_2.update_rating( self.user_2_id == user.pk, profile_1.rating )
+        await profile_2.asave( update_fields = updated_fields )
         return ["winner"]
 
     def set_end_reason(self, reason:str):
