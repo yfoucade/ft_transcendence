@@ -70,7 +70,7 @@
                     </a>
                 </li>
             {% else %}
-                <li id="user-tag" class="nav-link" data-authenticated="false"><a href="{% url 'login' %}?next={{ request.path }}">{% trans 'Log in' %}</a></li>
+                <li id="user-tag" class="nav-link" data-authenticated="false"><a href="{% url 'login' %}?next={{ request.GET.next|default:request.path }}">{% trans 'Log in' %}</a></li>
             {% endif %}
         </ul>
     </nav>
