@@ -1,14 +1,21 @@
 FROM debian:bookworm
+
+COPY init_app.sh .
+COPY requirements.txt .
+COPY transcendence.conf.template /etc/nginx/sites-enabled/transcendence.conf
+COPY img/default_profile_picture_32x32.png /var/www/transcendence/media/default_pp.png
+
 RUN apt-get update
 RUN apt-get -y upgrade
+# postgresql
 RUN apt-get install -y postgresql-15
+# python
 RUN apt-get install -y python3 python3-venv
 RUN python3 -m venv env
-
+RUN /env/bin/python3 -m pip install -r requirements.txt
 # nginx
 RUN apt-get install -y curl gnupg2 ca-certificates lsb-release debian-archive-keyring
 RUN apt-get install -y nginx
-
 # redis
 RUN apt-get install -y lsb-release curl gpg
 RUN curl -fsSL https://packages.redis.io/gpg | gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
@@ -16,14 +23,10 @@ RUN echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://
 RUN apt-get update
 RUN apt-get install -y redis
 
-
 WORKDIR /etc/ssl/certs
 RUN openssl req -x509 -out server.crt -keyout server.key -newkey rsa:2048 -nodes -sha256 -subj '/C=FR/ST=Paris/O=42-Paris/CN=ft_transcendence'
 WORKDIR /
 
-COPY init_app.sh .
-COPY transcendence.conf.template /etc/nginx/sites-enabled/transcendence.conf
-COPY img/default_profile_picture_32x32.png /var/www/transcendence/media/default_pp.png
 RUN rm /etc/nginx/sites-enabled/default
 
 EXPOSE 80
