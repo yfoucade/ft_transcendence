@@ -93,7 +93,7 @@ class PongGame(models.Model):
     
     async def set_winner(self, user:User):
         if self.winner:
-            return
+            return [""]
         self.winner = user
         profile_1 = await Profile.objects.aget( user_id = self.user_1.pk )
         profile_2 = await Profile.objects.aget( user_id = self.user_2.pk )
