@@ -41,6 +41,7 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
         self.group_name = None
         self.task = None
         await self.accept()
+        await self.send_json(content = {"type": "game.connect", "user_id": self.scope["user"].id })
 
     # Receive message from WebSocket
     async def receive_json(self, content):
@@ -69,7 +70,7 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
         if self.group_name:
             await self.channel_layer.group_send(
                 self.group_name,
-                {"type":"game.disconnect", "who":self.side})
+                {"type":"game.disconnect", "who_side":self.side, "who_id": self.scope["user"].id })
         self.close()
 
     async def game_join(self, content):
@@ -126,9 +127,9 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
             )
             # await asyncio.sleep(0.005)
             if state["winner"]:
-                updated_fields = self.game_instance.set_winner(self.game_instance.user_1 if state["winner"]=="left" else self.game_instance.user_2)
+                updated_fields = await self.game_instance.set_winner(self.game_instance.user_1 if state["winner"]=="left" else self.game_instance.user_2)
                 await self.game_instance.asave(update_fields=updated_fields)
-                break
+                await self.channel_layer.group_send( self.group_name, {"type": "game.over", "winner_side": state["winner"]} )
 
     async def game_disconnect(self, event):
         await self.send_json(content=event)
@@ -141,6 +142,7 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
         if self.task:
             self.task.cancel()
         self.task = None
+        self.close()
 
     async def game_init(self, event):
         self.status = 'playing'
@@ -152,6 +154,10 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
 
     async def game_update(self, event):
         await self.send_json(content=event)
+
+    async def game_over( self, event ):
+        await self.send_json( content = event )
+        self.close()
 
 
 class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
@@ -307,7 +313,7 @@ class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
             await asyncio.sleep(0.005)
             if state["winner"]:
                 self.in_game = False
-                updated_fields = self.game_instance.set_winner(self.game_instance.user_1 if state["winner"]=="left" else self.game_instance.user_2)
+                updated_fields = await self.game_instance.set_winner(self.game_instance.user_1 if state["winner"]=="left" else self.game_instance.user_2)
                 await self.game_instance.asave(update_fields=updated_fields)
                 await self.engine[0].set_winner( game_id=self.game_id, side=state["winner"], reason="points", score=f"{self.game_engine.left_score}-{self.game_engine.right_score}")
                 await self.channel_layer.group_send( self.match_group_name, {"type":"game.over", "game_id":self.game_id} )
