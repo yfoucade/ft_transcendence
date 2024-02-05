@@ -2,6 +2,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.template import loader
 from django.urls import reverse
+from .auth import verify_jwt_token, generate_jwt_token
 
 from .models import Choice, Question
 

@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.paginator import Paginator
 from django.db.models.query import QuerySet
-from django.http import HttpResponse
+from django.http import HttpRequest, JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.contrib.auth import login, authenticate
@@ -19,10 +19,19 @@ from django.utils import translation, timezone
 from django.utils.translation import check_for_language
 from django.views.generic.list import ListView
 
+from transcendence.auth42 import (
+    verify_jwt_token,
+    generate_jwt_token,
+    JWTVerificationFailed,
+)
+from transcendence.auth42 import IntraAuthenticationBackend
+
 from .forms import CustomUserCreationForm, CustomUserChangeForm, CustomProfileChangeForm
 from .models import Profile, SESSION_TIMEOUT_SECONDS
 from .pong.local_tournament import lobby
 # Create your views here.
+
+
 
 def index(request):
     # template = loader.get_template("transcendence/base.html")
@@ -145,6 +154,9 @@ def user_details(request, id):
     context = {"profile": target_profile, "own_page":own_page, "following": following}
     return render( request, "transcendence/community/user_details.html", context )
 
+def api42(request):
+    print(request)
+    print("--------------------yoooooo--------------------")
 
 def get_friends_statuses( profile:Profile ):
     res = []
@@ -164,3 +176,37 @@ def following(request):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     return render( request, "transcendence/community/following.html", {"page_obj":page_obj} )
+
+def intra_login(request: HttpRequest):
+
+    redirectURI = os.environ.get("REDIRECT_URI")
+    return redirect(redirect_uri)
+    # return redirect(os.environ.get("AUTH_URL_INTRA"))
+
+def intra_login_redirect(request: HttpRequest):
+    code = request.GET.get("code")
+    user_intra = exchange_code(code)
+    jwt_token = generate_jwt_token(user_intra)
+    user = IntraAuthenticationBackend().autenticate(request, jwt_token=jwt_token, user_intra=user_intra)
+
+    if user:
+        login(request, user, "transcendence.views.IntraAuthenticationBackend")
+    response.set_cookie("jwt_token", jwt_token, httponly=True, samesite="Lax")
+    return response
+
+def refresh_token(request):
+    jwt_token = request.COOKIES.get("jwt_token")
+
+    if jwt_token:
+        try:
+            user_data = verify_jwt_token(jwt_token)
+            new_jwt_token = generate_jwt_token(user_data)
+            response = JsonResponse({"jwt_token": new_jwt_token})
+            response.set_cookie(
+                "jwr_token", new_jwt_token, httponly=True, samesite="Lax"
+            )
+            return response
+        except JWTVerificationFailed:
+            pass
+    return JsonResponse({"error": "Error refreshing token"}, status=400)
+    
