@@ -30,9 +30,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("i18n/", include("django.conf.urls.i18n")),
     # path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
-    path('oauth2/api_42/login/', views.intra_login, name = 'intra_login'),
-    path('oauth2/api_42/redirect/', views.intra_login_redirect, name = 'intra_login_redirect'),
-    path('oauth2/api_42/refresh_token/', views.refresh_token, name='refresh')
+    path('api_42/login/', views.intra_login, name = 'intra_login'),
+    path('api_42/redirect/', views.intra_login_redirect, name = 'intra_login_redirect'),
+    path('api_42/refresh_token/', views.refresh_token, name='refresh')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # TODO: remove in production
 
 urlpatterns += i18n_patterns(
@@ -45,6 +45,6 @@ urlpatterns += i18n_patterns(
     path( "local-tournament/results/", views.local_tournament_results, name="local-tournament-results" ),
     path( "signup/", views.signup, name="signup" ),
     path( "profile/", views.profile, name="profile" ),
-    path( "oauth2/api42/", views.api42, name="api42" ),
+    path( "api42/", views.api42, name="api42" ),
 
 )

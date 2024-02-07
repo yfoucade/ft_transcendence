@@ -178,10 +178,8 @@ def following(request):
     return render( request, "transcendence/community/following.html", {"page_obj":page_obj} )
 
 def intra_login(request: HttpRequest):
-
-    redirectURI = os.environ.get("REDIRECT_URI")
-    return redirect(redirect_uri)
-    # return redirect(os.environ.get("AUTH_URL_INTRA"))
+    print("=================================================")
+    return redirect(os.environ.get("REDIRECT_URI"))
 
 def intra_login_redirect(request: HttpRequest):
     code = request.GET.get("code")
