@@ -2,11 +2,25 @@
 {% load i18n %}
 
 {% block content %}
-<main id="main-signup" class="shown">
+<main id="main-signup" class="shown no-animated-bg">
     <form id="signup-form" action="{% url 'signup' %}" method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="{% trans 'Sign up' %}">
+
+        {% for field in form %}
+            {% if field.name == 'username' or field.name == 'password1' or field.name == 'email' or field.name == 'password2' %}
+                <div class="form-group align-items-center d-flex flex-column">
+            {% else %}
+                <div class="form-group">
+            {% endif %}
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.help_text %}
+                    <small id="{{ field.auto_id }}_helptext" class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <input type="submit" value="{% trans 'Sign up' %}" class="signup-button btn btn-outline-light">
         <input type="hidden" name="next" value="{{ request.GET.next }}">
     </form>
 </main>

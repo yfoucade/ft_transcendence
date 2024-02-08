@@ -4,6 +4,9 @@ COPY init_app.sh .
 COPY requirements.txt .
 COPY transcendence.conf.template /etc/nginx/sites-enabled/transcendence.conf
 COPY img/default_profile_picture_32x32.png /var/www/transcendence/media/default_pp.png
+COPY img/pongwars-title.png /var/www/transcendence/media/
+COPY assets/VeniteAdoremusStraight.ttf /var/www/transcendence/media/
+COPY assets/VeniteAdoremus-rgRBA.ttf /var/www/transcendence/media/
 
 RUN apt-get update
 RUN apt-get -y upgrade

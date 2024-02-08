@@ -9,6 +9,7 @@
     {% block title %}
     <title>{% trans 'Transcendence' %}</title>
     {% endblock title %}
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'transcendence/style.css' %}?{% now 'U' %}">
     <script>
         window.onpopstate = (event) => console.log("hello");
@@ -29,20 +30,22 @@
         <script src="{% static 'transcendence/accounts/signup.js' %}?{% now 'U' %}" defer></script>
         <script src="{% static 'transcendence/accounts/edit_profile.js' %}?{% now 'U' %}" defer></script>
         <script src="{% static 'transcendence/script.js' %}?{% now 'U' %}" defer></script>
+		<script src="{% static 'transcendence/animated_background.js' %}?{% now 'U' %}" defer></script>
     {% endblock scripts %}
 </head>
 
 <body>
+	<canvas id="bouncing_dots"></canvas>
     <nav id="main-navbar" class="navbar">
         <ul id="main-menu">
-            <li id="nav-home" class="nav-link"><a href="/">{% trans 'Home' %}</a></li>
-            <li id="nav-play" class="nav-link"><a href="/play">{% trans 'Play' %}</a></li>
-            <li id="nav-community" class="nav-link"><a href="{% url 'leaderboard' %}">{% trans 'Leaderboard' %}</a></li>
+            <li id="nav-home" class="nav-link animated-underline-link"><a href="/">{% trans 'Home' %}<span class="underline"></span></a></li>
+            <li id="nav-play" class="nav-link animated-underline-link"><a href="/play">{% trans 'Play' %}<span class="underline"></span></a></li>
+            <li id="nav-community" class="nav-link animated-underline-link"><a href="{% url 'leaderboard' %}">{% trans 'Leaderboard' %}<span class="underline"></span></a></li>
             <li id="language-selector">
                 <form id="lang-form" action="{% url 'set_language' %}" method="post">
                     {% csrf_token %}
                     <input name="next" type="hidden" value="{{ redirect_to }}">
-                    <select name="language">
+                    <select class="language-select" name="language">
                         {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
@@ -52,7 +55,7 @@
                             </option>
                         {% endfor %}
                     </select>
-                    <input type="submit" value="Go">
+                    <input class="language-go" type="submit" value="Go">
                 </form>
             </li>
         </ul>
@@ -62,15 +65,15 @@
                 <li id="user-tag" class="nav-link" data-authenticated="true">
                     <a href="/profile/">
                         {% if profile.picture %}
-                            <img src="{{ profile.picture.url }}" width="32" height="32">
+                            <img class="profile-picture" src="{{ profile.picture.url }}" width="32" height="32">
                         {% else %}
-                            <img src="/media/default_pp.png" width="32" height="32">
+                            <img class="profile-picture" src="/media/default_pp.png" width="32" height="32">
                         {% endif %}
                         <div>{{ user.username }}</div>
                     </a>
                 </li>
             {% else %}
-                <li id="user-tag" class="nav-link" data-authenticated="false"><a href="{% url 'login' %}?next={{ request.GET.next|default:request.path }}">{% trans 'Log in' %}</a></li>
+                <li id="user-tag" class="nav-link animated-underline-link" data-authenticated="false"><a href="{% url 'login' %}?next={{ request.GET.next|default:request.path }}">{% trans 'Log in' %}<span class="underline"></span></a></li>
             {% endif %}
         </ul>
     </nav>
