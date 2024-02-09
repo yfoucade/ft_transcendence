@@ -68,7 +68,7 @@ function hydrate_online_tournament()
         elt_div_results = document.getElementById("online-tournament-results");
         elt_a_winner = document.getElementById("winner-anchor");
 
-        websocket = new WebSocket( "ws://" + window.location.host + "/ws/online-tournament/" );
+        websocket = new WebSocket( "ws://" + window.location.host + "/ws/online-tournament/" ); // TODO: wss everywhere
         websocket.addEventListener( "open", event_handler_open_websocket );
         websocket.addEventListener( "message", event_handler_online_tournament_message_dispatcher );
     }
@@ -154,6 +154,7 @@ function build_pairing_ul_elements( pairings )
 
 function msg_handler_tournament_next_round( pairings )
 {
+    online_tournament_obj.ask_confirmation_before_leaving = true;
     online_tournament_obj.elt_ul_queue.innerHTML = "";
     online_tournament_obj.elt_button_leave.removeEventListener( "click", event_handler_leave );
     online_tournament_obj.elt_button_start.removeEventListener( "click", event_handler_start );
@@ -252,6 +253,7 @@ function msg_handler_game_update(data)
 
 function msg_handler_tournament_winner( winner )
 {
+    online_tournament_obj.ask_confirmation_before_leaving = false;
     online_tournament_obj.elt_div_lobby.classList.replace( "shown", "hidden" );
     online_tournament_obj.elt_game_elements.classList.replace( "shown", "hidden" );
     online_tournament_obj.elt_div_next_round.classList.replace( "shown", "hidden" );
