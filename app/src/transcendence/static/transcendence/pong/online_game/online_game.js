@@ -13,6 +13,7 @@ let online_game_lobby_obj = {
 let online_game_obj = {
     // htmlElements
     elt_game_elements: null,
+    elt_div_result: null,
     elt_player1_img: null,
     elt_player1_name: null,
     elt_player2_img: null,
@@ -87,20 +88,43 @@ function join_game( event )
     }
 }
 
+function og_disconnect_handler(loser)
+{
+    console.log("Disconnecting");
+    online_game_obj.websocket.close();
+    online_game_lobby_obj.ask_confirmation_before_leaving = false;
+    winner = loser == "left" ? "right" : "left";
+    online_game_obj.elt_div_result.innerHTML = `${loser} player left the game. ${winner} player won.`;
+    online_game_obj.elt_div_result.classList.replace("hidden", "shown");
+}
+
+function og_game_over(content)
+{
+    online_game_lobby_obj.ask_confirmation_before_leaving = false;
+    online_game_obj.websocket.close();
+    online_game_obj.elt_div_result.innerHTML = `${content.winner_side} player Won.`;
+    online_game_obj.elt_div_result.classList.replace("hidden", "shown");
+}
+
 function ws_message_dispatcher(event)
 {
     // console.log(event);
     content = JSON.parse(event.data);
 	if ( content.type == "game.connect" )
-		og_game_connect( content.data );
+		og_game_connect( content );
     if ( content.type == "game.init" )
         og_init_handler(content.data);
     if ( content.type == "game.update" )
         og_update_handler(content.data);
+    if ( content.type == "game.disconnect" )
+        og_disconnect_handler(content.who_side);
+    if ( content.type == "game.over" )
+        og_game_over( content );
 }
 
 function og_game_connect( data )
 {
+    console.log(data);
 	online_game_obj.user_id = data.user_id;
 }
 
@@ -129,9 +153,13 @@ function abort_game( event )
     online_game_lobby_obj.elt_div_waiting.classList.replace("shown", "hidden");
     online_game_lobby_obj.elt_div_play.classList.replace("hidden", "shown");
     online_game_lobby_obj.ask_confirmation_before_leaving = false;
-    if (online_game_obj.event_source == null)
+    if (online_game_obj.websocket == null)
         return;
-    online_game_obj.event_source.close();
+    online_game_obj.websocket.send(JSON.stringify(
+        {
+            type: "game.abort",
+        }
+    ));
 }
 
 function init_online_game_elements()
@@ -139,6 +167,7 @@ function init_online_game_elements()
     with (online_game_obj)
     {
         elt_game_elements = document.getElementById("game-elements");
+        elt_div_result = document.getElementById("div-result");
         elt_player1_img = document.getElementById("player1-img");
         elt_player1_name = document.getElementById("player1-name");
         elt_player2_img = document.getElementById("player2-img");
