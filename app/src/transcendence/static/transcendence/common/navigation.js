@@ -40,6 +40,7 @@ let dehydration_recipes = {
     "main-local-tournament-lobby": local_tournament_lobby_dehydration_recipe,
     "main-local-tournament-match": local_tournament_match_dehydration_recipe,
     "main-online-game": online_game_dehydration_recipe,
+    "main-online-tournament": online_tournament_dehydration_recipe,
 }
 
 function home_page()
@@ -239,13 +240,29 @@ function online_game_dehydration_recipe()
         && !confirm("Data will be lost, leave anyway ?"))
         return false;
     // TODO: close eventSource;
-    if ( online_game_obj.event_source )
+    if ( online_game_obj.websocket )
     {
-        if ( online_game_obj.event_source.readyState == 1 )
-            online_game_obj.event_source.close();
-        online_game_obj.event_source = null;
+        if ( online_game_obj.websocket.readyState == 1 )
+            online_game_obj.websocket.close();
+        online_game_obj.websocket = null;
     }
+    // if (online_game_obj.elt_div_result)
+    // {
+    //     online_game_obj.elt_div_result.innerHTML = "";
+    //     online_game_obj.elt_div_result.classList.replace("shown", "hidden");
+    // }
     return true; // can leave page
+}
+
+function online_tournament_dehydration_recipe()
+{
+    if ( online_tournament_obj.ask_confirmation_before_leaving
+         && !confirm("The tournament is still running, leave anyway ?"))
+         return false;
+    console.log("closing websocket");
+    if ( online_tournament_obj.websocket )
+        online_tournament_obj.websocket.close();
+    return true;
 }
 
 async function submit_form( event )
