@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from .models import PongGame, Profile
 from .pong.online_game.GameEngine import GameEngine
 from .pong.online_tournament.TournamentEngine import TournamentEngine
+from .pong.online_tournament.TournamentsController import TournamentsController
 
 
 MAX_NB_OF_PLAYERS = 4
@@ -57,12 +58,17 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
                 await self.game_join(content)
             case "game.paddle":
                 await self.game_paddle(content)
+            case "game.abort":
+                await self.game_abort(content)
 
     async def disconnect(self, close_code):
         # # Leave room group
         # async_to_sync(self.channel_layer.group_discard)(
         #     self.room_group_name, self.channel_name
         # )
+        async with OnlineGameConsumer.games_queue_lock:
+            if OnlineGameConsumer.games_queue:
+                OnlineGameConsumer.games_queue.pop(0)
         if self.game_instance_lock:
             async with self.game_instance_lock:
                 updated_fields = await self.game_instance.abort_running_game(self.scope["user"])
@@ -71,7 +77,14 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
             await self.channel_layer.group_send(
                 self.group_name,
                 {"type":"game.disconnect", "who_side":self.side, "who_id": self.scope["user"].id })
-        self.close()
+        await self.close()
+
+    async def game_abort(self, content):
+        async with OnlineGameConsumer.games_queue_lock:
+            if OnlineGameConsumer.games_queue:
+                OnlineGameConsumer.games_queue.pop(0)
+        self.status = ""
+        await self.game_instance.adelete()
 
     async def game_join(self, content):
         self.status = "init"
@@ -205,6 +218,7 @@ class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
         self.in_game = False
         self.engine = None
         self.game_engine = None
+        self.tournament = None
         async with OnlineTournamentConsumer.lock:
             # Create new tournament if necessary
             if (not OnlineTournamentConsumer.queues) or (len(OnlineTournamentConsumer.queues[-1]) == MAX_NB_OF_PLAYERS):
@@ -216,14 +230,14 @@ class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
             await self.channel_layer.group_send(self.tournament_group_name, {"type":"tournament.queue.update"})
             if len(self.tournament["queue"]) == MAX_NB_OF_PLAYERS:
                 OnlineTournamentConsumer.queues.pop(0)
-                self.engine = [TournamentEngine()]
+                self.engine = TournamentEngine()
                 OnlineTournamentConsumer.engines[self.tournament["id"]] = self.engine
                 self.tournament["status"] = "running"
-                await self.engine[0].init_tournament(**self.tournament)
+                await self.engine.init_tournament(**self.tournament)
 
     async def receive_json(self, content, *args, **kwargs):
         if content["type"] == "tournament.start":
-            await self.engine[0].init_tournament(**self.tournament)
+            await self.engine.init_tournament(**self.tournament)
         if content["type"] == "game.paddle":
             if not self.in_game or not self.side:
                 return
@@ -231,7 +245,37 @@ class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
             await self.channel_layer.group_send( self.match_group_name, content)
 
     async def disconnect(self, code):
-        pass
+        if self.tournament is None:
+            return
+        if self.tournament["status"] == "lobby":
+            self.tournament["queue"].remove(self.tournament_profile)
+            await self.channel_layer.group_send(self.tournament_group_name, {"type":"tournament.queue.update"})
+            return
+        self.tournament_profile["connected"] = False
+        if not self.in_game:
+            return
+        if self.side == "left":
+            self.in_game = False
+            updated_fields = await self.game_instance.set_winner(self.game_instance.user_2)
+            await self.game_instance.asave(update_fields=updated_fields)
+            await self.engine.set_winner( game_id=self.game_id, side="right", reason="disconnect", score=f"{self.game_engine.left_score}-{self.game_engine.right_score}")
+            await self.channel_layer.group_send( self.match_group_name, {"type":"game.over", "game_id":self.game_id, "reason":"disconnect", "winner_side":"right", "winner_id":self.game_instance.user_2_id} )
+            return
+        if self.side == "right":
+            self.in_game = False
+            await self.channel_layer.group_send( self.match_group_name, {"type":"match.disconnect", "side":"right"})
+            return
+
+
+    async def match_disconnect(self, content):
+        if self.side == "right":
+            return
+        self.in_game = False
+        updated_fields = await self.game_instance.set_winner(self.game_instance.user_1)
+        await self.game_instance.asave(update_fields=updated_fields)
+        await self.engine.set_winner( game_id=self.game_id, side="left", reason="disconnect", score=f"{self.game_engine.left_score}-{self.game_engine.right_score}")
+        await self.channel_layer.group_send( self.match_group_name, {"type":"game.over", "game_id":self.game_id, "reason":"disconnect", "winner_side":"right", "winner_id":self.game_instance.user_2_id} )
+        return
 
     async def tournament_queue_update(self, content):
         """
@@ -315,8 +359,8 @@ class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
                 self.in_game = False
                 updated_fields = await self.game_instance.set_winner(self.game_instance.user_1 if state["winner"]=="left" else self.game_instance.user_2)
                 await self.game_instance.asave(update_fields=updated_fields)
-                await self.engine[0].set_winner( game_id=self.game_id, side=state["winner"], reason="points", score=f"{self.game_engine.left_score}-{self.game_engine.right_score}")
-                await self.channel_layer.group_send( self.match_group_name, {"type":"game.over", "game_id":self.game_id} )
+                await self.engine.set_winner( game_id=self.game_id, side=state["winner"], reason="points", score=f"{self.game_engine.left_score}-{self.game_engine.right_score}")
+                await self.channel_layer.group_send( self.match_group_name, {"type":"game.over", "game_id":self.game_id, "reason":"points", "winner_side":state["winner"], "winner_id":self.tournament_profile["user_id"] if state["winner"] == "left" else self.game_instance.user_2_id} )
 
     async def game_init(self, message):
         await self.send_json(content=message)
@@ -333,7 +377,7 @@ class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
         await self.send_json(content=message)
 
     async def game_over(self, message):
-        pass
+        self.send_json(content=message)
 
     async def tournament_winner(self, message):
         await self.send_json( content=message )
