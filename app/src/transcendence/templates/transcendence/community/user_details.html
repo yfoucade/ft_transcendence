@@ -11,41 +11,43 @@
             {% if following %}
                 <input type="hidden" name="data-action" value="unfollow">
                 <button type="submit" class="link-button">
-                    Unfollow
+                    {% trans 'Unfollow' %}
                 </button>
             {% else %}
                 <input type="hidden" name="data-action" value="follow">
                 <button type="submit" class="link-button">
-                    follow
+                    {% trans 'Follow' %}
                 </button>
             {% endif %}
         </form>
     {% endif %}
 
-    <h2>Stats</h2>
+    <h2>{% trans 'Stats' %}</h2>
         {% if nb_wins or nb_losses %}
-            Wins: {{ nb_wins }}
+            {% trans 'Wins:' %} {{ nb_wins }}
             </br>
-            Losses: {{ nb_losses }}
+            {% trans 'Losses:' %} {{ nb_losses }}
         {% else %}
-            No Pong game played yet
+            {% trans 'No Pong game played yet' %}
         {% endif %}
-    <h2>Match History</h2>
-        {% for game in game_history %}
-            <span is_winner="{% if game.winner.profile.display_name == game.user_1.profile.display_name %}true{% else %}false{% endif %}">
-                {{ game.user_1.profile.display_name }}
-                <img src="{{ game.user_1.profile.picture.url }}">
-            </span>
-            vs
-            <span is_winner="{% if game.winner.profile.display_name == game.user_2.profile.display_name %}true{% else %}false{% endif %}">
-                <img src="{{ game.user_2.profile.picture.url }}">
-                {{ game.user_2.profile.display_name }}
-            </span>
-            - 
-            <span title="{{ game.start_time }}">
-                {{ game.start_time|timesince }}
-            </span>
-            </br>
-        {% endfor %}
+    <h2>{% trans 'Match History' %}</h2>
+        <div id="match-history">
+            {% for game in game_history %}
+                <span is_winner="{% if game.winner.profile.display_name == game.user_1.profile.display_name %}true{% else %}false{% endif %}">
+                    {{ game.user_1.profile.display_name }}
+                    <img src="{{ game.user_1.profile.picture.url }}" width="32" height="32">
+                </span>
+                vs
+                <span is_winner="{% if game.winner.profile.display_name == game.user_2.profile.display_name %}true{% else %}false{% endif %}">
+                    <img src="{{ game.user_2.profile.picture.url }}" width="32" height="32">
+                    {{ game.user_2.profile.display_name }}
+                </span>
+                - 
+                <span title="{{ game.start_time }}">
+                    {{ game.start_time|timesince }}
+                </span>
+                </br>
+            {% endfor %}
+        </div>
 </main>
 {% endblock content %}
