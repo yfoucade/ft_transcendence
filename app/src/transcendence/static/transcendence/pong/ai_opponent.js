@@ -11,9 +11,9 @@ let intervalID = 0;
 
 function fetchBallYCoordinate() {
     console.log("Time check");
-    if (!window.location.pathname.includes("/local-match-pvai/")) {
-        clearInterval(intervalID);
-    }
+    // if (!window.location.pathname.includes("/local-match-pvai/")) {
+    //     clearInterval(intervalID);
+    // }
     const ballElement = pong_game.html_element_ball;
     const ballRect = ballElement.getBoundingClientRect();
     const ballYCoordinate = ballRect.top + ballRect.height / 2;

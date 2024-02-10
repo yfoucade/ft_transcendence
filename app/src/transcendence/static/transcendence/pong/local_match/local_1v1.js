@@ -42,6 +42,8 @@ function start_local_pvp_game( event )
     pong_game.html_element_start_button.classList.replace( "shown", "hidden" );
     // call the animation function that will call requestAnimationFrame()
     pong_game.game_in_progress = true;
+    if ( pong_game.opponnent_is_ai )
+        intervalID = setInterval(fetchBallYCoordinate, 1000);
     requestAnimationFrame( time => animate(time, time) );
 }
 
@@ -69,6 +71,7 @@ function animate( time, last_time )
 function end_local_pvp_game()
 {
     pong_game.game_in_progress = false;
+    clearInterval(intervalID);
     update_main_local_1v1();
 }
 

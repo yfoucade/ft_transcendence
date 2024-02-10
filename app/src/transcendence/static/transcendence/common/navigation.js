@@ -145,7 +145,6 @@ function local_match_pvai_hydration_recipe()
     init_pong_game_htmlelements( opponent_is_ai = true );
     pong_game.html_element_start_button.addEventListener( "click", start_local_pvp_game );
     pong_game.html_element_start_button.classList.replace( "hidden", "shown" );
-    intervalID = setInterval(fetchBallYCoordinate, 1000);
 }
 
 function login_hydration_recipe()
