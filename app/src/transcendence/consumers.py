@@ -10,7 +10,6 @@ from django.contrib.auth.models import User
 from .models import PongGame, Profile
 from .pong.online_game.GameEngine import GameEngine
 from .pong.online_tournament.TournamentEngine import TournamentEngine
-from .pong.online_tournament.TournamentsController import TournamentsController
 
 
 MAX_NB_OF_PLAYERS = 4
