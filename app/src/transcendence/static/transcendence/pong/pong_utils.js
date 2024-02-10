@@ -36,6 +36,7 @@ let pong_game = {
     // Game state
     game_in_progress: false,
     opponnent_is_ai: false,
+    ai_type: null,
     left_score: 0,
     right_score: 0,
     last_scorer: null, // 'null' until first point, then 'left' or 'right'
@@ -44,7 +45,7 @@ let pong_game = {
     end_of_game_callback: null,
 }
 
-function init_pong_game_htmlelements( opponnent_is_ai = false )
+function init_pong_game_htmlelements( ai_type = null )
 {
 
     with ( pong_game )
@@ -57,7 +58,11 @@ function init_pong_game_htmlelements( opponnent_is_ai = false )
         html_element_left_score = document.getElementById(`left-score`);
         html_element_right_score = document.getElementById(`right-score`);
     }
-    pong_game.opponnent_is_ai = opponnent_is_ai;
+    if ( ai_type )
+    {
+        pong_game.opponnent_is_ai = true;
+        pong_game.ai_type = ai_type;
+    }
 }
 
 function new_point()

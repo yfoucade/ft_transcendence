@@ -9,7 +9,7 @@ function remove_main_local_1v1_listeners( main )
     window.removeEventListener( "keyup", handle_keyup);
 }
 
-function update_main_local_1v1( main )
+function update_main_local_1v1( ai_type )
 {
     /**
      * Initialize game
@@ -17,7 +17,7 @@ function update_main_local_1v1( main )
      * 
      */
     // pong_game.html_element_game_canvas.style.borderWidth = `${pong_game.game_canvas_border_width_px}px`;
-    init_pong_game_htmlelements( "local-1v1" );
+    init_pong_game_htmlelements( ai_type );
     pong_game.html_element_start_button.addEventListener( "click", start_local_pvp_game );
     pong_game.html_element_start_button.classList.replace( "hidden", "shown" );
 }
@@ -42,8 +42,12 @@ function start_local_pvp_game( event )
     pong_game.html_element_start_button.classList.replace( "shown", "hidden" );
     // call the animation function that will call requestAnimationFrame()
     pong_game.game_in_progress = true;
-    if ( pong_game.opponnent_is_ai )
+    if ( pong_game.ai_type == "old" )
         intervalID = setInterval(fetchBallYCoordinate, 1000);
+    if ( pong_game.ai_type == "new" )
+    {
+
+    }
     requestAnimationFrame( time => animate(time, time) );
 }
 
@@ -72,7 +76,7 @@ function end_local_pvp_game()
 {
     pong_game.game_in_progress = false;
     clearInterval(intervalID);
-    update_main_local_1v1();
+    update_main_local_1v1( ai_type = pong_game.ai_type );
 }
 
 function clamp( num, min, max )
