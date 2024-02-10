@@ -61,7 +61,6 @@ function local_tournament_match_hydration_recipe()
     }
 
     init_game_state();
-    window.addEventListener( "beforeunload", (event)=>{event.preventDefault();} );
 
     pong_game.html_element_start_button.innerHTML = "Start game";
     pong_game.html_element_start_button.addEventListener( "click", start_local_tournament_match );
@@ -71,6 +70,7 @@ function local_tournament_match_hydration_recipe()
 function local_tournament_match_dehydration_recipe()
 {
     state.inner_state = e_inner_state.init;
+    pong_game.game_in_progress = false;
     pong_game.html_element_start_button.removeEventListener( "click", back_to_lobby );
     return true;
 }
@@ -79,12 +79,12 @@ function local_tournament_lobby_hydration_recipe()
 {
     local_tournament_obj.html_element_button = document.getElementById("local-tournament-lobby-button");
     local_tournament_obj.html_element_button.addEventListener( "click", get_local_tournament_match_view );
-    window.addEventListener( "beforeunload", local_tournament_lobby_handle_refresh );
+    // window.addEventListener( "beforeunload", local_tournament_lobby_handle_refresh );
 }
 
 function local_tournament_lobby_dehydration_recipe()
 {
-    window.removeEventListener( "beforeunload", local_tournament_lobby_handle_refresh );
+    // window.removeEventListener( "beforeunload", local_tournament_lobby_handle_refresh );
     return true;
 }
 
