@@ -13,38 +13,45 @@ function startBackground(){
 }
 
 function Ball(x, y, radius, dx, dy, color) {
-this.x = x;
-this.y = y;
-this.radius = radius;
-this.dx = dx;
-this.dy = dy;
-this.color = color;
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+    this.dx = dx;
+    this.dy = dy;
+    this.color = color;
 
-this.draw = function () {
-	ctx.beginPath();
-	ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-	ctx.fillStyle = this.color;
-	ctx.fill();
-	ctx.closePath();
-};
+    this.draw = function () {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.closePath();
+    };
 
-this.update = function () {
-	if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
-	this.dx = -this.dx;
-	}
+    this.update = function () {
+        if ( this.x + this.radius > canvas.width ) {
+            this.x = canvas.width - this.radius;
+            this.dx = -this.dx;
+        }
+        else if ( this.x - this.radius < 0) {
+            this.x = this.radius;
+            this.dx = -this.dx;
+        }
 
-	if (
-	this.y + this.radius > canvas.height ||
-	this.y - this.radius < 0
-	) {
-	this.dy = -this.dy;
-	}
+        if ( this.y + this.radius > canvas.height ) {
+            this.y = canvas.height - this.radius;
+            this.dy = -this.dy;
+        }
+        else if ( this.y - this.radius < 0 ) {
+            this.y = this.radius;
+            this.dy = -this.dy;
+        }
 
-	this.x += this.dx;
-	this.y += this.dy;
+        this.x += this.dx;
+        this.y += this.dy;
 
-	this.draw();
-};
+        this.draw();
+    };
 }
 
 function createBalls(numBalls) {
@@ -73,7 +80,7 @@ for (const ball of balls) {
 window.addEventListener("resize", () => {
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-startBackground();
+// startBackground();
 });
 
 const mainHtml = document.querySelector('main');
