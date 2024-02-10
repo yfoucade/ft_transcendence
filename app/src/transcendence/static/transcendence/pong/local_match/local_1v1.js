@@ -46,7 +46,10 @@ function start_local_pvp_game( event )
         intervalID = setInterval(fetchBallYCoordinate, 1000);
     if ( pong_game.ai_type == "new" )
     {
-
+        new_ai_update_state();
+        new_ai_interval_update_state = setInterval( new_ai_update_state, 1000 );
+        new_ai_interval_move = setInterval( new_ai_move, 50 );
+        // new_ai_interval_debug = setInterval( new_ai_debug, 50 );
     }
     requestAnimationFrame( time => animate(time, time) );
 }
@@ -62,6 +65,8 @@ function animate( time, last_time )
             pong_game.end_of_game_callback();
             return;
         }
+        if ( pong_game.ai_type == "new")
+            new_ai_update_state();
     }
     else
     {
@@ -75,7 +80,14 @@ function animate( time, last_time )
 function end_local_pvp_game()
 {
     pong_game.game_in_progress = false;
-    clearInterval(intervalID);
+    if ( pong_game.ai_type == "old" )
+        clearInterval(intervalID);
+    if ( pong_game.ai_type == "new" )
+    {
+        clearInterval( new_ai_interval_update_state );
+        clearInterval( new_ai_interval_debug );
+        clearInterval( new_ai_interval_move );
+    }
     update_main_local_1v1( ai_type = pong_game.ai_type );
 }
 

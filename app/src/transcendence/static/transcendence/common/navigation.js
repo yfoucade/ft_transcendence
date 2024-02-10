@@ -142,7 +142,7 @@ function local_match_pvp_hydration_recipe()
 
 function local_match_pvai_hydration_recipe()
 {
-    init_pong_game_htmlelements( ai_type = "old" );
+    init_pong_game_htmlelements( ai_type = "new" );
     pong_game.html_element_start_button.addEventListener( "click", start_local_pvp_game );
     pong_game.html_element_start_button.classList.replace( "hidden", "shown" );
 }
