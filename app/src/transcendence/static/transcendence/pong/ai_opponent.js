@@ -69,7 +69,7 @@ function ai_move( direction = 'stop' ) {
 let ai_state = {
     state: "idle", // "idle", "center", or "intercept"
     paddle_target: null, // if "center" or "intercept"
-    tol: 10, // tolerance with respect to target. If we are tol pixels up or down, idle
+    tol: 30, // tolerance with respect to target. If we are tol pixels up or down, idle
 }
 
 function f(nu, dx, dy) {
