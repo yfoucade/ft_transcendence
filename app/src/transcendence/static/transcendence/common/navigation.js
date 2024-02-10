@@ -46,6 +46,7 @@ let dehydration_recipes = {
 function home_page()
 {
     console.log("welcome to transcendence");
+	startBackground();
 }
 
 function local_tournament_match_hydration_recipe()
@@ -90,6 +91,7 @@ function local_tournament_lobby_dehydration_recipe()
 
 function local_tournament_form_hydration_recipe()
 {
+	startBackground();
     console.log("hydrating form");
     with ( tournament_form )
     {
@@ -125,6 +127,7 @@ function local_match_pvai_dehydration_recipe()
 // Todo: put in right file
 function play_hydration_recipe()
 {
+	startBackground();
     let main = document.querySelector("main");
     for ( let element of main.querySelectorAll("a") )
         element.addEventListener( "click", route );
@@ -218,6 +221,7 @@ function following_hydration_recipe()
 
 function select_opponent_hydration_recipe()
 {
+	startBackground();
     let main = document.querySelector("main");
     let links = main.querySelectorAll("a");
     for ( let link of links )

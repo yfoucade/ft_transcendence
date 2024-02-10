@@ -2,37 +2,46 @@
 {% load i18n %}
 
 {% block content %}
-<main id="main-login" class="shown">
+<main id="main-login" class="shown pong-page no-animated-bg">
     {% if form.errors %}
-        <p>{% trans "Your username and password didn't match. Please try again." %}</p>
+	<section class="error-login">
+        <p>{% trans "Wrong login." %}</p>
+		<p>{% trans "Please try again." %}</p>
+	</section>
     {% endif %}
 
     {% if next %}
+	<section class="error-login">
         {% if user.is_authenticated %}
             <p>{% trans "Your account doesn't have access to this page. To proceed, please login with an account that has access." %}</p>
         {% else %}
             <p>{% trans "Please login to see this page." %}</p>
-        {% endif %}
+			{% endif %}
+		</section>
     {% endif %}
 
     <form id="login-form" method="post" action="{% url 'login' %}">
         {% csrf_token %}
         <table>
             <tr>
-                <td>{{ form.username.label_tag }}</td>
-                <td>{{ form.username }}</td>
-            </tr>
+                <td>
+					{{ form.username.label_tag }}
+                	<input class="form-control login-field" type="text" id="username" name="{{ form.username.name }}" autocomplete="off" value="{{ form.username.value|default_if_none:'' }}" aria-labelledby="username-label">
+				</td>
+			</tr>
             <tr>
-                <td>{{ form.password.label_tag }}</td>
-                <td>{{ form.password }}</td>
+                <td>
+					{{ form.password.label_tag }}
+                	<input class="form-control login-field pass-field" type="password" id="password" name="{{ form.password.name }}" autocomplete="current-password" aria-labelledby="password-label">
+				</td>
             </tr>
         </table>
-        <input type="submit" value="'Login'">
+        <input class="login-button btn btn-outline-light" type="submit" value="Login">
         <input type="hidden" name="next" value="{{ next }}">
     </form>
 
     {# Assumes you set up the password_reset view in your URLconf #}
     {# <p><a href="{% url 'password_reset' %}">{% trans 'Forgotten password?' %}</a></p> #}
-    <p><a href="{% url 'signup' %}?next={{ next }}">{% trans 'Create account' %}</a></p>
+    <p><a class="create-account-button btn btn-outline-light" href="{% url 'signup' %}?next={{ next }}">{% trans 'Create account' %}</a></p>
 </main>
 {% endblock content %}

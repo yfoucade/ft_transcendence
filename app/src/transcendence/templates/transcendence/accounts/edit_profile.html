@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block content %}
-<main id="main-edit-profile" class="shown" >
+<main id="main-edit-profile" class="shown no-animated-bg default-text-style" >
     <h1>Profile of {{ user.username }}</h1>
     {% include 'transcendence/accounts/profile_nav.html' %}
     <form id="edit-profile-form" action="{% url 'edit-profile' %}" method="POST" enctype="multipart/form-data">

@@ -9,12 +9,12 @@
             <form id="local-tournament-form">
                 {% csrf_token %}
                 <div id="error-message-form" class="error"></div>
-                <div>
-                    <label for="form-player-name">{% trans 'Add a player' %}</label>
-                    <input type="text" name="player-name" id="form-player-name"
+                <div class="input-tournament-form">
+                    <!-- <label for="form-player-name">{% trans 'Add a player' %}</label> -->
+                    <input type="text" class="form-control" name="player-name" id="form-player-name" placeholder="Player name"
                     maxlength="10" autocomplete="off">
                 </div>
-                <button id="add-player" class="link">{% trans 'Add player' %}</button>
+                <!-- <button id="add-player" class="link">{% trans 'Add player' %}</button> -->
             </form>
         </div>
 
@@ -24,7 +24,7 @@
 
     <div id="div-start-tournament">
         <div id="error-message-start" class="error"></div>
-        <button id="start-tournament" class="link">{% trans 'Start tournament' %}</button>
+        <button id="start-tournament" class="link btn btn-outline-light">{% trans 'Start tournament' %}</button>
     </div>
 </main>
 {% endblock content %}

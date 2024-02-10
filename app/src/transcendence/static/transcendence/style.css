@@ -1,14 +1,94 @@
+@font-face {
+    font-family: VeniteAdoremus;
+    src: url('/media/VeniteAdoremus-rgRBA.ttf');
+}
+
 body {
-    background-color: aliceblue;
+    background-color: black;
     margin: 0;
+	overflow: hidden;
 }
 
 .hidden {
     display: none;
 }
 
+/* Local versus animation */
+.local-match-select a {
+	color: white;
+	font-family: VeniteAdoremus, sans-serif;
+	font-size: 45px;
+	transition: text-shadow 0.3s ease-in-out;
+	text-decoration: none;
+	/* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+
+#opponent-selection #nav-local-pvp {
+	position: absolute;
+	top: 50%;
+	left: 25%;
+	transform: translateY(-50%) translateX(-50%);
+}
+
+#opponent-selection #nav-local-pvai {
+	position: absolute;
+	top: 50%;
+	left: 75%;
+	transform: translateY(-50%) translateX(-50%);
+}
+
+.local-pvp-select:hover {
+	text-shadow:
+	0 0 5px #2288f0,
+	0 0 10px #2288f0,
+	0 0 15px #2288f0,
+	0 0 20px #2288f0,
+	0 0 25px #2288f0,
+	0 0 30px #2288f0,
+	0 0 35px #2288f0,
+	0 0 40px #2288f0,
+	0 0 45px #2288f0,
+	0 0 50px #2288f0;
+}
+
+.local-pvai-select:hover {
+	text-shadow:
+	0 0 5px #ff2740,
+	0 0 10px #ff2740,
+	0 0 15px #ff2740,
+	0 0 20px #ff2740,
+	0 0 25px #ff2740,
+	0 0 30px #ff2740,
+	0 0 35px #ff2740,
+	0 0 40px #ff2740,
+	0 0 45px #ff2740,
+	0 0 50px #ff2740;
+}
+
+/* bouncing dots animation */
+#bouncing_dots {
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+/* Pong Title img */
+#pong-title{
+	display: block;
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 30vw;
+	height: auto;
+	pointer-events: none;
+}
+
+/* main nav-bar */
 #main-navbar {
-    background-color:aquamarine;
     /* Set the navbar to fixed position */
     position: fixed;
     /* Position the navbar at the top of the page */
@@ -22,6 +102,7 @@ body {
 }
 
 #main-navbar ul {
+	color: white;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -54,17 +135,96 @@ main {
     margin-top: 60px;
 }
 
+/* main nav-bar animation */
+.animated-underline-link {
+	position: relative;
+	text-decoration: none;
+	color: white;
+	text-transform: uppercase;
+	font-size: 20px;
+	letter-spacing: 0.05em;
+	transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+  
+.animated-underline-link .underline {
+	position: absolute;
+	left: 0;
+	bottom: 1;
+	height: 2px;
+	width: 0;
+	background-color: white;
+	transition: width 0.3s ease;
+}
+  
+.animated-underline-link:hover {
+	color: white;
+	text-shadow: 0 0 2px, 0 0 5px;
+}
+  
+.animated-underline-link:hover .underline {
+	width: 100%;
+}
+
+
+/* game mode selection animation */
+#pong-game-selection .box {
+	position: relative;
+	width: 150px;
+	height: 50px;
+	margin: 0 30px;
+	border: 2px solid white;
+	border-radius: 10px;
+	background-color: transparent;
+	transition: background-color 0.3s ease;
+}
+  
+#pong-game-selection .box::before {
+	content: "";
+	position: absolute;
+	top: -4px;
+	left: -4px;
+	right: -4px;
+	bottom: -4px;
+	border-radius: 14px;
+	border: 2px solid white;
+}
+  
+#pong-game-selection .box::after {
+	content: "";
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	right: -2px;
+	bottom: -2px;
+	border-radius: 12px;
+	border: 1px solid black;
+}
+
 #pong-game-selection {
-    width: 60%;
-    margin: auto;
-    padding-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 100px);
-    /* height: 60%; */
-    min-width: 256px;
-    max-width: 512px;
-    gap: 6px;
+	display: flex;
+	/* justify-content: center; */
+	position: absolute;
+	top: 60%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+  
+#pong-game-selection .box-content {
+	color:white;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	z-index: 1;
+}
+
+#pong-game-selection .box:hover {
+	background-color: white; /* White background on hover */
+}
+  
+#pong-game-selection .box:hover .box-content {
+	color: black; /* Black text on hover */
 }
 
 #opponent-selection {
@@ -107,11 +267,11 @@ main {
     transform: translate(-50%, -50%);
 }
 
-.nav-link:hover {
+/* .nav-link:hover {
     cursor: pointer;
     background-color: aquamarine;
-    /* font-size: 1.2em; */
-}
+    font-size: 1.2em;
+} */
 
 .box.link:hover {
     cursor: pointer;
@@ -147,6 +307,8 @@ main {
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: .25fr 1fr;
 } */
+
+/* pong game design */
 .pong-page {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -172,8 +334,9 @@ div[id$="game-canvas"] {
     aspect-ratio: 8/5;
     background: black;
     position: relative;
-    border: 3px solid black;
+    border: 3px solid white;
     box-sizing: content-box;
+	font-family: VeniteAdoremus;
 }
 
 .left-paddle {
@@ -185,6 +348,7 @@ div[id$="game-canvas"] {
     left: 0%;
     top: 50%;
     transform: translate(0, -50%);
+	border-radius: 6px;
 }
 
 .right-paddle {
@@ -196,6 +360,7 @@ div[id$="game-canvas"] {
     left: 100%;
     top: 50%;
     transform: translate(-100%, -50%);
+	border-radius: 6px;
 }
 
 .ball {
@@ -203,6 +368,7 @@ div[id$="game-canvas"] {
     position: absolute;
     width: 3%;
     aspect-ratio: 1/1;
+	border-radius: 12px;
     background-color: white;
     top: 50%;
     left: 50%;
@@ -213,12 +379,21 @@ div[id$="game-canvas"] {
     z-index: 1;
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 40%;
     transform: translate(-50%, -50%);
-    height: 10%;
-    width: 20%;
+    height: 15%;
+    width: 30%;
     min-width: 100px;
+	background: none;
+	border: none;
+	color:white;
+	font-size: 3vw;
 }
+
+.start-button:focus {
+    outline: none;
+    box-shadow: unset;
+  }
 
 .score-div {
     z-index: 1;
@@ -233,9 +408,28 @@ div[id$="game-canvas"] {
     transform: translate(-50%, 0%);
 }
 
+/* tournament winner page */
+#local-tournament-lobby-winner{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	font-size: min(5vw, 60px);
+}
+
+/* local tournament form page */
 #main-local-tournament-form
 {
     padding-top: 20px;
+}
+
+#div-add-player {
+	position: absolute;
+	top: 55%;
+	left: 40%;
+	width: 40%;
+	height: 40%;
+	transform: translateY(-50%) translateX(-50%);
 }
 
 #form-and-player-list
@@ -248,28 +442,46 @@ div[id$="game-canvas"] {
     margin: auto;
 }
 
+.input-tournament-form {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 200px;
+}
+
 #div-player-list
 {
+	color: white;
+	position: absolute;
+	top: 30%;
+	left : 65%;
+	/* transform: translate(-50%, -50%); */
     display: grid;
     grid-template-rows: repeat(8, 1fr);
     border-style: solid;
-    border-width: 1px;
-    border-radius: 5px;
-    height: 200px;
+    border-width: 8px;
+    border-radius: 10px;
+    height: 50%;
+	width: auto;
+	aspect-ratio: 10/15;
     padding: 10px;
 }
 
 #div-start-tournament
 {
-    margin: auto;
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	transform: translate(-50%, -50%);
     text-align: center;
-    margin-top: 60px;
+	font-family: VeniteAdoremus, sans-serif;
 }
 
 .registered-player
 {
     display: flex;
     justify-content: space-between;
+	font-family: VeniteAdoremus, sans-serif;
 }
 
 .remove-player
@@ -277,6 +489,9 @@ div[id$="game-canvas"] {
     color: red;
     font-weight: bolder;
     transform: scale(3) rotate(-45deg);
+	position: relative;
+	top: 30%;
+	left: 30px;
     /* transform: rotate(-45deg); */
 }
 
@@ -292,15 +507,46 @@ div[id$="game-canvas"] {
 
 h1,h2,h3 {
     text-align: center;
+	color: white;
+	font-family: VeniteAdoremus;
+}
+
+#main-local-tournament-lobby h1{
+	position: absolute;
+	top: 10%;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
+	font-size: 3vw;
+}
+
+#main-local-tournament-lobby h2{
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
+	font-size: 2.5vw;
+}
+
+#main-local-tournament-lobby h3{
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
 }
 
 #local-tournament-lobby-tables {
+	color: white;
+	font-family: VeniteAdoremus;
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 50%;
     max-width: 500px;
     gap: 6px;
     margin: auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
 }
 
 .lobby-table-header {
@@ -315,7 +561,7 @@ h1,h2,h3 {
     border-style: solid;
     border-width: 1px;
     border-radius: 5px;
-    height: 200px;
+    height: 220px;
     padding-top: 5px;
 }
 
@@ -336,7 +582,12 @@ h1,h2,h3 {
 }
 
 #local-tournament-lobby-button {
+	font-family: VeniteAdoremus;
     margin: auto;
+	position:absolute;
+	top: 65%;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
 }
 
 .player-out {
@@ -387,3 +638,211 @@ h1,h2,h3 {
 span[is_winner=true] {
 	font-weight: bold;
 }
+
+/* login page */
+#main-login {
+	color: white;
+}
+
+.pass-field {
+	font-family: sans-serif;
+}
+
+#login-form {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	font-family: VeniteAdoremus;
+}
+
+.login-button
+{
+	position: absolute;
+	top: 150%;
+	left: 50%;
+	width: 190px;
+	transform: translate(-50%, -50%);
+    text-align: center;
+	font-family: VeniteAdoremus, sans-serif;
+}
+
+.create-account-button {
+	font-family: VeniteAdoremus;
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 190px;
+}
+
+.error-login {
+	position: absolute;
+	color:#ff2740;
+	top: 20%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-family: VeniteAdoremus;
+	text-align: center;
+	font-size: 20px;
+}
+
+.error-message {
+	font-family: VeniteAdoremus;
+	color:#ff2740;
+}
+
+/* signup page */
+#main-signup {
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-family: VeniteAdoremus;
+	color: white;
+	align-content: center;
+}
+
+.signup-button
+{
+	position: absolute;
+	top: 110%;
+	left: 50%;
+	width: 190px;
+	transform: translate(-50%, -50%);
+    text-align: center;
+	font-family: VeniteAdoremus, sans-serif;
+}
+
+/* user profile navigation */
+.profile-nav {
+	font-family: VeniteAdoremus;
+    margin: auto;
+	width: 213px;
+}
+
+#profile-nav ul {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	list-style-type: none;
+}
+
+/* default text style */
+.default-text-style {
+	font-family: VeniteAdoremus;
+	color: white;
+}
+
+/* edit-profile page helptext */
+.helptext {
+	color: #6C757D;
+	font-size: 0.8em;
+	margin-bottom: 0px;
+}
+
+/* password-change-form */
+#password-change-form {
+	color: white;
+	font-family: VeniteAdoremus, sans-serif;
+	position: absolute;
+	left: 0;
+	top: 10%
+}
+
+#password-change-form ul {
+	color: #6C757D;
+	font-size: 0.8em;
+	margin-bottom: 0px;
+}
+
+/* fix the blank password input bug */
+input[type="password"] {
+	font-family: sans-serif !important;
+}
+
+/* leaderboard page */
+#main-leaderboard {
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	width: 30vw;
+	min-width: 325px;
+	color:white;
+}
+
+.leaderbord-players a {
+	color:white;
+}
+
+/* profile picture */
+.profile-picture {
+	border-radius: 50%;
+	margin-right: 0.5rem;
+}
+
+.language-select {
+	color: white;
+	background-color: transparent;
+	outline: 0;
+	border: none;
+}
+
+.language-select option {
+	background-color:black;
+	border: none;
+	outline: 0;
+}
+
+.language-go {
+	background-color: transparent;
+	color:white;
+	border: none;
+	cursor: pointer;
+}
+
+/* select {
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	-ms-appearance:none;
+	appearance:none;
+	outline:0;
+	box-shadow:none;
+	border:0!important;
+	flex: 1;
+	padding: 0 .5em;
+	color:#fff;
+	cursor:pointer;
+	font-size: 1em;
+	font-family: 'Open Sans', sans-serif;
+ }
+ 
+ select::-ms-expand {
+	display: none;
+ }
+ .select {
+	position: relative;
+	display: flex;
+	width: 20em;
+	height: 3em;
+	line-height: 3;
+	background: black;
+	overflow: hidden;
+	border-radius: .25em;
+ }
+ .select::after {
+	content: '\25BC';
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 1em;
+	background: #2b2e2e;
+	cursor:pointer;
+	pointer-events:none;
+	transition:.25s all ease;
+ }
+ .select:hover::after {
+	color: #23b499;
+ } */
