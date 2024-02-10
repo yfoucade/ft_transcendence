@@ -125,9 +125,9 @@ function init_game_state()
 
 function handle_keydown( event )
 {
-    if ( event.key == "e")
+    if ( event.key == "e" && !pong_game.opponnent_is_ai )
         pong_game.left_paddle_up = true;
-    else if ( event.key == "d" )
+    else if ( event.key == "d" && !pong_game.opponnent_is_ai )
         pong_game.left_paddle_down = true;
     else if ( event.key == "ArrowUp" )
         pong_game.right_paddle_up = true;
@@ -137,9 +137,9 @@ function handle_keydown( event )
 
 function handle_keyup( event )
 {
-    if ( event.key == "e")
+    if ( event.key == "e" && !pong_game.opponnent_is_ai )
         pong_game.left_paddle_up = false;
-    else if ( event.key == "d" )
+    else if ( event.key == "d" && !pong_game.opponnent_is_ai )
         pong_game.left_paddle_down = false;
     else if ( event.key == "ArrowUp" )
         pong_game.right_paddle_up = false;
