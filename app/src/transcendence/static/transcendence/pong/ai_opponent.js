@@ -35,11 +35,29 @@ function simulateKeyboardInput(ballYCoordinate) {
     const halfPaddle = leftPaddleRect.height / 2;
 
     if (ballYCoordinate < leftPaddleYCoordinate - halfPaddle) {
-        handle_keydown({ key: "e" });
-        handle_keyup({ key: "d" });
+        ai_move("up");
     }
     else if (ballYCoordinate > leftPaddleYCoordinate + halfPaddle) {
-        handle_keydown({ key: "d" });
-        handle_keyup({ key: "e" });
+        ai_move("down");
+    }
+}
+
+function ai_move( direction = 'stop' ) {
+    // direction (str): 'stop', 'up' or 'down'
+
+    if ( direction == 'up' )
+    {
+        pong_game.left_paddle_up = true;
+        pong_game.left_paddle_down = false;
+    }
+    else if ( direction == 'down' )
+    {
+        pong_game.left_paddle_down = true;
+        pong_game.left_paddle_up = false;
+    }
+    else
+    {
+        pong_game.left_paddle_down = false;
+        pong_game.left_paddle_up = false;
     }
 }
