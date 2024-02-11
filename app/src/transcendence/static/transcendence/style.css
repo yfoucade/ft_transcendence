@@ -847,3 +847,9 @@ input[type="password"] {
  .select:hover::after {
 	color: #23b499;
  } */
+
+ #lobby button {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+ }
