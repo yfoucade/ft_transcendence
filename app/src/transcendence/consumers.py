@@ -70,8 +70,11 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
                 OnlineGameConsumer.games_queue.pop(0)
         if self.game_instance_lock:
             async with self.game_instance_lock:
-                updated_fields = await self.game_instance.abort_running_game(self.scope["user"])
-                await self.game_instance.asave(update_fields=updated_fields)
+                if self.game_instance.game_status == "init":
+                    await self.game_instance.adelete()
+                else:
+                    updated_fields = await self.game_instance.abort_running_game(self.scope["user"])
+                    await self.game_instance.asave(update_fields=updated_fields)
         if self.group_name:
             await self.channel_layer.group_send(
                 self.group_name,
