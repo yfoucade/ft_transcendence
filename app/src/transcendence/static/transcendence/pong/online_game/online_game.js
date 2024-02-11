@@ -50,7 +50,7 @@ function hydrate_online_game()
         // elt_button_abort.addEventListener( "click", abort_game );
     }
     online_game_obj.websocket = new WebSocket(
-        "ws://"
+        "wss://"
         + window.location.host
         + "/ws/online-game/"
         );
