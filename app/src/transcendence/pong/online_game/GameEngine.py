@@ -113,6 +113,7 @@ class GameEngine:
         self.ball_top = (CANVAS_HEIGHT - self.ball_side) / 2
         self.ball_left = (CANVAS_WIDTH - self.ball_side) / 2
         self.ball_theta = BALL_MAX_INIT_ANGLE * ( 2 * random.random() - 1 )
+        self.ball_r = BALL_INIT_R
         if self.last_scorer == "left":
             self.ball_theta -= math.pi
         self.ball_dx, self.ball_dy = self.polar_to_cartesian()
