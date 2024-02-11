@@ -65,6 +65,7 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
         # async_to_sync(self.channel_layer.group_discard)(
         #     self.room_group_name, self.channel_name
         # )
+        self.status = "disconnecting"
         async with OnlineGameConsumer.games_queue_lock:
             if OnlineGameConsumer.games_queue:
                 OnlineGameConsumer.games_queue.pop(0)
@@ -127,7 +128,7 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
         async with self.game_instance_lock:
             await self.game_instance.asave(update_fields=self.game_instance.set_start_time())
         self.game_engine.set_start_time(self.game_instance.start_time)
-        asyncio.create_task(self.game_loop())
+        self.task = asyncio.create_task(self.game_loop())
 
     async def game_loop(self):
         await self.channel_layer.group_send(self.group_name, {"type": "game.init", "data": await self.game_engine.get_init_state(self.game_instance),})
@@ -142,6 +143,7 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
             )
             # await asyncio.sleep(0.005)
             if state["winner"]:
+                self.status = "done"
                 updated_fields = await self.game_instance.set_winner(self.game_instance.user_1 if state["winner"]=="left" else self.game_instance.user_2)
                 await self.game_instance.asave(update_fields=updated_fields)
                 await self.channel_layer.group_send( self.group_name, {"type": "game.over", "winner_side": state["winner"]} )
@@ -155,7 +157,7 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
         self.side = None
         self.group_name = ""
         if self.task:
-            self.task.cancel()
+            await self.task.cancel()
         self.task = None
         self.close()
 
