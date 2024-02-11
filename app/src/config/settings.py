@@ -178,4 +178,5 @@ MEDIA_ROOT = "/var/www/transcendence/media/"
 # https://docs.djangoproject.com/en/4.0/releases/4.0/#csrf-trusted-origins-changes-4-0
 CSRF_TRUSTED_ORIGINS = [
     "https://localhost:8001",
+	"https://paul-f4ar8s4.clusters.42paris.fr:8001",
 ]
