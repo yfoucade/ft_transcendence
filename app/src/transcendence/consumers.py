@@ -222,6 +222,7 @@ class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
         self.in_game = False
         self.engine = None
         self.game_engine = None
+        self.task = None
         self.tournament = None
         async with OnlineTournamentConsumer.lock:
             # Create new tournament if necessary
@@ -345,7 +346,7 @@ class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
         await self.game_instance.asave(update_fields=self.game_instance.set_start_time())
         self.game_engine = GameEngine()
         self.game_engine.set_start_time(self.game_instance.start_time)
-        asyncio.create_task(self.game_loop())
+        self.task = asyncio.create_task(self.game_loop())
 
     async def game_loop(self):
         await self.channel_layer.group_send(self.match_group_name, {"type": "game.init", "data": await self.game_engine.get_init_state(self.game_instance),})
@@ -381,6 +382,8 @@ class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
         await self.send_json(content=message)
 
     async def game_over(self, message):
+        if self.task:
+            await self.task.cancel()
         self.send_json(content=message)
 
     async def tournament_winner(self, message):
