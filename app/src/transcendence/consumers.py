@@ -159,7 +159,7 @@ class OnlineGameConsumer(AsyncJsonWebsocketConsumer):
         self.side = None
         self.group_name = ""
         if self.task:
-            await self.task.cancel()
+            self.task.cancel()
         self.task = None
         self.close()
 
@@ -385,7 +385,7 @@ class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
 
     async def game_over(self, message):
         if self.task:
-            await self.task.cancel()
+            self.task.cancel()
         self.send_json(content=message)
 
     async def tournament_winner(self, message):
