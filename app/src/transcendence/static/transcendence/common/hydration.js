@@ -6,6 +6,7 @@ function hydrate_common_elements() {
 
     let lang_form = document.getElementById("lang-form");
     lang_form.addEventListener( "submit", submit_form );
+	startBackground();
 }
 
 function hydrate( recipe )
