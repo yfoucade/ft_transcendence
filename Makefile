@@ -6,7 +6,7 @@ all:
 
 clean:
 	@printf "Arret de la configuration de ${NAME}...\n"
-	@docker compose down -v --remove-orphans
+	@docker com pose down-v --remove-orphans
 
 fclean: clean
 	@printf "Cleaning dockers\n"
