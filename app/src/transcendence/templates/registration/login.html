@@ -38,10 +38,10 @@
         </table>
         <input class="login-button btn btn-outline-light" type="submit" value="Login">
         <input type="hidden" name="next" value="{{ next }}">
+		<a class="create-account-button btn btn-outline-light" href="{% url 'signup' %}?next={{ next }}">{% trans 'Create account' %}</a>
     </form>
 
     {# Assumes you set up the password_reset view in your URLconf #}
     {# <p><a href="{% url 'password_reset' %}">{% trans 'Forgotten password?' %}</a></p> #}
-    <p><a class="create-account-button btn btn-outline-light" href="{% url 'signup' %}?next={{ next }}">{% trans 'Create account' %}</a></p>
 </main>
 {% endblock content %}

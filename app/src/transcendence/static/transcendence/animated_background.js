@@ -1,15 +1,25 @@
+let mainHtml = document.querySelector('main');
+
+let animationId = 0;
+
 const balls = [];
 
 let canvas;
 let ctx;
 
 function startBackground(){
+	if (animationId != 0)
+		cancelAnimationFrame(animationId);
+	mainHtml = document.querySelector('main');
+	if (mainHtml.classList.contains('no-animated-bg'))
+		return
 	canvas = document.getElementById("bouncing_dots");
 	ctx = canvas.getContext("2d");
 
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 	createBalls(30);
+	animateBackground();
 }
 
 function Ball(x, y, radius, dx, dy, color) {
@@ -69,24 +79,17 @@ for (let i = 0; i < numBalls; i++) {
 }
 
 function animateBackground() {
-requestAnimationFrame(animateBackground);
-ctx.clearRect(0, 0, canvas.width, canvas.height);
+	animationId = requestAnimationFrame(animateBackground);
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-for (const ball of balls) {
-	ball.update();
-}
+	for (const ball of balls) {
+		ball.update();
+	}
 }
 
 window.addEventListener("resize", () => {
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-// startBackground();
 });
 
-const mainHtml = document.querySelector('main');
-if (!mainHtml.classList.contains('no-animated-bg')) {
-	startBackground();
-	animateBackground();
-}
-
-// createBalls(30);
+startBackground();
