@@ -147,7 +147,6 @@ function msg_handler_tournament_next_round( pairings )
     online_tournament_obj.ask_confirmation_before_leaving = true;
     online_tournament_obj.elt_ul_queue.innerHTML = "";
     online_tournament_obj.elt_button_leave.removeEventListener( "click", event_handler_leave );
-    online_tournament_obj.elt_button_start.removeEventListener( "click", event_handler_start );
     online_tournament_obj.elt_div_lobby.classList.replace( "shown", "hidden" );
     online_tournament_obj.elt_game_elements.classList.replace( "shown", "hidden" );
 
