@@ -1,5 +1,6 @@
 let online_tournament_obj = {
     // html elements
+	nb_of_users_in_queue: null,
     elt_div_lobby: null,
     elt_ul_queue: null,
 	elt_anchor_leave: null,
@@ -42,6 +43,7 @@ function hydrate_online_tournament()
 {
     with (online_tournament_obj)
     {
+		nb_of_users_in_queue = document.getElementById("nb-of-players-in-queue");
         elt_div_lobby = document.getElementById("online-tournament-lobby");
         elt_ul_queue = document.getElementById("ul-queue");
 		elt_anchor_leave = document.getElementById("anchor-leave");
@@ -67,7 +69,7 @@ function hydrate_online_tournament()
         elt_div_results = document.getElementById("online-tournament-results");
         elt_a_winner = document.getElementById("winner-anchor");
 
-        websocket = new WebSocket( "wss://" + window.location.host + "/ws/online-tournament/" ); // TODO: wss everywhere
+        websocket = new WebSocket( "ws://" + window.location.host + "/ws/online-tournament/" ); // TODO: wss everywhere
         websocket.addEventListener( "open", event_handler_open_websocket );
         websocket.addEventListener( "message", event_handler_online_tournament_message_dispatcher );
     }
@@ -83,10 +85,16 @@ function event_handler_leave( event )
 
 }
 
+function displayNumberOfUsers(queue) {
+    const numberOfUsers = queue.length;
+    online_tournament_obj.nb_of_users_in_queue.innerHTML = `${numberOfUsers}/4`;
+}
+
 function msg_handler_tournament_queue_update( queue )
 {
     online_tournament_obj.elt_ul_queue.innerHTML = "";
     console.log(queue);
+	displayNumberOfUsers(queue);
     for ( profile of queue )
     {
         online_tournament_obj.elt_ul_queue.innerHTML += `

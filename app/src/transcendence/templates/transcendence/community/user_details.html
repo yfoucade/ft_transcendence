@@ -10,28 +10,35 @@
             {% csrf_token %}
             {% if following %}
                 <input type="hidden" name="data-action" value="unfollow">
-                <button type="submit" class="link-button">
+                <button type="submit" class="link-button btn btn-outline-light">
                     {% trans 'Unfollow' %}
                 </button>
             {% else %}
                 <input type="hidden" name="data-action" value="follow">
-                <button type="submit" class="link-button">
+                <button type="submit" class="link-button btn btn-outline-light">
                     {% trans 'Follow' %}
                 </button>
             {% endif %}
         </form>
     {% endif %}
 
-    <h2>{% trans 'Stats' %}</h2>
+	<div id="prout">
+    <h2 id="stats">{% trans 'Stats' %}</h2>
+	<div id="wins-and-losses">
+	<span id="wins" class="default-text-style">
         {% if nb_wins or nb_losses %}
             {% trans 'Wins:' %} {{ nb_wins }}
-            </br>
+	</span>
+            <!-- </br> -->
+	<span id="losses" class="default-text-style">
             {% trans 'Losses:' %} {{ nb_losses }}
         {% else %}
             {% trans 'No Pong game played yet' %}
         {% endif %}
+	</span>
+
     <h2>{% trans 'Match History' %}</h2>
-        <div id="match-history">
+        <div id="match-history" class="default-text-style">
             {% for game in game_history %}
                 <span is_winner="{% if game.winner.profile.display_name == game.user_1.profile.display_name %}true{% else %}false{% endif %}">
                     {{ game.user_1.profile.display_name }}
@@ -49,5 +56,6 @@
                 </br>
             {% endfor %}
         </div>
+	</div>
 </main>
 {% endblock content %}

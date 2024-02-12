@@ -670,7 +670,11 @@ h1,h2,h3 {
 }
 
 span[is_winner=true] {
-	font-weight: bold;
+	color: #159b0a !important;
+}
+
+span[is_winner=false] {
+	color: #F61818 !important;
 }
 
 /* login page */
@@ -925,6 +929,18 @@ input[type="password"] {
 	font-family: VeniteAdoremus;
 }
 
+#div-result {
+	z-index: 36;
+	height: 0;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 2vw;
+	font-family: VeniteAdoremus;
+	text-align: center;
+}
+
 /* online tournament */
 #online-tournament-lobby {
 	position: absolute;
@@ -944,4 +960,44 @@ input[type="password"] {
 	position: absolute;
 	top: 50%;
 	left: 50%;
+}
+
+/* user details page */
+#match-history {
+	position: relative;
+	top: 100px;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#follow-form {
+	z-index: 30;
+	position: relative;
+}
+
+#follow-form button{
+	position:relative;
+	left: 50%;
+	transform: translate(-50%);
+}
+
+#wins {
+	color: #159b0a !important;
+	margin: 1em;
+}
+
+#losses {
+	color: #F61818 !important;
+	margin: 1em;
+}
+
+#wins-and-losses {
+	left:50%;
+	text-align: center;
+	/* transform: translate(-50%); */
+}
+
+#prout {
+	position: relative;
+	top: 50px;
 }

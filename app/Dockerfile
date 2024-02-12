@@ -5,6 +5,7 @@ COPY requirements.txt .
 COPY transcendence.conf.template /etc/nginx/sites-enabled/transcendence.conf
 COPY img/default_profile_picture_32x32.png /var/www/transcendence/media/default_pp.png
 COPY img/pongwars-title.png /var/www/transcendence/media/
+COPY img/t-icon.ico /var/www/transcendence/media/
 COPY assets/VeniteAdoremusStraight.ttf /var/www/transcendence/media/
 COPY assets/VeniteAdoremus-rgRBA.ttf /var/www/transcendence/media/
 
@@ -41,5 +42,5 @@ ENTRYPOINT ["bash", "/init_app.sh"]
 # CMD ["tail", "-f", "/dev/null"]
 # CMD ["gunicorn", "--env", "DJANGO_SETTINGS_MODULE=config.settings", "config.wsgi", "--bind=0.0.0.0:8000"]
 # CMD ["daphne", "-b", "0.0.0.0", "-p", "8000", "config.asgi:application"]
-# CMD ["python", "-u", "manage.py", "runserver", "0.0.0.0:8000"]
-CMD ["daphne", "-u", "/tmp/daphne.sock", "config.asgi:application"]
+CMD ["python", "-u", "manage.py", "runserver", "0.0.0.0:8000"]
+# CMD ["daphne", "-u", "/tmp/daphne.sock", "config.asgi:application"]
