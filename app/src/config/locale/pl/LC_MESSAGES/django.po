@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-22 17:11+0100\n"
+"POT-Creation-Date: 2024-02-12 21:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,27 +20,27 @@ msgstr ""
 "(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
 "n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: config/settings.py:127
+#: app/src/config/settings.py:136
 msgid "English"
 msgstr "Angielski"
 
-#: config/settings.py:128
+#: app/src/config/settings.py:137
 msgid "French"
 msgstr "Francuski"
 
-#: config/settings.py:129
+#: app/src/config/settings.py:138
 msgid "Greek"
 msgstr "Grecki"
 
-#: config/settings.py:130
+#: app/src/config/settings.py:139
 msgid "Arabic"
 msgstr "Arabski"
 
-#: config/settings.py:131
+#: app/src/config/settings.py:140
 msgid "Spanish"
 msgstr ""
 
-#: config/settings.py:132
+#: app/src/config/settings.py:141
 msgid "Polish"
 msgstr "Polski"
 
