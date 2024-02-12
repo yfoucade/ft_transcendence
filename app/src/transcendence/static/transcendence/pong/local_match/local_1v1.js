@@ -60,6 +60,11 @@ function animate( time, last_time )
     update_ball_position( time - last_time );
     if ( check_score() )
     {
+        if (pong_game.ai_type == "new")
+        {
+            ai_state.state = "idle";
+            ai_move("stop");
+        }
         if ( new_point() )
         {
             pong_game.end_of_game_callback();
