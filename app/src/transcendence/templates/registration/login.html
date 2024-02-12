@@ -10,16 +10,6 @@
 	</section>
     {% endif %}
 
-    {% if next %}
-	<section class="error-login">
-        {% if user.is_authenticated %}
-            <p>{% trans "Your account doesn't have access to this page. To proceed, please login with an account that has access." %}</p>
-        {% else %}
-            <p>{% trans "Please login to see this page." %}</p>
-			{% endif %}
-		</section>
-    {% endif %}
-
     <form id="login-form" method="post" action="{% url 'login' %}">
         {% csrf_token %}
         <table>
