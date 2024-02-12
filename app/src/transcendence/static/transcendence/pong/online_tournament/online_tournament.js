@@ -143,7 +143,7 @@ function build_pairing_ul_elements( pairings )
     {
         new_li = document.createElement("li");
         new_li.appendChild( build_usertag(...Object.values(pairing.left_player)) );
-        new_li.innerHTML += "</br>";
+        new_li.innerHTML += "<span>vs</span>";
         new_li.appendChild( build_usertag(...Object.values(pairing.right_player)) );
         res.push(new_li);
     }

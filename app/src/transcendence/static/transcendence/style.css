@@ -949,6 +949,53 @@ input[type="password"] {
 	transform: translate(-50%, -50%);
 }
 
+#ul-queue {
+	list-style-type: none;
+	padding: 0;
+}
+
+#nb-of-players-in-queue {
+	left: 50%;
+}
+
+#nb-of-players-in-queue[is_ready=true] {
+	color: #159b0a !important;
+}
+
+#nb-of-players-in-queue[is_ready=false] {
+	color: red !important;
+}
+
+/* online tournament next and winner page */
+.online-tournament-midpage {
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.online-tournament-midpage span {
+	display:inline-block;
+	padding: 10px;
+}
+
+#ul-round-pairings {
+	list-style-type: none;
+}
+
+#online-tournament-results button a {
+	color: white;
+	text-decoration: none;
+}
+
+#online-tournament-results button:hover {
+	color: black;
+}
+
+#online-tournament-results button a:hover {
+	color: black;
+}
+
 /* following page */
 #main-following {
 	display: flex;
