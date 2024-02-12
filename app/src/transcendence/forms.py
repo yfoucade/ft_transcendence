@@ -90,8 +90,8 @@ class CustomProfileChangeForm(ModelForm):
             msg = _('Display name contains invalid characters')
             validation_errors.append( ValidationError(msg, code="invalid_display_name") )
         if Profile.objects.filter(display_name__iexact=data).exists():
-            msg = _('Diplay name already in use')
-            validation_errors.append( ValidationError(msg, code="diplay_name_duplicate") )
+            msg = _('Display name already in use')
+            validation_errors.append( ValidationError(msg, code="display_name_duplicate") )
         if validation_errors:
             raise ValidationError( validation_errors )
         return data
