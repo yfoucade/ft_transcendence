@@ -118,6 +118,8 @@ function local_match_pvp_dehydration_recipe()
 function local_match_pvai_dehydration_recipe()
 {
     end_local_pvp_game();
+	pong_game.opponnent_is_ai = false;
+	pong_game.ai_type = null;
     // TODO: remove event listeners
     return true;
 }
