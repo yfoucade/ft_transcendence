@@ -6,7 +6,7 @@
 body {
     background-color: black;
     margin: 0;
-	overflow: hidden;
+	/* overflow: hidden; */
     color: white;
 }
 
@@ -965,7 +965,8 @@ input[type="password"] {
 /* user details page */
 #match-history {
 	position: relative;
-	top: 100px;
+	top: 180px;
+	width: fit-content;
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
@@ -998,6 +999,11 @@ input[type="password"] {
 }
 
 #prout {
+	position: relative;
+	top: 50px;
+}
+
+#div-match-history {
 	position: relative;
 	top: 50px;
 }
