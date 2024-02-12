@@ -118,8 +118,8 @@ function local_match_pvp_dehydration_recipe()
 function local_match_pvai_dehydration_recipe()
 {
     end_local_pvp_game();
-	pong_game.opponnent_is_ai = false;
-	pong_game.ai_type = null;
+    pong_game.opponnent_is_ai = false;
+    pong_game.ai_type = null;
     // TODO: remove event listeners
     return true;
 }
@@ -366,6 +366,12 @@ async function update_view( response )
     }
     render();
 
+    body = document.querySelector("body");
+    if ( document.getElementById("game-canvas") )
+        body.style.overflow = "hidden";
+    else
+        body.style.overflow = "";
+
     if ( state.main_id in hydration_recipes )
         hydration_recipes[state.main_id]();
 }
@@ -373,17 +379,9 @@ async function update_view( response )
 function render() {
     let new_document = new DOMParser().parseFromString(state.document, "text/html");
 
-    // let old_usertag = document.getElementById("user-tag");
-    // let new_usertag = new_document.getElementById("user-tag");
-    // old_usertag.parentElement.replaceChild(new_usertag, old_usertag);
-    // new_usertag.querySelector("a").addEventListener( "click", route );
-
-    // let old_main = document.querySelector("main");
-    // let new_main = new_document.querySelector("main");
-    // old_main.parentNode.replaceChild(new_main, old_main);
-
     let old_body = document.querySelector("body");
     let new_body = new_document.querySelector("body");
     old_body.parentNode.replaceChild(new_body, old_body);
+
     hydrate_common_elements();
 }
