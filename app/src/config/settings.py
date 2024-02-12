@@ -24,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # TODO: keep secret key used in production secret!
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-zig57@5d4$kn%i1((e%dzm4xtin#&1%ad^cyjjuf=+bqmnym24'
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"] # TODO: set to empty list in production
 
@@ -37,8 +37,6 @@ ALLOWED_HOSTS = ["*"] # TODO: set to empty list in production
 INSTALLED_APPS = [
     'daphne',
     'transcendence',
-    'game_poc',
-    'chat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -178,5 +176,5 @@ MEDIA_ROOT = "/var/www/transcendence/media/"
 # https://docs.djangoproject.com/en/4.0/releases/4.0/#csrf-trusted-origins-changes-4-0
 CSRF_TRUSTED_ORIGINS = [
     "https://localhost:8001",
-	"https://paul-f4ar8s4.clusters.42paris.fr:8001",
+	"https://*.clusters.42paris.fr:8001",
 ]
