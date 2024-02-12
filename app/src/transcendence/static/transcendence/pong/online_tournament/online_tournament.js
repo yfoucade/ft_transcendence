@@ -2,8 +2,7 @@ let online_tournament_obj = {
     // html elements
     elt_div_lobby: null,
     elt_ul_queue: null,
-    elt_div_start: null, // shown for first player in queue
-    elt_button_start: null,
+	elt_anchor_leave: null,
     elt_button_leave: null,
     
     elt_div_next_round: null,
@@ -45,8 +44,8 @@ function hydrate_online_tournament()
     {
         elt_div_lobby = document.getElementById("online-tournament-lobby");
         elt_ul_queue = document.getElementById("ul-queue");
-        elt_div_start = document.getElementById("div-start");
-        elt_button_start = document.getElementById("button-start");
+		elt_anchor_leave = document.getElementById("anchor-leave");
+		elt_anchor_leave.addEventListener( "click", route );
         elt_button_leave = document.getElementById("button-leave");
         
         elt_div_next_round = document.getElementById("online-tournament-next-round");
@@ -76,13 +75,7 @@ function hydrate_online_tournament()
 
 function event_handler_open_websocket( event )
 {
-    online_tournament_obj.elt_button_start.addEventListener( "click", event_handler_start );
     online_tournament_obj.elt_button_leave.addEventListener( "click", event_handler_leave );
-}
-
-function event_handler_start( event )
-{
-
 }
 
 function event_handler_leave( event )
@@ -93,7 +86,6 @@ function event_handler_leave( event )
 function msg_handler_tournament_queue_update( queue )
 {
     online_tournament_obj.elt_ul_queue.innerHTML = "";
-    online_tournament_obj.elt_div_start.classList.replace("shown", "hidden");
     console.log(queue);
     for ( profile of queue )
     {
@@ -104,8 +96,6 @@ function msg_handler_tournament_queue_update( queue )
         </li>
         `
     }
-    if (online_tournament_obj.user_id == queue[0].user_id)
-        online_tournament_obj.elt_div_start.classList.replace("hidden", "shown");
 }
 
 function msg_handler_tournament_welcome( user_id )
