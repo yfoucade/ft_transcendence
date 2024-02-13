@@ -83,6 +83,8 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
             "hosts": [("localhost", 6379)],
+            "capacity": 20000,  # default 100
+            "expiry": 60,  # default 60
         },
     },
 }
@@ -95,14 +97,14 @@ CHANNEL_LAYERS = {
 # TODO: require ssl connection: https://neoctobers.readthedocs.io/en/latest/python/django_postgresql.html
 
 DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.postgresql',
-		'NAME': os.environ.get("POSTGRES_DATABASE"),
-		'USER': os.environ.get("POSTGRES_USER"),
-		'PASSWORD': os.environ.get("POSTGRES_PASSWORD"),
-		'HOST': os.environ.get("POSTGRES_HOST"),
-		'PORT': os.environ.get("POSTGRES_PORT"),
-	}
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get("POSTGRES_DATABASE"),
+        'USER': os.environ.get("POSTGRES_USER"),
+        'PASSWORD': os.environ.get("POSTGRES_PASSWORD"),
+        'HOST': os.environ.get("POSTGRES_HOST"),
+        'PORT': os.environ.get("POSTGRES_PORT"),
+    }
 }
 
 
@@ -176,5 +178,5 @@ MEDIA_ROOT = "/var/www/transcendence/media/"
 # https://docs.djangoproject.com/en/4.0/releases/4.0/#csrf-trusted-origins-changes-4-0
 CSRF_TRUSTED_ORIGINS = [
     "https://localhost:8001",
-	"https://*.clusters.42paris.fr:8001",
+    "https://*.clusters.42paris.fr:8001",
 ]
