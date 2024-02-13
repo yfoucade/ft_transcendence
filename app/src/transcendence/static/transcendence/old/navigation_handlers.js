@@ -1,22 +1,3 @@
-/**
- * TODO:
- * Split game related source code in several modules:
-
-    1 module for the code common to all games ( pong game class, fonctions to manipulate the game elements…)
-
-    1 module for each game mode:
-
-    local pvp
-
-    local pvai
-
-    local tournament
-
-    online pvp
-
-    online tournament
- */
-
 let listener_removers = {
     "main-local-1v1": remove_main_local_1v1_listeners,
 };

@@ -112,7 +112,6 @@ function local_tournament_form_hydration_recipe()
 function local_match_pvp_dehydration_recipe()
 {
     end_local_pvp_game();
-    // TODO: remove event listeners
     return true;
 }
 
@@ -121,11 +120,9 @@ function local_match_pvai_dehydration_recipe()
     end_local_pvp_game();
     pong_game.opponnent_is_ai = false;
     pong_game.ai_type = null;
-    // TODO: remove event listeners
     return true;
 }
 
-// Todo: put in right file
 function play_hydration_recipe()
 {
     let main = document.querySelector("main");
@@ -241,7 +238,6 @@ function online_game_dehydration_recipe()
     if ( online_game_lobby_obj.ask_confirmation_before_leaving
         && !confirm("Data will be lost, leave anyway ?"))
         return false;
-    // TODO: close eventSource;
     if ( online_game_obj.websocket )
     {
         if ( online_game_obj.websocket.readyState == 1 )
@@ -314,7 +310,6 @@ function pop_state_event_handler( event ) {
         hydration_recipes[state.main_id]();
 }
 
-// TODO: JSdoc
 function update_state( pathname = null, new_document = null ) {
     state.pathname = pathname == null ? location.pathname : pathname;
     if ( new_document == null )

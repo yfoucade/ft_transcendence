@@ -396,4 +396,3 @@ class OnlineTournamentConsumer(AsyncJsonWebsocketConsumer):
 
     async def tournament_winner(self, message):
         await self.send_json( content=message )
-        # TODO: close connection

@@ -52,12 +52,6 @@ def local_tournament_lobby(request):
         escaped_body = html.escape( request.body.decode(), quote=False )
         tournament_state = json.loads( escaped_body )
         context = lobby.build_local_tournament_context( tournament_state )
-        # TODO: this is debug
-        # with open("/dev/pts/0", "w") as f:
-        #     print("processing form", file=f)
-        #     print(f"{tournament_state = }", file=f)
-        # return render(request, "transcendence/pong/local_tournament/lobby.html")
-        # return HttpResponse(request.body)
         return render(request, "transcendence/pong/local_tournament/lobby.html", context)
     else:
         return redirect("local-tournament-form")
@@ -80,7 +74,6 @@ def local_tournament_results(request):
     else:
         return redirect("local-tournament-form")
 
-# TODO: redirect to profile page if user is authenticated
 def signup(request):
     if ( request.method == "POST" ):
         form = CustomUserCreationForm( request.POST )

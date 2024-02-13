@@ -10,8 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-# TODO: enable (force ?) HTTPS connections: https://docs.djangoproject.com/fr/4.2/topics/security/
-
 import os
 from pathlib import Path
 
@@ -22,14 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# TODO: keep secret key used in production secret!
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"] # TODO: set to empty list in production
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -90,10 +87,6 @@ CHANNEL_LAYERS = {
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# https://stackoverflow.com/questions/73633619/trouble-hooking-up-postgres-to-django
-# TODO: require ssl connection: https://neoctobers.readthedocs.io/en/latest/python/django_postgresql.html
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -117,9 +110,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', # TODO: enable in production
-    # },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
@@ -158,9 +148,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-# TODO: see https://docs.djangoproject.com/en/4.2/howto/static-files/deployment/
-# for proper strategies to serve static files in production environments.
 STATIC_URL = 'static/'
 STATIC_ROOT = "/var/www/transcendence/static/"
 
