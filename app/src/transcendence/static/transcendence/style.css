@@ -10,6 +10,12 @@ body {
     color: white;
 }
 
+h1,h2,h3 {
+	text-align: center;
+	color: white;
+	font-family: VeniteAdoremus;
+} 
+
 .hidden {
     display: none;
 }
@@ -678,6 +684,28 @@ span[is_winner=false] {
     color: #F61818 !important;
 }
 
+/* local tournament results page */
+/* #main-local-tournament-results {
+	font-family: VeniteAdoremus;
+}
+#main-local-tournament-results h1 {
+	position: absolute;
+	top: max(60px, 10%);
+	left: 50%;
+	transform: translate(-50%);
+	font-size: 3vw;
+	white-space: nowrap;
+}
+
+#main-local-tournament-results h3 {
+	position: absolute;
+	top: max(100px, 50%);
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 4vw;
+	white-space: nowrap;
+} */
+
 /* login page */
 #main-login {
     color: white;
@@ -776,6 +804,7 @@ span[is_winner=false] {
 
 /* main profile title */
 #main-profile h1 {
+	font-family: VeniteAdoremus;
 	white-space: nowrap;
 }
 
@@ -1094,4 +1123,10 @@ input[type="password"] {
 #div-match-history {
     position: relative;
     top: 50px;
+}
+
+#edit-profile-form {
+	position:relative;
+	top: 0;
+	left: 0;
 }
