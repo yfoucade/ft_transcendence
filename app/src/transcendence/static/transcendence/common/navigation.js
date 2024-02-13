@@ -103,6 +103,7 @@ function local_tournament_form_hydration_recipe()
         html_element_form.addEventListener( "submit", add_player_to_local_tournament );
 
         html_element_text_input.focus();
+        players_list = [];
     }
 
     document.getElementById("start-tournament").addEventListener( "click", start_tournament );

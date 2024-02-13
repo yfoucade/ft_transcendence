@@ -13,6 +13,8 @@ let tournament_form = {
 
     // Config
     max_players: 8,
+
+    players_list: [],
 };
 
 function update_main_local_tournament_form( element ){
@@ -31,6 +33,11 @@ function add_player_to_local_tournament( event )
         tournament_form.html_element_error_message_form.innerHTML = "Allowed characters: alphanumeric and underscore.";
         return;
     }
+    if ( tournament_form.players_list.includes(name) )
+    {
+        tournament_form.html_element_error_message_form.innerHTML = "User already registered.";
+        return;
+    }
     if ( check_number_of_players() )
     {
         tournament_form.html_element_error_message_form.innerHTML = "Max number of players reached.";
@@ -40,6 +47,7 @@ function add_player_to_local_tournament( event )
     let new_player_element = build_registration_element( name );
     tournament_form.html_element_registered_players.appendChild( new_player_element );
     tournament_form.html_element_text_input.value = "";
+    tournament_form.players_list.push(name);
     if ( get_number_of_players() == 2 )
         tournament_form.html_element_error_message_start.innerHTML = "";
 }
@@ -81,7 +89,10 @@ function build_registration_element( name )
 
 function remove_player_handler( event )
 {
-    event.currentTarget.parentNode.remove();
+    line = event.currentTarget.parentNode;
+    let name = line.children[0].innerHTML;
+    tournament_form.players_list.splice( tournament_form.players_list.indexOf(name), 1 );
+    line.remove();
 }
 
 async function start_tournament( event )
