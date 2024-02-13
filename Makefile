@@ -2,7 +2,7 @@ NAME = ft_transcendence
 
 all:
 	@if [ ! -f .env ]; then \
-		echo "❌ The neccessary .env file is not in srcs as expected/"; \
+		echo "❌ The neccessary .env file is not where it is expected to be/"; \
 	fi
 	@if [ -f .env ]; then \
 	printf "Execution de la configuration ${NAME}...\n"; \
@@ -11,7 +11,7 @@ all:
 
 clean:
 	@printf "Arret de la configuration de ${NAME}...\n"
-	@docker compose down -v --remove-orphans
+	@docker compose down --rmi all -v --remove-orphans
 
 fclean: clean
 	@printf "Cleaning dockers\n"
