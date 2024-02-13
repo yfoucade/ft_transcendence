@@ -1,0 +1,9 @@
+{% extends "../base.html" %}
+{% load i18n %}
+
+{% block content %}
+<main id="main-profile" class="shown">
+    <h1>{% trans 'Profile of' %} {{ user.username }}</h1>
+    {% include 'transcendence/accounts/profile_nav.html' %}
+</main>
+{% endblock content %}

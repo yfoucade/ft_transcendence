@@ -1,0 +1,44 @@
+{% extends "../base.html" %}
+{% load i18n %}
+
+{% block content %}
+<main id="main-leaderboard" class="shown no-animated-bg">
+    <h1 id="leaderboard-title">{% trans 'Leaderboard' %}</h1>
+
+    <table class="table custom-table">
+        <thead>
+          <tr>
+            <th>{% trans 'Rank' %}</th><th>{% trans 'Name' %}</th><th>{% trans 'Rating' %}</th>
+          </tr>
+        </thead>
+        <tbody class="leaderbord-players default-text-style">
+            {% for profile in page_obj %}
+                <tr>
+                    <td>{{ start_index|add:forloop.counter }}</td>
+                    <td><a href="{% url 'user-details' profile.user_id %}"><img class="profile-picture" src="{{ profile.picture.url }}" width="32" height="32">{{ profile.display_name }}</a></td>
+                    <td>{{ profile.rating|floatformat:"0" }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+
+    <div class="pagination default-text-style">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; {% trans 'first' %}</a>
+                <a href="?page={{ page_obj.previous_page_number }}">{% trans 'previous' %}</a>
+            {% endif %}
+
+            <span class="current">
+                {% trans 'Page' %} {{ page_obj.number }} {% trans 'of' %} {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">{% trans 'next' %}</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">{% trans 'last' %} &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+</main>
+{% endblock content %}

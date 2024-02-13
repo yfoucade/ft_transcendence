@@ -1,0 +1,51 @@
+services:
+  postgresql:
+    container_name: postgresql
+    build:  ./postgresql
+    env_file: .env
+    volumes:
+      - db-data:/var/lib/postgresql/15/main
+    networks:
+      - network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "transcendence"]
+      interval: 5s
+
+  app:
+    container_name: app
+    build: ./app
+    depends_on:
+      # - postgresql
+      postgresql:
+        condition: service_healthy
+    restart: on-failure
+    env_file: .env
+    volumes:
+      - type: volume
+        source: src-data
+        target: /src
+    networks:
+      - network
+    ports:
+      - "8000:8000"
+      - "8001:443"
+      - "8080:8080"
+
+networks:
+  network:
+    name: ${NETWORK_NAME}
+    driver: bridge
+
+volumes:
+  db-data:
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: ./data
+  src-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./app/src/

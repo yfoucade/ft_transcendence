@@ -1,0 +1,56 @@
+{% extends "../../base.html" %}
+{% load i18n %}
+
+{% block content %}
+<main id="main-online-tournament" class="pong-page default-text-style no-animated-bg">
+
+    <div id="online-tournament-lobby" class="shown">
+        <h2 id="lobby-title">{% trans 'Registered players' %}</h2>
+		<span id="nb-of-players-in-queue" is_ready="{% if queue.length == 4 %}true{% else %}false{% endif %}"></span>
+        <div id="div-queue" class="shown">
+            <ul id="ul-queue">
+            </ul>
+        </div>
+        <div id="div-leave" class="shown">
+            <a id="anchor-leave" href="/play">
+                <button id="button-leave" class="btn btn-outline-light">{% trans 'Leave tournament' %}</button>
+            </a>
+        </div>
+    </div>
+
+    <div id="online-tournament-next-round" class="hidden online-tournament-midpage">
+        <h2>{% trans 'Next round' %}</h2>
+        <h3 id="round-name"></h3>
+        <div id="div-round-pairings">
+            <ul id="ul-round-pairings">
+            </ul>
+        </div>
+    </div>
+
+    <div id="game-elements" class="hidden">
+        <div id="players-names" class="">
+            <span id="player1">
+                <span id="player1-name"></span>
+                <img id="player1-img" width="32" height="32" src="">
+            </span>
+            <span id="versus">vs</span>
+            <span id="player2">
+                <img id="player2-img" width="32" height="32" src="">
+                <span id="player2-name"></span>
+            </span>
+        </div>
+        {% include "transcendence/pong/game_canvas.html" %}
+    </div>
+
+    <div id="online-tournament-results" class="hidden online-tournament-midpage">
+        <h2>{% trans 'Winner' %}</h2>
+        <a id="winner-anchor" href="">
+        </a>
+        <button class="btn btn-outline-light">
+            <a id="a-return" href="{% url 'play' %}">
+                {% trans 'Return' %}
+            </a>
+        </button>
+    </div>
+</main>
+{% endblock %}

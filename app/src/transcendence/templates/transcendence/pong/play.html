@@ -1,0 +1,21 @@
+{% extends "../base.html" %}
+{% load i18n %}
+
+{% block content %}
+<main id="main-play" class="shown">
+    <div id="pong-game-selection">
+        <div id="nav-local-pvp" class="box link" data-target-main-id="main-local-1v1">
+            <a href="/select-opponent/" class="box-content">{% trans 'Local Match' %}<br/>{% trans '& AI Opponent' %}</a>
+        </div>
+        <div id="nav-local-tournament" class="box link" data-target-main-id="main-local-tournament-form">
+            <a href="/local-tournament/form/" class="box-content">{% trans 'Local' %}<br/>{% trans 'tournament' %}</a>
+        </div>
+        <div id="nav-online-pvp" class="box link">
+            <a href="{% url 'online-game' %}" class="box-content">{% trans 'Online' %}<br/>pvp</a>
+        </div>
+        <div id="nav-online-tournament" class="box link">
+            <a href="{% url 'online-tournament' %}" class="box-content">{% trans 'Online' %}<br/>{% trans 'tournament' %}</a>
+        </div>
+    </div>
+</main>
+{% endblock content %}
