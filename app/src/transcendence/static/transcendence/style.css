@@ -6,7 +6,7 @@
 body {
     background-color: black;
     margin: 0;
-	/* overflow: hidden; */
+    /* overflow: hidden; */
     color: white;
 }
 
@@ -16,77 +16,77 @@ body {
 
 /* Local versus animation */
 .local-match-select a {
-	color: white;
-	font-family: VeniteAdoremus, sans-serif;
-	font-size: 3vw;
-	transition: text-shadow 0.3s ease-in-out;
-	text-decoration: none;
-	white-space: nowrap;
-	/* display: flex;
+    color: white;
+    font-family: VeniteAdoremus, sans-serif;
+    font-size: 3vw;
+    transition: text-shadow 0.3s ease-in-out;
+    text-decoration: none;
+    white-space: nowrap;
+    /* display: flex;
   align-items: center;
   justify-content: center; */
 }
 
 #opponent-selection #nav-local-pvp {
-	position: absolute;
-	top: 50%;
-	left: 27%;
-	transform: translateY(-50%) translateX(-50%);
+    position: absolute;
+    top: 50%;
+    left: 27%;
+    transform: translateY(-50%) translateX(-50%);
 }
 
 #opponent-selection #nav-local-pvai {
-	position: absolute;
-	top: 50%;
-	left: 75%;
-	transform: translateY(-50%) translateX(-50%);
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    transform: translateY(-50%) translateX(-50%);
 }
 
 .local-pvp-select:hover {
-	text-shadow:
-	0 0 5px #2288f0,
-	0 0 10px #2288f0,
-	0 0 15px #2288f0,
-	0 0 20px #2288f0,
-	0 0 25px #2288f0,
-	0 0 30px #2288f0,
-	0 0 35px #2288f0,
-	0 0 40px #2288f0,
-	0 0 45px #2288f0,
-	0 0 50px #2288f0;
+    text-shadow:
+    0 0 5px #2288f0,
+    0 0 10px #2288f0,
+    0 0 15px #2288f0,
+    0 0 20px #2288f0,
+    0 0 25px #2288f0,
+    0 0 30px #2288f0,
+    0 0 35px #2288f0,
+    0 0 40px #2288f0,
+    0 0 45px #2288f0,
+    0 0 50px #2288f0;
 }
 
 .local-pvai-select:hover {
-	text-shadow:
-	0 0 5px #ff2740,
-	0 0 10px #ff2740,
-	0 0 15px #ff2740,
-	0 0 20px #ff2740,
-	0 0 25px #ff2740,
-	0 0 30px #ff2740,
-	0 0 35px #ff2740,
-	0 0 40px #ff2740,
-	0 0 45px #ff2740,
-	0 0 50px #ff2740;
+    text-shadow:
+    0 0 5px #ff2740,
+    0 0 10px #ff2740,
+    0 0 15px #ff2740,
+    0 0 20px #ff2740,
+    0 0 25px #ff2740,
+    0 0 30px #ff2740,
+    0 0 35px #ff2740,
+    0 0 40px #ff2740,
+    0 0 45px #ff2740,
+    0 0 50px #ff2740;
 }
 
 /* bouncing dots animation */
 #bouncing_dots {
-	display: block;
-	position: fixed;
-	top: 0;
-	left: 0;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 /* Pong Title img */
 #pong-title{
-	display: block;
-	position: absolute;
-	top: 20%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 30vw;
-	height: auto;
-	pointer-events: none;
+    display: block;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30vw;
+    height: auto;
+    pointer-events: none;
 }
 
 /* main nav-bar */
@@ -100,12 +100,12 @@ body {
     width: 100vw;
     height: 60px;
     display: flex;
-	flex-wrap: nowrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
 }
 
 #main-navbar ul {
-	color: white;
+    color: white;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -133,7 +133,7 @@ body {
     vertical-align: middle;
     padding-top: auto;
     text-align: center;
-	white-space: nowrap;
+    white-space: nowrap;
 }
 
 #main-navbar li:hover {
@@ -146,96 +146,96 @@ main {
 
 /* main nav-bar animation */
 .animated-underline-link {
-	position: relative;
-	text-decoration: none;
-	color: white;
-	text-transform: uppercase;
-	font-size: 20px;
-	letter-spacing: 0.05em;
-	transition: color 0.3s ease, text-shadow 0.3s ease;
+    position: relative;
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
   
 .animated-underline-link .underline {
-	position: absolute;
-	left: 0;
-	bottom: 1;
-	height: 2px;
-	width: 0;
-	background-color: white;
-	transition: width 0.3s ease;
+    position: absolute;
+    left: 0;
+    bottom: 1;
+    height: 2px;
+    width: 0;
+    background-color: white;
+    transition: width 0.3s ease;
 }
   
 .animated-underline-link:hover {
-	color: white;
-	text-shadow: 0 0 2px, 0 0 5px;
+    color: white;
+    text-shadow: 0 0 2px, 0 0 5px;
 }
   
 .animated-underline-link:hover .underline {
-	width: 100%;
+    width: 100%;
 }
 
 
 /* game mode selection animation */
 #pong-game-selection .box {
-	position: relative;
-	width: 150px;
-	height: 60px;
-	margin: 0 30px;
-	border: 2px solid white;
-	border-radius: 10px;
-	background-color: transparent;
-	transition: background-color 0.3s ease;
+    position: relative;
+    width: 150px;
+    height: 60px;
+    margin: 0 30px;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
 }
   
 #pong-game-selection .box::before {
-	content: "";
-	position: absolute;
-	top: -4px;
-	left: -4px;
-	right: -4px;
-	bottom: -4px;
-	border-radius: 14px;
-	border: 2px solid white;
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 14px;
+    border: 2px solid white;
 }
   
 #pong-game-selection .box::after {
-	content: "";
-	position: absolute;
-	top: -2px;
-	left: -2px;
-	right: -2px;
-	bottom: -2px;
-	border-radius: 12px;
-	border: 1px solid black;
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 12px;
+    border: 1px solid black;
 }
 
 #pong-game-selection {
-	display: flex;
-	/* justify-content: center; */
-	position: absolute;
-	top: 60%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+    display: flex;
+    /* justify-content: center; */
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
   
 #pong-game-selection .box-content {
-	color:white;
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-	z-index: 1;
-	line-height: 1.2;
-	text-decoration: none;
+    color:white;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    z-index: 1;
+    line-height: 1.2;
+    text-decoration: none;
 }
 
 #pong-game-selection .box:hover {
-	background-color: white; /* White background on hover */
+    background-color: white; /* White background on hover */
 }
   
 #pong-game-selection .box:hover .box-content {
-	color: black; /* Black text on hover */
+    color: black; /* Black text on hover */
 }
 
 /* #opponent-selection {
@@ -346,18 +346,18 @@ div[id$="game-canvas"] {
     position: relative;
     /* border: 3px solid white; */
     box-sizing: content-box;
-	font-family: VeniteAdoremus;
+    font-family: VeniteAdoremus;
 }
 
 div[id$="game-canvas"]::before {
-	content: "";
-	position: absolute;
-	top: -4px;
-	left: -4px;
-	right: -4px;
-	bottom: -4px;
-	/* border-radius: 14px; */
-	border: 2px solid white;
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    /* border-radius: 14px; */
+    border: 2px solid white;
 }
 
 .left-paddle {
@@ -369,7 +369,7 @@ div[id$="game-canvas"]::before {
     left: 0%;
     top: 50%;
     transform: translate(0, -50%);
-	border-radius: 6px;
+    border-radius: 6px;
 }
 
 .right-paddle {
@@ -381,7 +381,7 @@ div[id$="game-canvas"]::before {
     left: 100%;
     top: 50%;
     transform: translate(-100%, -50%);
-	border-radius: 6px;
+    border-radius: 6px;
 }
 
 .ball {
@@ -389,7 +389,7 @@ div[id$="game-canvas"]::before {
     position: absolute;
     width: 3%;
     aspect-ratio: 1/1;
-	border-radius: 12px;
+    border-radius: 12px;
     background-color: white;
     top: 50%;
     left: 50%;
@@ -403,10 +403,10 @@ div[id$="game-canvas"]::before {
     top: 40%;
     transform: translate(-50%, -50%);
     height: 15%;
-	background: none;
-	border: none;
-	color:white;
-	font-size: 3vw;
+    background: none;
+    border: none;
+    color:white;
+    font-size: 3vw;
 }
 
 .text-only-button:focus {
@@ -415,8 +415,8 @@ div[id$="game-canvas"]::before {
   }
 
 #start-button-text {
-	position: absolute;
-	left: 50%;
+    position: absolute;
+    left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 }
@@ -436,11 +436,11 @@ div[id$="game-canvas"]::before {
 
 /* tournament winner page */
 #local-tournament-lobby-winner{
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-	font-size: min(5vw, 60px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    font-size: min(5vw, 60px);
 }
 
 /* local tournament form page */
@@ -450,12 +450,12 @@ div[id$="game-canvas"]::before {
 }
 
 #div-add-player {
-	position: absolute;
-	top: 55%;
-	left: 40%;
-	width: 40%;
-	height: 40%;
-	transform: translateY(-50%) translateX(-50%);
+    position: absolute;
+    top: 55%;
+    left: 40%;
+    width: 40%;
+    height: 40%;
+    transform: translateY(-50%) translateX(-50%);
 }
 
 #form-and-player-list
@@ -469,47 +469,47 @@ div[id$="game-canvas"]::before {
 }
 
 .input-tournament-form {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	width: 200px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 200px;
 }
 
 #div-player-list
 {
-	color: white;
-	position: absolute;
-	top: 30%;
-	left : 65%;
-	/* transform: translate(-50%, -50%); */
+    color: white;
+    position: absolute;
+    top: 30%;
+    left : 65%;
+    /* transform: translate(-50%, -50%); */
     display: grid;
     grid-template-rows: repeat(8, 1fr);
     border-style: solid;
     border-width: 8px;
     border-radius: 10px;
     height: 50%;
-	width: auto;
-	min-width: 310px;
-	/* aspect-ratio: 10/15; */
+    width: auto;
+    min-width: 310px;
+    /* aspect-ratio: 10/15; */
     padding: 10px;
 }
 
 #div-start-tournament
 {
-	position: absolute;
-	top: 30%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-	font-family: VeniteAdoremus, sans-serif;
+    font-family: VeniteAdoremus, sans-serif;
 }
 
 .registered-player
 {
     display: flex;
     justify-content: space-evenly;
-	flex-basis: 3%;
-	font-family: VeniteAdoremus, sans-serif;
+    flex-basis: 3%;
+    font-family: VeniteAdoremus, sans-serif;
 }
 
 .remove-player
@@ -517,9 +517,9 @@ div[id$="game-canvas"]::before {
     color: red;
     font-weight: bolder;
     transform: scale(3) rotate(-45deg);
-	position: relative;
-	top: 30%;
-	left: 30px;
+    position: relative;
+    top: 30%;
+    left: 30px;
     /* transform: rotate(-45deg); */
 }
 
@@ -531,58 +531,58 @@ div[id$="game-canvas"]::before {
 .error
 {
     color: red;
-	font-family: VeniteAdoremus;
+    font-family: VeniteAdoremus;
 }
 
 #error-message-form {
-	position: absolute;
-	top: 30%;
-	left: 40%;
-	transform: translate(-50% -50%);
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    transform: translate(-50% -50%);
 }
 
 h1,h2,h3 {
     text-align: center;
-	color: white;
-	font-family: VeniteAdoremus;
+    color: white;
+    font-family: VeniteAdoremus;
 }
 
 #main-local-tournament-lobby h1{
-	position: absolute;
-	top: 10%;
-	left: 50%;
-	transform: translateY(-50%) translateX(-50%);
-	font-size: 3vw;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    font-size: 3vw;
 }
 
 #main-local-tournament-lobby h2{
-	position: absolute;
-	top: 20%;
-	left: 50%;
-	transform: translateY(-50%) translateX(-50%);
-	font-size: 2.5vw;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    font-size: 2.5vw;
 }
 
 #main-local-tournament-lobby h3{
-	position: absolute;
-	top: 25%;
-	left: 50%;
-	transform: translateY(-50%) translateX(-50%);
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
 }
 
 #local-tournament-lobby-tables {
-	color: white;
-	font-family: VeniteAdoremus;
+    color: white;
+    font-family: VeniteAdoremus;
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 50%;
     max-width: 500px;
     gap: 6px;
     margin: auto;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateY(-50%) translateX(-50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
 }
 
 .lobby-table-header {
@@ -618,12 +618,12 @@ h1,h2,h3 {
 }
 
 #local-tournament-lobby-button {
-	font-family: VeniteAdoremus;
+    font-family: VeniteAdoremus;
     margin: auto;
-	position:absolute;
-	top: 65%;
-	left: 50%;
-	transform: translateY(-50%) translateX(-50%);
+    position:absolute;
+    top: 65%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
 }
 
 .player-out {
@@ -672,227 +672,227 @@ h1,h2,h3 {
 }
 
 span[is_winner=true] {
-	color: #159b0a !important;
+    color: #159b0a !important;
 }
 
 span[is_winner=false] {
-	color: #F61818 !important;
+    color: #F61818 !important;
 }
 
 /* login page */
 #main-login {
-	color: white;
+    color: white;
 }
 
 .pass-field {
-	font-family: sans-serif;
+    font-family: sans-serif;
 }
 
 #login-form {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	height: 20%;
-	transform: translateX(-50%) translateY(-50%);
-	font-family: VeniteAdoremus;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 20%;
+    transform: translateX(-50%) translateY(-50%);
+    font-family: VeniteAdoremus;
 }
 
 .login-button
 {
-	margin:1vw;
-	width: 190px;
+    margin:1vw;
+    width: 190px;
     text-align: center;
-	font-family: VeniteAdoremus, sans-serif;
+    font-family: VeniteAdoremus, sans-serif;
 }
 
 .create-account-button {
-	font-family: VeniteAdoremus;
-	width: 190px;
+    font-family: VeniteAdoremus;
+    width: 190px;
 }
 
 .error-login {
-	position: absolute;
-	color:#ff2740;
-	top: 20%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	font-family: VeniteAdoremus;
-	text-align: center;
-	font-size: 20px;
+    position: absolute;
+    color:#ff2740;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: VeniteAdoremus;
+    text-align: center;
+    font-size: 20px;
 }
 
 .error-message {
-	font-family: VeniteAdoremus;
-	color:#ff2740;
+    font-family: VeniteAdoremus;
+    color:#ff2740;
 }
 
 /* signup page */
 #main-signup {
-	position: absolute;
-	top: 30%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	font-family: VeniteAdoremus;
-	color: white;
-	align-content: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: VeniteAdoremus;
+    color: white;
+    align-content: center;
 }
 
 .signup-button
 {
-	position: absolute;
-	top: 110%;
-	left: 50%;
-	width: 190px;
-	transform: translate(-50%, -50%);
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    width: 190px;
+    transform: translate(-50%, -50%);
     text-align: center;
-	font-family: VeniteAdoremus, sans-serif;
+    font-family: VeniteAdoremus, sans-serif;
 }
 
 /* user profile navigation */
 .profile-nav {
-	font-family: VeniteAdoremus;
+    font-family: VeniteAdoremus;
     margin: auto;
-	width: 213px;
+    width: 213px;
 }
 
 #profile-nav ul {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-	list-style-type: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    list-style-type: none;
 }
 
 /* default text style */
 .default-text-style {
-	font-family: VeniteAdoremus;
-	color: white;
+    font-family: VeniteAdoremus;
+    color: white;
 }
 
 /* edit-profile page helptext */
 .helptext {
-	color: #6C757D;
-	font-size: 0.8em;
-	margin-bottom: 0px;
+    color: #6C757D;
+    font-size: 0.8em;
+    margin-bottom: 0px;
 }
 
 /* password-change-form */
 #password-change-form {
-	color: white;
-	font-family: VeniteAdoremus, sans-serif;
-	position: absolute;
-	left: 0;
-	top: 10%
+    color: white;
+    font-family: VeniteAdoremus, sans-serif;
+    position: absolute;
+    left: 0;
+    top: 10%
 }
 
 #password-change-form ul {
-	color: #6C757D;
-	font-size: 0.8em;
-	margin-bottom: 0px;
+    color: #6C757D;
+    font-size: 0.8em;
+    margin-bottom: 0px;
 }
 
 /* fix the blank password input bug */
 input[type="password"] {
-	font-family: sans-serif !important;
+    font-family: sans-serif !important;
 }
 
 /* leaderboard page */
 #main-leaderboard {
-	position: absolute;
-	top: 40%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-	width: 30vw;
-	min-width: 325px;
-	color:white;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 30vw;
+    min-width: 325px;
+    color:white;
 }
 
 .leaderbord-players a {
-	color:white;
+    color:white;
 }
 
 /* profile picture */
 .profile-picture {
-	border-radius: 50%;
-	margin-right: 0.5rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
 }
 
 .language-select {
-	color: white;
-	background-color: transparent;
-	outline: 0;
-	border: none;
+    color: white;
+    background-color: transparent;
+    outline: 0;
+    border: none;
 }
 
 .language-select option {
-	background-color:black;
-	border: none;
-	outline: 0;
+    background-color:black;
+    border: none;
+    outline: 0;
 }
 
 .language-go {
-	background-color: transparent;
-	color:white;
-	border: none;
-	cursor: pointer;
+    background-color: transparent;
+    color:white;
+    border: none;
+    cursor: pointer;
 }
 
 /* select {
-	-webkit-appearance:none;
-	-moz-appearance:none;
-	-ms-appearance:none;
-	appearance:none;
-	outline:0;
-	box-shadow:none;
-	border:0!important;
-	flex: 1;
-	padding: 0 .5em;
-	color:#fff;
-	cursor:pointer;
-	font-size: 1em;
-	font-family: 'Open Sans', sans-serif;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    appearance:none;
+    outline:0;
+    box-shadow:none;
+    border:0!important;
+    flex: 1;
+    padding: 0 .5em;
+    color:#fff;
+    cursor:pointer;
+    font-size: 1em;
+    font-family: 'Open Sans', sans-serif;
  }
  
  select::-ms-expand {
-	display: none;
+    display: none;
  }
  .select {
-	position: relative;
-	display: flex;
-	width: 20em;
-	height: 3em;
-	line-height: 3;
-	background: black;
-	overflow: hidden;
-	border-radius: .25em;
+    position: relative;
+    display: flex;
+    width: 20em;
+    height: 3em;
+    line-height: 3;
+    background: black;
+    overflow: hidden;
+    border-radius: .25em;
  }
  .select::after {
-	content: '\25BC';
-	position: absolute;
-	top: 0;
-	right: 0;
-	padding: 0 1em;
-	background: #2b2e2e;
-	cursor:pointer;
-	pointer-events:none;
-	transition:.25s all ease;
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #2b2e2e;
+    cursor:pointer;
+    pointer-events:none;
+    transition:.25s all ease;
  }
  .select:hover::after {
-	color: #23b499;
+    color: #23b499;
  } */
 
  /* online pvp game */
  #lobby #div-play #play-title {
-	position: absolute;
-	top:max(65px, 20%);
-	left: 50%;
-	transform: translate(-50%, -50%);
-	font-size: 2.5vw;
-	white-space: nowrap;
-	color: #777a75;
+    position: absolute;
+    top:max(65px, 20%);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5vw;
+    white-space: nowrap;
+    color: #777a75;
  }
 
  #button-play {
@@ -901,158 +901,158 @@ input[type="password"] {
     top:max(90px, 40%);
     transform: translate(-50%, -50%);
     height: 15%;
-	background: none;
-	border: none;
-	color:white;
-	font-size: 4vw;
-	font-family: VeniteAdoremus;
+    background: none;
+    border: none;
+    color:white;
+    font-size: 4vw;
+    font-family: VeniteAdoremus;
 }
 
 #waiting-title {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	font-size: 3vw;
-	color: #777a75;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3vw;
+    color: #777a75;
 }
 
 #button-abort{
-	z-index: 1;
+    z-index: 1;
     position: absolute;
     left: 50%;
     top: 60%;
     transform: translate(-50%, -50%);
     height: 15%;
-	background: none;
-	border: none;
-	color:white;
-	font-size: 2vw;
-	font-family: VeniteAdoremus;
+    background: none;
+    border: none;
+    color:white;
+    font-size: 2vw;
+    font-family: VeniteAdoremus;
 }
 
 #div-result {
-	z-index: 36;
-	height: 0;
-	position: relative;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	font-size: 2vw;
-	font-family: VeniteAdoremus;
-	text-align: center;
+    z-index: 36;
+    height: 0;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2vw;
+    font-family: VeniteAdoremus;
+    text-align: center;
 }
 
 /* online tournament */
 #online-tournament-lobby {
-	position: absolute;
-	top: 35%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #ul-queue {
-	list-style-type: none;
-	padding: 0;
+    list-style-type: none;
+    padding: 0;
 }
 
 #nb-of-players-in-queue {
-	left: 50%;
+    left: 50%;
 }
 
 #nb-of-players-in-queue[is_ready=true] {
-	color: #159b0a !important;
+    color: #159b0a !important;
 }
 
 #nb-of-players-in-queue[is_ready=false] {
-	color: red !important;
+    color: red !important;
 }
 
 /* online tournament next and winner page */
 .online-tournament-midpage {
-	position: absolute;
-	top: 20%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .online-tournament-midpage span {
-	display:inline-block;
-	padding: 10px;
+    display:inline-block;
+    padding: 10px;
 }
 
 #ul-round-pairings {
-	list-style-type: none;
+    list-style-type: none;
 }
 
 #online-tournament-results button a {
-	color: white;
-	text-decoration: none;
+    color: white;
+    text-decoration: none;
 }
 
 #online-tournament-results button:hover {
-	color: black;
+    color: black;
 }
 
 #online-tournament-results button a:hover {
-	color: black;
+    color: black;
 }
 
 /* following page */
 #main-following {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #button-leave {
-	position: absolute;
-	top: 50%;
-	left: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
 
 /* user details page */
 #match-history {
-	position: relative;
-	top: 180px;
-	width: fit-content;
-	left: 50%;
-	transform: translate(-50%, -50%);
+    position: relative;
+    top: 180px;
+    width: fit-content;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #follow-form {
-	z-index: 30;
-	position: relative;
+    z-index: 30;
+    position: relative;
 }
 
 #follow-form button{
-	position:relative;
-	left: 50%;
-	transform: translate(-50%);
+    position:relative;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 #wins {
-	color: #159b0a !important;
-	margin: 1em;
+    color: #159b0a !important;
+    margin: 1em;
 }
 
 #losses {
-	color: #F61818 !important;
-	margin: 1em;
+    color: #F61818 !important;
+    margin: 1em;
 }
 
 #wins-and-losses {
-	left:50%;
-	text-align: center;
-	/* transform: translate(-50%); */
+    left:50%;
+    text-align: center;
+    /* transform: translate(-50%); */
 }
 
 #prout {
-	position: relative;
-	top: 50px;
+    position: relative;
+    top: 50px;
 }
 
 #div-match-history {
-	position: relative;
-	top: 50px;
+    position: relative;
+    top: 50px;
 }
