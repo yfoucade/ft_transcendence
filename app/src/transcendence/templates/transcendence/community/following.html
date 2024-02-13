@@ -16,7 +16,7 @@
                 <tr>
                     <td>{{ forloop.counter }}</td>
                     <td><a href="{% url 'user-details' profile.user_id %}"><img src="{{ profile.picture.url }}" width="32" height="32">{{ profile.display_name }}</a></td>
-                    <td>{{ profile.rating}}</td>
+                    <td>{{ profile.rating|floatformat:"0" }}</td>
                     <td>
                         {% if is_online %}
                             {% trans 'online' %}
