@@ -154,7 +154,7 @@ def user_details(request, id):
     nb_wins = game_history.filter(winner_id=target_profile.user_id).count()
     nb_losses = game_history.filter(~Q(winner_id=target_profile.user_id)).count()
 
-    context = {"profile": target_profile, "own_page":own_page, "following": following,
+    context = {"target_profile": target_profile, "own_page":own_page, "following": following,
                "nb_wins":nb_wins, "nb_losses":nb_losses, "game_history":game_history, }
     return render( request, "transcendence/community/user_details.html", context )
 
