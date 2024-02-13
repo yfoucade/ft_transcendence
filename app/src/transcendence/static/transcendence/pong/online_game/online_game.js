@@ -214,6 +214,8 @@ function og_handle_keyup( event )
 
 function send_paddle_movement()
 {
+	if ( !online_game_obj.websocket )
+		return;
     online_game_obj.websocket.send(JSON.stringify(
         {
         "type": "game.paddle",
