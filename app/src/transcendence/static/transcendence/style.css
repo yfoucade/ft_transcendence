@@ -339,13 +339,19 @@ main {
 div[id$="game-canvas"] {
     z-index: 10;
     margin-top: 30px;
-    grid-column: 2/3;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 50vw;
+	aspect-ratio: 8/5;
+    /* grid-column: 2/3;
     grid-row: 2;
     aspect-ratio: 8/5;
     background: black;
-    position: relative;
+    position: relative; */
     /* border: 3px solid white; */
-    box-sizing: content-box;
+    /* box-sizing: content-box; */
     font-family: VeniteAdoremus;
 }
 
@@ -755,14 +761,14 @@ span[is_winner=false] {
 .profile-nav {
     font-family: VeniteAdoremus;
     margin: auto;
-    width: 213px;
+    width: 300px;
 }
 
 #profile-nav ul {
     position: absolute;
-    top: 50%;
+    top: max(30%, 100px);
     left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%);
     list-style-type: none;
 }
 
@@ -971,10 +977,14 @@ input[type="password"] {
 /* online tournament next and winner page */
 .online-tournament-midpage {
     position: absolute;
-    top: 20%;
+    top: max(20%, 200px);
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+/* .online-tournament-midpage h2 {
+	top: max(20%, 100px);
+} */
 
 .online-tournament-midpage span {
     display:inline-block;
@@ -1014,10 +1024,10 @@ input[type="password"] {
 /* user details page */
 #match-history {
     position: relative;
-    top: 180px;
+    top: 0;
     width: fit-content;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%);
 }
 
 #follow-form {
