@@ -1,11 +1,13 @@
 NAME = ft_transcendence
 
 all:
-		@if [ ! -f .env ]; then \
+	@if [ ! -f .env ]; then \
 		echo "❌ The neccessary .env file is not in srcs as expected/"; \
 	fi
-	@printf "Execution de la configuration ${NAME}...\n"
-	@docker compose up --build
+	@if [ -f .env ]; then \
+	printf "Execution de la configuration ${NAME}...\n"; \
+	docker compose up --build; \
+	fi
 
 clean:
 	@printf "Arret de la configuration de ${NAME}...\n"
