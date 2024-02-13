@@ -1073,6 +1073,12 @@ input[type="password"] {
     align-items: center;
 }
 
+#main-following table {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
 #button-leave {
     position: absolute;
     top: 50%;
