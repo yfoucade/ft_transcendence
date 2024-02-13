@@ -267,8 +267,6 @@ function msg_handler_tournament_winner( winner )
 function event_handler_online_tournament_message_dispatcher( event )
 {
     let data = JSON.parse(event.data);
-    console.log("received from server:");
-    console.log(data);
     if ( data.type == "tournament.welcome" )
         msg_handler_tournament_welcome( data.user_id );
     if ( data.type == "tournament.queue.update" )
