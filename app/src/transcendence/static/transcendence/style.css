@@ -330,10 +330,12 @@ main {
 }
 
 #players-names {
-    margin-top: 30px;
-    text-align: center;
-    grid-column: 2/3;
-    font-size: 2em;
+    position: absolute;
+	top: max(10vh, 40px);
+	left: 50%;
+    font-size: 3vmin;
+	white-space: nowrap;
+	transform: translate(-50%);
 }
 
 div[id$="game-canvas"] {
@@ -674,12 +676,6 @@ span[is_winner=true] {
 
 span[is_winner=false] {
     color: #F61818 !important;
-}
-
-/* local tournament match page */
-#player-names span{
-	font-size: 8vmin;
-	color: blue;
 }
 
 /* login page */
