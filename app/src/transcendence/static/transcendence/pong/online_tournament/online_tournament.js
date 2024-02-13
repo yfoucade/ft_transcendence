@@ -72,7 +72,7 @@ function hydrate_online_tournament()
         elt_a_return = document.getElementById("a-return");
 
         elt_a_return.addEventListener("click", route);
-        websocket = new WebSocket( "wss://" + window.location.host + "/ws/online-tournament/" ); // TODO: wss everywhere
+        websocket = new WebSocket( "wss://" + window.location.host + "/ws/online-tournament/" );
         websocket.addEventListener( "open", event_handler_open_websocket );
         websocket.addEventListener( "message", event_handler_online_tournament_message_dispatcher );
     }
