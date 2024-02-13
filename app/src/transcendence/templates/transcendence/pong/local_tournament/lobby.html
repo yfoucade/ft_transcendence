@@ -3,10 +3,10 @@
 
 {% block content %}
 <main id="main-local-tournament-lobby" class="">
-    <h1>Local Tournament</h1>
-    <h2 id="local-tournament-lobby-current-round-name">{{ round_name }}</h2><!-- Final, Semifinals, Quarterfinals -->
-    <h3 id="local-tournament-lobby-next-match">{% trans 'Next match' %}: {{ next_match.left_player }} vs {{ next_match.right_player }}</h3>
-    <h3 id="local-tournament-lobby-winner"></h3>
+    <h1 class="default-text-style">Local Tournament</h1>
+    <h2 id="local-tournament-lobby-current-round-name" class="default-text-style">{{ round_name }}</h2><!-- Final, Semifinals, Quarterfinals -->
+    <h3 id="local-tournament-lobby-next-match" class="default-text-style">{% trans 'Next match' %}: {{ next_match.left_player }} vs {{ next_match.right_player }}</h3>
+    <h3 id="local-tournament-lobby-winner" class="default-text-style"></h3>
 
     <div id="local-tournament-lobby-tables">
         <section id="local-tournament-lobby-next-round" class="lobby-table">

@@ -547,33 +547,30 @@ div[id$="game-canvas"]::before {
     transform: translate(-50% -50%);
 }
 
-h1,h2,h3 {
-    text-align: center;
-    color: white;
-    font-family: VeniteAdoremus;
+
+/* local tournament lobby */
+#main-local-tournament-lobby {
+	display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  margin-top: max(10%, 100px);
+  font-family: VeniteAdoremus;
+  box-sizing: border-box;
 }
 
 #main-local-tournament-lobby h1{
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    font-size: 3vw;
+	font-size: 6vmin;
 }
 
 #main-local-tournament-lobby h2{
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    font-size: 2.5vw;
+	font-size: 3vmin;
 }
 
 #main-local-tournament-lobby h3{
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
+	font-size: 2vmin;
 }
 
 #local-tournament-lobby-tables {
@@ -581,14 +578,9 @@ h1,h2,h3 {
     font-family: VeniteAdoremus;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 50%;
-    max-width: 500px;
+    width: 100%;
     gap: 6px;
-    margin: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
+    margin: 0;
 }
 
 .lobby-table-header {
@@ -626,10 +618,9 @@ h1,h2,h3 {
 #local-tournament-lobby-button {
     font-family: VeniteAdoremus;
     margin: auto;
-    position:absolute;
-    top: 65%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
+    position: relative;
+    top: 0;
+    left: 0;
 }
 
 .player-out {
@@ -683,6 +674,12 @@ span[is_winner=true] {
 
 span[is_winner=false] {
     color: #F61818 !important;
+}
+
+/* local tournament match page */
+#player-names span{
+	font-size: 8vmin;
+	color: blue;
 }
 
 /* login page */
@@ -772,6 +769,20 @@ span[is_winner=false] {
     list-style-type: none;
 }
 
+/* specification when edit profile is displayed */
+#main-edit-profile #profile-nav ul {
+    position: absolute;
+    top: max(30%, 140px);
+    left: max(50%, 530px);
+    transform: translateX(-50%);
+    list-style-type: none;
+}
+
+/* main profile title */
+#main-profile h1 {
+	white-space: nowrap;
+}
+
 /* default text style */
 .default-text-style {
     font-family: VeniteAdoremus;
@@ -803,6 +814,24 @@ span[is_winner=false] {
 /* fix the blank password input bug */
 input[type="password"] {
     font-family: sans-serif !important;
+}
+
+/* password success message */
+#password-change-successful {
+	position:absolute;
+	top: max(20%, 100px);
+	left: 50%;
+	transform: translate(-50%);
+	color:#159b0a;
+}
+
+/* password change fail message */
+.errorlist {
+	list-style-type: none;
+}
+
+.errorlist li {
+	color:#F61818;
 }
 
 /* leaderboard page */
@@ -960,6 +989,10 @@ input[type="password"] {
 #ul-queue {
     list-style-type: none;
     padding: 0;
+}
+
+#ul-queue li {
+    padding-bottom: 5px;
 }
 
 #nb-of-players-in-queue {
