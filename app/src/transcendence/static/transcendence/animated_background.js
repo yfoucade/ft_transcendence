@@ -11,10 +11,10 @@ function startBackground(){
 	if (animationId != 0)
 		cancelAnimationFrame(animationId);
 	mainHtml = document.querySelector('main');
-	if (mainHtml.classList.contains('no-animated-bg'))
-		return
 	canvas = document.getElementById("bouncing_dots");
 	ctx = canvas.getContext("2d");
+	if (mainHtml.classList.contains('no-animated-bg'))
+		return;
 
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
