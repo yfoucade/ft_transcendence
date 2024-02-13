@@ -940,7 +940,7 @@ input[type="password"] {
 #div-result {
     z-index: 36;
     height: 0;
-    position: relative;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
