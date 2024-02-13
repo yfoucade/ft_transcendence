@@ -140,7 +140,7 @@ def leaderboard(request):
                     "transcendence/community/leaderboard.html",
                     {
                         "page_obj": page_obj,
-                        "start_index": ( int(page_number if page_number is not None else 0) - 1 ) * 3,
+                        "start_index": ( int(page_number if page_number is not None else 1) - 1 ) * 3,
                     })
 
 @login_required
