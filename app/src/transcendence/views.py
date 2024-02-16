@@ -52,12 +52,6 @@ def local_tournament_lobby(request):
         escaped_body = html.escape( request.body.decode(), quote=False )
         tournament_state = json.loads( escaped_body )
         context = lobby.build_local_tournament_context( tournament_state )
-        # TODO: this is debug
-        # with open("/dev/pts/0", "w") as f:
-        #     print("processing form", file=f)
-        #     print(f"{tournament_state = }", file=f)
-        # return render(request, "transcendence/pong/local_tournament/lobby.html")
-        # return HttpResponse(request.body)
         return render(request, "transcendence/pong/local_tournament/lobby.html", context)
     else:
         return redirect("local-tournament-form")
@@ -80,7 +74,6 @@ def local_tournament_results(request):
     else:
         return redirect("local-tournament-form")
 
-# TODO: redirect to profile page if user is authenticated
 def signup(request):
     if ( request.method == "POST" ):
         form = CustomUserCreationForm( request.POST )
@@ -140,6 +133,7 @@ def leaderboard(request):
                     "transcendence/community/leaderboard.html",
                     {
                         "page_obj": page_obj,
+                        "start_index": ( int(page_number if page_number else 1) - 1 ) * 3,
                     })
 
 @login_required
@@ -160,7 +154,7 @@ def user_details(request, id):
     nb_wins = game_history.filter(winner_id=target_profile.user_id).count()
     nb_losses = game_history.filter(~Q(winner_id=target_profile.user_id)).count()
 
-    context = {"profile": target_profile, "own_page":own_page, "following": following,
+    context = {"target_profile": target_profile, "own_page":own_page, "following": following,
                "nb_wins":nb_wins, "nb_losses":nb_losses, "game_history":game_history, }
     return render( request, "transcendence/community/user_details.html", context )
 

@@ -14,7 +14,7 @@
         <tbody class="leaderbord-players default-text-style">
             {% for profile in page_obj %}
                 <tr>
-                    <td>{{ forloop.counter }}</td>
+                    <td>{{ start_index|add:forloop.counter }}</td>
                     <td><a href="{% url 'user-details' profile.user_id %}"><img class="profile-picture" src="{{ profile.picture.url }}" width="32" height="32">{{ profile.display_name }}</a></td>
                     <td>{{ profile.rating|floatformat:"0" }}</td>
                 </tr>

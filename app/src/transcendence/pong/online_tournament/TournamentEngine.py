@@ -82,7 +82,10 @@ class TournamentEngine:
                 result["reason"] = reason
                 result["score"] = score
                 if side == "left":
-                    self.players_remaining.remove(pairing["right_player"])
+                    try:
+                        self.players_remaining.remove(pairing["right_player"])
+                    except:
+                        pass
                 else:
                     self.players_remaining.remove(pairing["left_player"])
         if not all( result for result in self.rounds[-1]["results"] ):

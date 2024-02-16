@@ -3,7 +3,7 @@
 
 {% block content %}
 <main id="main-user-details" class="shown">
-    <h1 id="user-details-title"><img src="{{ profile.picture.url }}" width="32" height="32"> {{ profile.display_name }}</h1>
+    <h1 id="user-details-title"><img src="{{ target_profile.picture.url }}" width="32" height="32"> {{ profile.display_name }}</h1>
     
     {% if not own_page %}
         <form id="follow-form" action="" method="POST" class="inline">
